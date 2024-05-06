@@ -46,13 +46,19 @@ const Carousel = ({ images }) => {
       </div>
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 text-white px-4 py-2 rounded-l"
+        className="absolute top-1/2 left-0 transform -translate-y-1/2 text-white px-4 py-2 "
       >
         •••
       </button>
+      <h1 className="z-50 text-9xl font-bold absolute top-64 left-32 text-blue-900 px-4 py-2">
+        Welcome
+      </h1>
+      <p className="z-50 text-2xl absolute top-96 left-40 text-black py-2 w-1/2 lowercase">
+        Lorem ipsum dolor elit. Molestias officiis id nulla quod eum?
+      </p>
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-0 transform -translate-y-1/2  text-white px-4 py-2 rounded-r"
+        className="absolute top-1/2 right-0 transform -translate-y-1/2  text-white px-4 py-2 "
       >
         •••
       </button>
