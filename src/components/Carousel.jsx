@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Carousel = ({ images }) => {
+const Carousel = ({ images, showSideNavHandler }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
@@ -38,7 +38,8 @@ const Carousel = ({ images }) => {
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-[90vh]"
+                className="w-full h-[90vh] opacity-95"
+                onClick={showSideNavHandler}
               />
             </div>
           ))}
@@ -50,10 +51,10 @@ const Carousel = ({ images }) => {
       >
         •••
       </button>
-      <h1 className="z-50 text-9xl font-bold absolute top-64 left-32 text-blue-900 px-4 py-2">
+      <h1 className="z-50 text-7xl lg:text-9xl font-bold absolute top-60 md:top-64 left-2 md:left-32 text-[#131860] px-4 py-2">
         Welcome
       </h1>
-      <p className="z-50 text-2xl absolute top-96 left-40 text-black py-2 w-1/2 lowercase">
+      <p className="z-50 text-1xl md:text-2xl absolute top-80 md:top-96 left-10 md:left-40 text-black py-2 w-1/2 lowercase">
         Lorem ipsum dolor elit. Molestias officiis id nulla quod eum?
       </p>
       <button

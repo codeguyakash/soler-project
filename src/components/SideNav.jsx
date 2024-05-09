@@ -9,7 +9,7 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const isBlock = showSideNav === "block";
   return (
     <div
-      className={`bg-primary w-72 h-screen fixed top-0 right-0 z-40 ${
+      className={`bg-primary w-72 h-screen fixed top-0 right-0 z-50 opacity-50 ${
         isBlock ? "animate-fade-left" : "animate-fade-right"
       }`}
       style={{ display: showSideNav }}

@@ -1,11 +1,15 @@
 import React from "react";
 import reputation from "../assets/icons/reputation.png";
+import backgroundImage from "../assets/images/10-removebg-preview.png";
 
 const SolarAdvantage = () => {
-  const array = new Array(10).fill(null);
+  const array = new Array(5).fill(null);
   return (
-    <div className="bg-primary w-full h-1/2 flex flex-col items-center justify-center py-32">
-      <h1 className="text-4xl text-white my-10 font-bold border-b-2 p-2">
+    <div
+      className=" w-full bg-blue-900 shapedividers flex flex-col items-center justify-center py-20"
+      // style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
+      <h1 className="text-4xl text-white my-10 font-bold p-2 inline-block text-center">
         The Solaroof Advantage
       </h1>
 
