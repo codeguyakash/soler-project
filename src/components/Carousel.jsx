@@ -24,10 +24,10 @@ const Carousel = ({ images, showSideNavHandler }) => {
   }, [currentSlide]);
 
   return (
-    <div className="relative top-0 bg-[#232323] h-[90vh]">
+    <div className="relative top-0 h-[90vh]">
       <div className="overflow-hidden w-full">
         <div
-          className="flex transition-transform duration-300"
+          className="flex transition-transform duration-500"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
           {images.map((image, index) => (
@@ -51,15 +51,25 @@ const Carousel = ({ images, showSideNavHandler }) => {
       >
         •••
       </button>
-      <h1
-        className="z-50 text-7xl lg:text-9xl font-bold absolute top-60 md:top-64 left-2 md:left-32 text-[#131860] px-4 py-2
-      "
-      >
-        Welcome
-      </h1>
-      <p className="z-50 text-1xl md:text-2xl absolute top-80 md:top-96 left-10 md:left-40 text-black py-2 w-1/2 lowercase">
-        Lorem ipsum dolor elit. Molestias officiis id nulla quod eum?
-      </p>
+      <div className="z-50 absolute top-60 md:top-48 left-2 md:left-32  md:w-1/2">
+        <h1
+          className="text-5xl lg:text-[6rem] uppercase leading-[3.4rem] md:leading-[4rem] lg:leading-[5rem] tracking-tighter text-gray-400 font-bold"
+          style={{
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            color: "transparent",
+            backgroundImage: "linear-gradient(to right, #1e3a8a, green)",
+          }}
+        >
+          Illuminate your journey with our solar brilliance and expertise
+        </h1>
+        <p className="text-1xl md:text-2xl leading-[1.2rem] md:leading-[2rem] lg:leading-[2rem] tracking-tighterF text-gray-800 py-2 lowercase font-semibold">
+          We are committed to harnessing the power of the sun to create
+          sustainable and eco-friendly energy solutions for homes, businesses,
+          and communities.
+        </p>
+      </div>
+
       <button
         onClick={nextSlide}
         className="absolute top-1/2 right-0 transform -translate-y-1/2  text-white px-4 py-2 "

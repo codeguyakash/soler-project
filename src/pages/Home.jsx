@@ -15,6 +15,8 @@ import HowToUseSolar from "../components/HowToUseSolar";
 import SolarInstallation from "../components/SolarInstallation";
 import SolarWork from "../components/SolarWork";
 import Footer from "../components/Footer";
+import WhyRooftopSolar from "../components/WhyRooftopSolar";
+import Services from "../components/Services";
 
 const Home = () => {
   const images = [
@@ -48,7 +50,9 @@ const Home = () => {
         />
         <SolarAdvantage />
         <HowToUseSolar />
+        <WhyRooftopSolar />
         <SolarWork />
+        <Services />
         <SolarInstallation />
         <OurCustomers />
         <Footer />

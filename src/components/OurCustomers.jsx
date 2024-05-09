@@ -2,13 +2,16 @@ import React from "react";
 import reputation from "../assets/logo/Adani_2012_logo.png";
 
 const OurCustomers = () => {
-  const array = new Array(10).fill(null);
+  const array = new Array(5).fill(null);
   return (
     <div
       className=" w-full bg-white shapedividers flex flex-col items-center justify-center py-20"
       // style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <h1 className="text-4xl my-10 font-bold p-2 inline-block text-center">
+      <h1
+        className="text-4xl my-10 font-bold p-2 inline-block text-center
+      "
+      >
         Our Happy Customers :)
       </h1>
 
