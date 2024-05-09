@@ -51,7 +51,10 @@ const Carousel = ({ images, showSideNavHandler }) => {
       >
         •••
       </button>
-      <h1 className="z-50 text-7xl lg:text-9xl font-bold absolute top-60 md:top-64 left-2 md:left-32 text-[#131860] px-4 py-2">
+      <h1
+        className="z-50 text-7xl lg:text-9xl font-bold absolute top-60 md:top-64 left-2 md:left-32 text-[#131860] px-4 py-2
+      "
+      >
         Welcome
       </h1>
       <p className="z-50 text-1xl md:text-2xl absolute top-80 md:top-96 left-10 md:left-40 text-black py-2 w-1/2 lowercase">

@@ -12,6 +12,9 @@ import solarfive from "../assets/images/bg.jpg";
 import solarsix from "../assets/images/solar-six.jpg";
 import solarseven from "../assets/images/solarseven.jpg";
 import HowToUseSolar from "../components/HowToUseSolar";
+import SolarInstallation from "../components/SolarInstallation";
+import SolarWork from "../components/SolarWork";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const images = [
@@ -45,7 +48,10 @@ const Home = () => {
         />
         <SolarAdvantage />
         <HowToUseSolar />
+        <SolarWork />
+        <SolarInstallation />
         <OurCustomers />
+        <Footer />
       </div>
     </>
   );
