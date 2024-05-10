@@ -4,7 +4,7 @@ import solarseven from "../assets/images/solar-power-6860359_1280.jpg";
 const Services = () => {
   return (
     <div
-      className="py-20 h-1/2"
+      className="py-20"
       style={{
         backgroundImage: "linear-gradient(to right, #1e3a8a, white)",
       }}

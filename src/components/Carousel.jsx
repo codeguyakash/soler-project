@@ -24,7 +24,7 @@ const Carousel = ({ images, showSideNavHandler }) => {
   }, [currentSlide]);
 
   return (
-    <div className="relative top-0 h-[90vh]">
+    <div className="relative top-0 bg-primary">
       <div className="overflow-hidden w-full">
         <div
           className="flex transition-transform duration-500"
@@ -51,9 +51,13 @@ const Carousel = ({ images, showSideNavHandler }) => {
       >
         •••
       </button>
-      <div className="z-50 absolute top-60 md:top-48 left-2 md:left-32  md:w-1/2">
+      <div
+        className="z-50 absolute top-28 md:top-48 mx-2 md:left-32 md:w-[80vw] lg:w-[86vw] xl:w-[86vw] 2xl:w-[60vw]
+
+      "
+      >
         <h1
-          className="text-5xl lg:text-[6rem] uppercase leading-[3.4rem] md:leading-[4rem] lg:leading-[5rem] tracking-tighter text-gray-400 font-bold"
+          className="text-5xl md:text-[5.4rem] lg:text-[5.6rem] xl:text-[5.8rem] 2xl:text-[6rem] uppercase leading-[3.4rem] md:leading-[4rem] lg:leading-[5rem] tracking-tighter text-gray-400 font-bold"
           style={{
             backgroundClip: "text",
             WebkitBackgroundClip: "text",

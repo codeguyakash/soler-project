@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="bg-primary h-96 py-10">
+    <div className="bg-primary py-10">
       <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 py-4 px-8 text-white">
         <div className="flex flex-col">
           <Link to="/solar-survay" className="  border-white hover:text-black">
