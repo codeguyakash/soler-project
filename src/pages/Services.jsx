@@ -3,7 +3,7 @@ import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
 
-const SolarCalculator = () => {
+const Services = () => {
   const [showSideNav, setShowSideNav] = useState(false);
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
@@ -11,7 +11,7 @@ const SolarCalculator = () => {
   return (
     <>
       <Nav showSideNavHandler={showSideNavHandler} />
-      <Banner title="From SolarCalculator Page" />
+      <Banner title="From Service Page" />
       <SideNav
         showSideNavHandler={showSideNavHandler}
         showSideNav={showSideNav ? "block" : "none"}
@@ -20,4 +20,4 @@ const SolarCalculator = () => {
   );
 };
 
-export default SolarCalculator;
+export default Services;

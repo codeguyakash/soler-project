@@ -8,6 +8,7 @@ import SolarSurvey from "./pages/SolarSurvey";
 import SolarCalculator from "./pages/SolarCalculator";
 import ContactUs from "./pages/ContactUs";
 import Faqs from "./pages/Faqs";
+import Services from "./pages/Services";
 function App() {
   return (
     <Router>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/solar-saving-calculator" element={<SolarCalculator />} />
         <Route path="/why-go-solar" element={<WhyGoSolar />} />
         <Route path="/our-products" element={<Products />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/faq" element={<Faqs />} />
         <Route path="/blogs" element={<Blogs />} />

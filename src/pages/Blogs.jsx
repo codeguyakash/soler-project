@@ -1,9 +1,23 @@
-import React from 'react'
+import { useState } from "react";
+import Banner from "./../components/common/Banner";
+import SideNav from "../components/SideNav";
+import Nav from "../components/Nav";
 
 const Blogs = () => {
+  const [showSideNav, setShowSideNav] = useState(false);
+  const showSideNavHandler = () => {
+    setShowSideNav(!showSideNav);
+  };
   return (
-    <div>Blogs</div>
-  )
-}
+    <>
+      <Nav showSideNavHandler={showSideNavHandler} />
+      <Banner title="From Blogs Page" />
+      <SideNav
+        showSideNavHandler={showSideNavHandler}
+        showSideNav={showSideNav ? "block" : "none"}
+      />
+    </>
+  );
+};
 
-export default Blogs
+export default Blogs;

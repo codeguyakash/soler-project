@@ -34,6 +34,12 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
           Solar Saving Calculator
         </Link>
         <Link
+          to="/services"
+          className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
+        >
+          Our Services
+        </Link>
+        <Link
           to="/our-products"
           className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
         >
