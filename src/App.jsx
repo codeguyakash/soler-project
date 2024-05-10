@@ -11,20 +11,25 @@ import Faqs from "./pages/Faqs";
 import Services from "./pages/Services";
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/solar-survay" element={<SolarSurvey />} />
-        <Route path="/solar-saving-calculator" element={<SolarCalculator />} />
-        <Route path="/why-go-solar" element={<WhyGoSolar />} />
-        <Route path="/our-products" element={<Products />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/faq" element={<Faqs />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/solar-survay" element={<SolarSurvey />} />
+          <Route
+            path="/solar-saving-calculator"
+            element={<SolarCalculator />}
+          />
+          <Route path="/why-go-solar" element={<WhyGoSolar />} />
+          <Route path="/our-products" element={<Products />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/faq" element={<Faqs />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
