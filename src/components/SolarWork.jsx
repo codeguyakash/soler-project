@@ -1,9 +1,15 @@
 import React from "react";
 import howsolarwork from "../assets/images/graphics.jpg";
+import backgroundImage from "../assets/images/bg-line-2.png";
 
 const SolarWork = () => {
   return (
-    <div className="bg-white py-10 flex flex-col items-center justify-center ">
+    <div
+      className="bg-white py-10 flex flex-col items-center justify-center bg-cover bg-no-repeat bg-top"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+      }}
+    >
       <div className="w-[60vw]">
         <h1 className="text-4xl my-5 font-bold p-2 text-center">
           Rooftop Solar and its working
