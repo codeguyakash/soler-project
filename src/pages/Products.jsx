@@ -3,6 +3,8 @@ import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
 import Footer from "./../components/Footer";
+import solarthree from "../assets/images/solar-image-three.webp";
+import solarfour from "../assets/images/commerial.jpg";
 
 const Products = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -30,10 +32,10 @@ const Products = () => {
           <div className="mt-12 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-8 lg:gap-x-12 lg:grid-cols-2">
             <div className="flex">
               <div className="ml-4">
-                <h3 className="text-lg leading-6 font-medium text-gray-900">
+                <h3 className="text-2xl pb-5 leading-6 font-medium text-gray-900">
                   Residential Solar
                 </h3>
-                <img src="s" alt="residential-solar" />
+                <img src={solarthree} alt="residential-solar" />
                 <p className="mt-2 text-base text-gray-500">
                   Empower your home with our advanced residential solar
                   products, converting sunlight into cost-saving, eco-friendly
@@ -62,10 +64,10 @@ const Products = () => {
 
             <div className="flex">
               <div className="ml-4">
-                <h3 className="text-lg leading-6 font-medium text-gray-900">
+                <h3 className="text-2xl pb-5 leading-6 font-medium text-gray-900">
                   Commercial Solar
                 </h3>
-                <img src="s" alt="commercial-solar" />
+                <img src={solarfour} alt="commercial-solar" />
                 <p className="mt-2 text-base text-gray-500">
                   Energise your business with our state-of-the-art commercial
                   solar products, turning sunlight into efficient,
