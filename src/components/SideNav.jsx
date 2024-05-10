@@ -9,7 +9,7 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const isBlock = showSideNav === "block";
   return (
     <div
-      className={`bg-primary w-72 h-screen fixed top-0 right-0 z-50 opacity-50 ${
+      className={`bg-primary backdrop-blur-lg1 w-72 h-screen fixed top-0 right-0 z-50 opacity-50 ${
         isBlock ? "animate-fade-left" : "animate-fade-right"
       }`}
       style={{ display: showSideNav }}
@@ -25,26 +25,21 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
           to="/solar-survay"
           className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
         >
-          Book Your Free Solar Survey
+          Book Solar Survey
         </Link>
         <Link
-          to="/calculate-your-saving"
+          to="/solar-saving-calculator"
           className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
         >
-          Calculate Your Saving
+          Solar Saving Calculator
         </Link>
         <Link
-          to="/our-products-range"
+          to="/our-products"
           className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
         >
-          Our Products Range
+          Our Products
         </Link>
-        <Link
-          to="/our-customers"
-          className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-        >
-          Our Customers
-        </Link>
+
         <Link
           to="/contact-us"
           className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
@@ -64,7 +59,7 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
           Why Go Solar
         </Link>
         <Link
-          to="/blog"
+          to="/blogs"
           className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
         >
           Blogs

@@ -4,153 +4,54 @@ import { TiSocialTwitter } from "react-icons/ti";
 import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import imagefour from "../assets/icons/imagefour.jpg";
 
 const Footer = () => {
   return (
     <div className="bg-primary py-10">
-      <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 py-4 px-8 text-white">
-        <div className="flex flex-col">
-          <Link to="/solar-survay" className="  border-white hover:text-black">
-            Book Your Free Solar Survey
-          </Link>
-          <Link
-            to="/calculate-your-saving"
-            className="  border-white hover:text-black"
-          >
-            Calculate Your Saving
-          </Link>
-          <Link
-            to="/our-products-range"
-            className="  border-white hover:text-black"
-          >
-            Our Products Range
-          </Link>
-          <Link to="/solar-survay" className="  border-white hover:text-black">
-            Book Your Free Solar Survey
-          </Link>
-          <Link
-            to="/calculate-your-saving"
-            className="  border-white hover:text-black"
-          >
-            Calculate Your Saving
-          </Link>
-          <Link
-            to="/our-products-range"
-            className="  border-white hover:text-black"
-          >
-            Our Products Range
-          </Link>
-          <Link to="/our-customers" className="  border-white hover:text-black">
-            Our Customers
-          </Link>
-          <Link to="/our-customers" className="  border-white hover:text-black">
-            Our Customers
-          </Link>
+      {/* <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 py-4 px-8 text-white"> */}
+      <div className="py-4 px-8 text-white flex items-center justify-center gap-5">
+        <div className="flex flex-col items-center justify-center">
+          <img src={imagefour} alt="logo-here" width={100} />
+          <h2 className="mt-5">Solar Private Limited</h2>
         </div>
         <div className="flex flex-col">
-          <Link to="/contact-us" className="  border-white hover:text-black">
-            Contact Us
-          </Link>
-          <Link to="/faq" className="  border-white hover:text-black">
-            Some FAQs
-          </Link>
-          <Link to="/why-go-solar" className="  border-white hover:text-black">
-            Why Go Solar
-          </Link>
-          <Link to="/blog" className="  border-white hover:text-black">
-            Blogs
-          </Link>
           <Link to="/solar-survay" className="  border-white hover:text-black">
-            Book Your Free Solar Survey
+            Book Free Solar Survey
           </Link>
           <Link
-            to="/calculate-your-saving"
+            to="/solar-saving-calculator"
             className="  border-white hover:text-black"
           >
-            Calculate Your Saving
+            Solar Saving Calculator
           </Link>
-          <Link
-            to="/our-products-range"
-            className="  border-white hover:text-black"
-          >
-            Our Products Range
-          </Link>
-          <Link to="/our-customers" className="  border-white hover:text-black">
-            Our Customers
-          </Link>
-        </div>
-        <div className="flex flex-col">
-          <Link to="/contact-us" className="  border-white hover:text-black">
-            Contact Us
-          </Link>
-          <Link to="/faq" className="  border-white hover:text-black">
-            Some FAQs
-          </Link>
-          <Link to="/why-go-solar" className="  border-white hover:text-black">
-            Why Go Solar
-          </Link>
-          <Link to="/blog" className="  border-white hover:text-black">
-            Blogs
+          <Link to="/our-products" className="  border-white hover:text-black">
+            Our Products
           </Link>
           <Link to="/contact-us" className="  border-white hover:text-black">
             Contact Us
           </Link>
-          <Link to="/faq" className="  border-white hover:text-black">
+          <Link to="/faqs" className="  border-white hover:text-black">
             Some FAQs
           </Link>
-          <Link to="/why-go-solar" className="  border-white hover:text-black">
-            Why Go Solar
-          </Link>
-          <Link to="/blog" className="  border-white hover:text-black">
+          <Link to="/blogs" className="  border-white hover:text-black">
             Blogs
-          </Link>
-        </div>
-        <div className="flex flex-col">
-          <Link to="/solar-survay" className="  border-white hover:text-black">
-            Book Your Free Solar Survey
-          </Link>
-          <Link
-            to="/calculate-your-saving"
-            className="  border-white hover:text-black"
-          >
-            Calculate Your Saving
-          </Link>
-          <Link to="/solar-survay" className="  border-white hover:text-black">
-            Book Your Free Solar Survey
-          </Link>
-          <Link
-            to="/calculate-your-saving"
-            className="  border-white hover:text-black"
-          >
-            Calculate Your Saving
-          </Link>
-          <Link to="/solar-survay" className="  border-white hover:text-black">
-            Book Your Free Solar Survey
-          </Link>
-          <Link
-            to="/calculate-your-saving"
-            className="  border-white hover:text-black"
-          >
-            Calculate Your Saving
-          </Link>
-          <Link
-            to="/our-products-range"
-            className="  border-white hover:text-black"
-          >
-            Our Products Range
-          </Link>
-          <Link to="/our-customers" className="  border-white hover:text-black">
-            Our Customers
           </Link>
         </div>
       </div>
-      <div className="px-8 py-4 text-white flex justify-between items-center">
+
+      <div className="px-8 py-4 text-white flex justify-center items-center">
         <div className="flex gap-4">
           <TiSocialTwitter className="text-white font-light text-3xl hover:text-black" />
           <FaFacebookF className="text-white font-light text-2xl hover:text-black" />
           <FaLinkedin className="text-white font-light text-2xl hover:text-black" />
           <IoMdMail className="text-white font-light text-3xl hover:text-black" />
         </div>
+      </div>
+      <div className="flex">
+        <h1 className="text-white text-center inline-block mx-auto border-b-[1px]">
+          &copy; 2024 Solar Private Limited. All rights reserved.
+        </h1>
       </div>
     </div>
   );

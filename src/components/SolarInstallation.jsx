@@ -7,7 +7,7 @@ const SolarInstallation = () => {
     >
       <div className="h-96 flex items-center justify-center flex-col px-5 md:px-20">
         <h1
-          className="text-2xl lg:text-[4.3rem] text-white z-50 font-bold
+          className="text-2xl lg:text-[4.3rem] text-white z-40 font-bold
             leading-[2rem] md:leading-[2rem] lg:leading-[4.5rem] text-center
            drop-shadow-2xl italic
             "

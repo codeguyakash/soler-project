@@ -24,44 +24,44 @@ const SolarAdvantage = () => {
           <img
             src={warranty}
             alt="icon"
-            className="block mx-auto"
+            className="block mx-auto "
             width={100}
           />
           <h2 className="text-center text-white py-2">20+ years’ Warranty</h2>
         </div>
-        <div className="w-48 h-48 ">
+        <div className="w-48 h-48 hover:animate-fade-up ">
           <img
             src={insurance}
             alt="icon"
-            className="block mx-auto"
+            className="block mx-auto "
             width={100}
           />
           <h2 className="text-center text-white py-2">
             Insurance for Solar System
           </h2>
         </div>
-        <div className="w-48 h-48">
-          <img src={trust} alt="icon" className="block mx-auto" width={100} />
+        <div className="w-48 h-48 hover:animate-fade-up ">
+          <img src={trust} alt="icon" className="block mx-auto " width={100} />
           <h2 className="text-center text-white py-2">
             Trusted Quality Assurance
           </h2>
         </div>
-        <div className="w-48 h-48 ">
+        <div className="w-48 h-48 hover:animate-fade-up ">
           <img
             src={anniversary}
             alt="icon"
-            className="block mx-auto"
+            className="block mx-auto animate-fade-up"
             width={100}
           />
-          <h2 className="text-center  text-white py-2">
+          <h2 className="text-center  text-white py-2 ">
             25+ years’ experience
           </h2>
         </div>
-        <div className="w-48 h-48 ">
+        <div className="w-48 h-48 hover:animate-fade-up ">
           <img
             src={reputation}
             alt="icon"
-            className="block mx-auto"
+            className="block mx-auto "
             width={100}
           />
           <h2 className="text-center text-white py-2">Free installations</h2>

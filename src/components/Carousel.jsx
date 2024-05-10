@@ -57,7 +57,7 @@ const Carousel = ({ images, showSideNavHandler }) => {
       "
       >
         <h1
-          className="text-5xl md:text-[5.4rem] lg:text-[5.6rem] xl:text-[5.8rem] 2xl:text-[6rem]  leading-[3.4rem] md:leading-[4rem] lg:leading-[5rem] tracking-tighter text-gray-400 font-bold italic"
+          className="text-5xl md:text-[5.4rem] lg:text-[5.6rem] xl:text-[5.8rem] 2xl:text-[6rem]  leading-[3.4rem] md:leading-[4rem] lg:leading-[5rem] tracking-tighter text-gray-400 font-bold italic animate-fade-down"
           style={{
             backgroundClip: "text",
             WebkitBackgroundClip: "text",
@@ -68,7 +68,7 @@ const Carousel = ({ images, showSideNavHandler }) => {
         >
           Illuminate your journey with our solar brilliance and expertise
         </h1>
-        <p className="text-1xl md:text-2xl leading-[1.2rem] md:leading-[2rem] lg:leading-[2rem] tracking-tighterF text-gray-800 py-2 lowercase font-semibold italic">
+        <p className="text-1xl md:text-2xl leading-[1.2rem] md:leading-[2rem] lg:leading-[2rem] tracking-tighterF text-gray-800 py-2 lowercase font-semibold italic animate-fade-down">
           We are committed to harnessing the power of the sun to create
           sustainable and eco-friendly energy solutions for homes, businesses,
           and communities.

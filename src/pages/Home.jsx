@@ -39,7 +39,7 @@ const Home = () => {
   const [showSideNav, setShowSideNav] = useState(false);
   setTimeout(() => {
     setIsLoading(false);
-  }, 2000);
+  }, 500);
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
   };
