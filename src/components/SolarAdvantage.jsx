@@ -29,7 +29,7 @@ const SolarAdvantage = () => {
           />
           <h2 className="text-center text-white py-2">20+ years’ Warranty</h2>
         </div>
-        <div className="w-48 h-48 hover:animate-fade-up ">
+        <div className="w-48 h-48  ">
           <img
             src={insurance}
             alt="icon"
@@ -40,24 +40,24 @@ const SolarAdvantage = () => {
             Insurance for Solar System
           </h2>
         </div>
-        <div className="w-48 h-48 hover:animate-fade-up ">
+        <div className="w-48 h-48  ">
           <img src={trust} alt="icon" className="block mx-auto " width={100} />
           <h2 className="text-center text-white py-2">
             Trusted Quality Assurance
           </h2>
         </div>
-        <div className="w-48 h-48 hover:animate-fade-up ">
+        <div className="w-48 h-48  ">
           <img
             src={anniversary}
             alt="icon"
-            className="block mx-auto animate-fade-up"
+            className="block mx-auto "
             width={100}
           />
           <h2 className="text-center  text-white py-2 ">
             25+ years’ experience
           </h2>
         </div>
-        <div className="w-48 h-48 hover:animate-fade-up ">
+        <div className="w-48 h-48  ">
           <img
             src={reputation}
             alt="icon"
