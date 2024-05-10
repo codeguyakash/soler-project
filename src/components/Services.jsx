@@ -3,14 +3,11 @@ import solarseven from "../assets/images/solar-power-6860359_1280.jpg";
 
 const Services = () => {
   return (
-    <div
-      className="py-20"
-      style={{
-        backgroundImage: "linear-gradient(to right, #1e3a8a, white)",
-      }}
-    >
+    <div className="py-20 bg-gradient-to-r from-blue-900 to-green-500 relative">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-8">Our Services</h2>
+        <h2 className="text-4xl font-bold text-center mb-8 text-white">
+          Our Services
+        </h2>
 
         <div className="flex flex-wrap items-center justify-center">
           <div className="w-full md:w-1/2 md:pr-8 mb-8 md:mb-0">
@@ -49,6 +46,10 @@ const Services = () => {
           </div>
         </div>
       </div>
+      <div
+        className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6 w-full"
+        aria-hidden="true"
+      ></div>
     </div>
   );
 };

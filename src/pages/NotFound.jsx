@@ -10,7 +10,16 @@ const NotFound = () => {
         {/* <div className="not-image-divs">
           <img src={page_not_found} alt="Page_Not_Found" width={400} />
         </div> */}
-        <h1 className="text-5xl text-center font-primary ">
+        <h1
+          className="text-5xl text-center font-primary p-5 font-semibold"
+          style={{
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            fontFamily: '"Inter", sans-serif',
+            color: "transparent",
+            backgroundImage: "linear-gradient(to right, #1e3a8a, green)",
+          }}
+        >
           404 Page Not Found
         </h1>
         <Link

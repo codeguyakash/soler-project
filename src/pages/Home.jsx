@@ -17,6 +17,8 @@ import SolarWork from "../components/SolarWork";
 import Footer from "../components/Footer";
 import WhyRooftopSolar from "../components/WhyRooftopSolar";
 import Services from "../components/Services";
+import GetInTouch from "../components/GetInTouch";
+import Loader from "./Loader";
 
 const Home = () => {
   const images = [
@@ -33,30 +35,38 @@ const Home = () => {
     solarsix,
     solarseven,
   ];
+  const [isLoading, setIsLoading] = useState(true);
   const [showSideNav, setShowSideNav] = useState(false);
-
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 2000);
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
   };
 
   return (
     <>
-      <div className="hero-bg-imgs">
-        <Nav showSideNavHandler={showSideNavHandler} />
-        <Carousel images={images} showSideNavHandler={showSideNavHandler} />
-        <SideNav
-          showSideNavHandler={showSideNavHandler}
-          showSideNav={showSideNav ? "block" : "none"}
-        />
-        <SolarAdvantage />
-        <HowToUseSolar />
-        <WhyRooftopSolar />
-        <SolarWork />
-        <Services />
-        <SolarInstallation />
-        <OurCustomers />
-        <Footer />
-      </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="hero-bg-imgs">
+          <Nav showSideNavHandler={showSideNavHandler} />
+          <Carousel images={images} showSideNavHandler={showSideNavHandler} />
+          <SideNav
+            showSideNavHandler={showSideNavHandler}
+            showSideNav={showSideNav ? "block" : "none"}
+          />
+          <SolarAdvantage />
+          <HowToUseSolar />
+          <WhyRooftopSolar />
+          <SolarWork />
+          <Services />
+          <SolarInstallation />
+          {/* <OurCustomers /> */}
+          <GetInTouch />
+          <Footer />
+        </div>
+      )}
     </>
   );
 };

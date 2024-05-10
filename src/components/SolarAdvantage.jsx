@@ -11,7 +11,7 @@ const SolarAdvantage = () => {
   const array = new Array(5).fill(null);
   return (
     <div
-      className=" w-full bg-blue-900 shapedividers flex flex-col items-center justify-center pb-20"
+      className=" w-full bg-gradient-to-r from-blue-900 to-green-500 flex flex-col items-center justify-center pb-20"
       // style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <h1 className="text-4xl text-white my-10 font-bold p-2 inline-block text-center">

@@ -24,7 +24,7 @@ const Carousel = ({ images, showSideNavHandler }) => {
   }, [currentSlide]);
 
   return (
-    <div className="relative top-0 bg-primary">
+    <div className="relative top-0 bg-gradient-to-r from-blue-900 to-green-500">
       <div className="overflow-hidden w-full">
         <div
           className="flex transition-transform duration-500"
@@ -57,17 +57,18 @@ const Carousel = ({ images, showSideNavHandler }) => {
       "
       >
         <h1
-          className="text-5xl md:text-[5.4rem] lg:text-[5.6rem] xl:text-[5.8rem] 2xl:text-[6rem] uppercase leading-[3.4rem] md:leading-[4rem] lg:leading-[5rem] tracking-tighter text-gray-400 font-bold"
+          className="text-5xl md:text-[5.4rem] lg:text-[5.6rem] xl:text-[5.8rem] 2xl:text-[6rem]  leading-[3.4rem] md:leading-[4rem] lg:leading-[5rem] tracking-tighter text-gray-400 font-bold italic"
           style={{
             backgroundClip: "text",
             WebkitBackgroundClip: "text",
+            fontFamily: '"Inter", sans-serif',
             color: "transparent",
             backgroundImage: "linear-gradient(to right, #1e3a8a, green)",
           }}
         >
           Illuminate your journey with our solar brilliance and expertise
         </h1>
-        <p className="text-1xl md:text-2xl leading-[1.2rem] md:leading-[2rem] lg:leading-[2rem] tracking-tighterF text-gray-800 py-2 lowercase font-semibold">
+        <p className="text-1xl md:text-2xl leading-[1.2rem] md:leading-[2rem] lg:leading-[2rem] tracking-tighterF text-gray-800 py-2 lowercase font-semibold italic">
           We are committed to harnessing the power of the sun to create
           sustainable and eco-friendly energy solutions for homes, businesses,
           and communities.
