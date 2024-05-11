@@ -67,9 +67,9 @@ const Footer = () => {
                 investment capacity and inclination
                 <br />
                 <br />
-                <a href="#" className="text-blue-300">
+                <Link href="#" className="text-blue-300">
                   Solar to India, 2023
-                </a>
+                </Link>
               </p>
             </div>
           </div>

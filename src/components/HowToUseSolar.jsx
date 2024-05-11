@@ -16,7 +16,7 @@ const HowToUseSolar = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 items-center justify-center gap-28 no-gutters mx-2">
         <div className="col-md-6 relative group hover:scale-105 duration-300 ease-in-out">
           <div className="">
-            <a href="#">
+            <Link to="/our-products">
               <img
                 className="w-250 rounded-lg "
                 src={residential}
@@ -36,12 +36,12 @@ const HowToUseSolar = () => {
                   read more...
                 </Link>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="col-md-6 relative group hover:scale-105 duration-300 ease-in-out">
           <div className="">
-            <a href="#">
+            <Link hto="/our-products">
               <img
                 className="w-250 rounded-lg"
                 src={commerial}
@@ -61,7 +61,7 @@ const HowToUseSolar = () => {
                   read more...
                 </Link>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

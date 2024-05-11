@@ -4,6 +4,9 @@ import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
 import Footer from "./../components/Footer";
 import solarseven from "../assets/images/solar-power-6860359_1280.jpg";
+import installationOne from "../assets/images/installation-solar.jpg";
+import installationTwo from "../assets/images/installation-solar2.jpg";
+import backgroundImage from "../assets/images/bg-line-2.png";
 
 const Services = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -22,7 +25,12 @@ const Services = () => {
         showSideNav={showSideNav ? "block" : "none"}
       />
 
-      <section className="bg-gray-100 py-16 lg:py-24">
+      <section
+        className="bg-gray-100 py-16 lg:py-24 bg-cover"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+        }}
+      >
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
@@ -62,7 +70,11 @@ const Services = () => {
               </div>
 
               <div className="flex">
-                <img src={solarseven} alt="commercial-solar" />
+                <img
+                  src={solarseven}
+                  alt="commercial-solar"
+                  className="bg-white shadow-lg rounded-lg"
+                />
               </div>
             </div>
           </div>
@@ -84,9 +96,21 @@ const Services = () => {
               </ul>
             </div>
 
-            <div className="border rounded-lg p-6 bg-white shadow-lg"></div>
+            <div className="border rounded-lg bg-white shadow-lg">
+              <img
+                src={installationOne}
+                alt="imagehere"
+                className="rounded-lg shadow-lg"
+              />
+            </div>
 
-            <div className="border rounded-lg p-6 bg-white shadow-lg"></div>
+            <div className="border rounded-lg bg-white shadow-lg">
+              <img
+                src={installationTwo}
+                alt="imagehere"
+                className="rounded-lg shadow-lg"
+              />
+            </div>
           </div>
         </div>
       </section>
