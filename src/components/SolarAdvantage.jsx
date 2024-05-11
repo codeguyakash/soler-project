@@ -1,5 +1,4 @@
 import React from "react";
-import backgroundImage from "../assets/images/10-removebg-preview.png";
 // ----------
 import reputation from "../assets/icons/reputation.png";
 import anniversary from "../assets/icons/anniversary.png";

@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { IoCall } from "react-icons/io5";
+import { Resend } from "resend";
+import EmailTemplate from "../mail/email";
+
+const resend = new Resend("re_3NxfUYhb_2Lk3cNhhmg3HLBtff1hiG33H");
 
 const GetInTouch = () => {
   const [formData, setFormData] = useState({
@@ -27,9 +31,16 @@ const GetInTouch = () => {
       }));
     }
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const response = await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: "codeguyakash@gmail.com",
+      subject: "hello world",
+      react: <EmailTemplate firstName="John" product="MyApp" />,
+    });
+
+    console.log("Message sent: %s", response);
     console.log(formData);
   };
 

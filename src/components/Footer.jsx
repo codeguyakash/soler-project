@@ -67,11 +67,7 @@ const Footer = () => {
                 investment capacity and inclination
                 <br />
                 <br />
-                <a
-                  href="/pdf/bridge-to-india-india-solar-rooftop-map-june-2023.pdf"
-                  target="_blank"
-                  className="text-blue-300"
-                >
+                <a href="#" className="text-blue-300">
                   Solar to India, 2023
                 </a>
               </p>
@@ -106,7 +102,7 @@ const Footer = () => {
                 Contact Us
               </Link>
               <Link
-                to="/faqs"
+                to="/faq"
                 className="text-white border-white hover:text-black"
               >
                 Some FAQs
@@ -146,19 +142,19 @@ const Footer = () => {
               <div className="mb-3">
                 <ul className="flex justify-end">
                   <li className="mr-4">
-                    <a href="#" target="_blank" className="text-blue-300">
+                    <Link to="/" className="text-blue-300">
                       Legal Disclaimer
-                    </a>
+                    </Link>
                   </li>
                   <li className="mr-4">
-                    <a href="#" target="_blank" className="text-blue-300">
+                    <Link to="/" className="text-blue-300">
                       Privacy Policy
-                    </a>
+                    </Link>
                   </li>
                   <li className="mr-4">
-                    <a href="#" target="_blank" className="text-blue-300">
+                    <Link to="/" className="text-blue-300">
                       Terms of Use
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
