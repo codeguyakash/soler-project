@@ -90,6 +90,12 @@ const Footer = () => {
                 Solar Saving Calculator
               </Link>
               <Link
+                to="/services"
+                className=" text-white border-white hover:text-black"
+              >
+                Our Services
+              </Link>
+              <Link
                 to="/our-products"
                 className=" text-white border-white hover:text-black"
               >
@@ -106,6 +112,12 @@ const Footer = () => {
                 className="text-white border-white hover:text-black"
               >
                 Some FAQs
+              </Link>
+              <Link
+                to="/why-go-solar"
+                className="text-white border-white hover:text-black"
+              >
+                Why Go Solar
               </Link>
               <Link
                 to="/blogs"
