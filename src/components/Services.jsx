@@ -1,5 +1,6 @@
 import React from "react";
 import solarseven from "../assets/images/solar-power-6860359_1280.jpg";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   return (
@@ -9,7 +10,7 @@ const Services = () => {
           Our Services
         </h2>
 
-        <div className="flex flex-wrap items-center justify-center">
+        <div className="flex flex-wrap items-center justify-center ">
           <div className="w-full md:w-1/2 md:pr-8 mb-8 md:mb-0">
             <div className="p-8">
               <p className="text-xl font-semibold text-white mb-4">
@@ -33,6 +34,13 @@ const Services = () => {
                 <li>Preparation of Detailed Project Report (DPR)</li>
                 <li>Project timeline development</li>
               </ul>
+              <br />
+              <Link
+                to="/services"
+                className=" text-white px-3.5 py-2.5 font-semibold bg-green-700 rounded-md mt-5"
+              >
+                Learn more...
+              </Link>
             </div>
           </div>
 

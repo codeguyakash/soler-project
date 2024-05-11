@@ -2,6 +2,7 @@ import React from "react";
 import residential from "../assets/images/residential-new.jpg";
 import commerial from "../assets/images/commerial.jpg";
 import backgroundImage from "../assets/images/whygosolarpanel.webp";
+import { Link } from "react-router-dom";
 
 const HowToUseSolar = () => {
   return (
@@ -10,7 +11,7 @@ const HowToUseSolar = () => {
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <h1 className="text-4xl mb-10 text-white font-bold p-2 inline-block text-center">
-        How to use Solar
+        Our Products
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 items-center justify-center gap-10 no-gutters mx-2">
         <div className="col-md-6 relative group hover:scale-105 duration-300 ease-in-out">
@@ -30,6 +31,10 @@ const HowToUseSolar = () => {
                   products, converting sunlight into cost-saving, eco-friendly
                   electricity for unparalleled sustainability.
                 </p>
+                <br />
+                <Link to="/our-products" className="font-bold text-white">
+                  read more...
+                </Link>
               </div>
             </a>
           </div>
@@ -51,6 +56,10 @@ const HowToUseSolar = () => {
                   solar products, turning sunlight into efficient,
                   cost-effective energy for a prosperous future.
                 </p>
+                <br />
+                <Link to="/our-products" className="font-bold text-white">
+                  read more...
+                </Link>
               </div>
             </a>
           </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import howsolarwork from "../assets/images/graphics.jpg";
+import howsolarwork from "../assets/images/roof-top-solar.png";
 import backgroundImage from "../assets/images/bg-line-2.png";
 
 const SolarWork = () => {
@@ -26,6 +26,7 @@ const SolarWork = () => {
           src={howsolarwork}
           alt="how-solar-work"
           className="block mx-auto rounded"
+          width={1000}
         />
       </div>
     </div>
