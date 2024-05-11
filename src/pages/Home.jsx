@@ -35,11 +35,9 @@ const Home = () => {
     solarsix,
     solarseven,
   ];
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [showSideNav, setShowSideNav] = useState(false);
-  setTimeout(() => {
-    setIsLoading(false);
-  }, 500);
+
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
   };
