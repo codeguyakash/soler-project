@@ -15,78 +15,90 @@ const Faqs = () => {
     {
       question: "What is a Grid Connected Rooftop Solar PV System?",
       answer:
-        "In a grid-connected rooftop SPV system, solar energy is converted to AC power and fed into the grid.",
+        "In grid connected rooftop small Solar Photo Voltaic (SPV) system, the DC (Direct Current) power generated from solar panel is converted to AC (Alternating Current) power using power conditioning unit/Inverter and is fed to the grid. Conversion to AC is desirable as AC is the most commonly used and most preferred electric power for household equipment, office, and buildings, etc. The major use of DC is to supply power to electrical devices and also to charge batteries.",
     },
     {
       question:
         "What are the main components of a Grid Connected Rooftop SPV system?",
       answer:
-        "Components include Solar PV Modules, Inverter, Module mounting structure, Bi-direction Meters, and Balance of System.",
+        "Solar PV Modules/Solar Panels, Inverter, Module mounting structure, Bi-direction Meters, Balance of System.",
     },
     {
       question:
-        "How much area is required for a One kWp rooftop Solar PV system?",
-      answer: "Approximately 10-12 Sq.mt of shadow-free area.",
+        "How much area is required for a One kWp (kilowatt peak) rooftop Solar PV system?",
+      answer:
+        "About 10-12 Sq.mt of shadow-free area is required to set up One kWp Grid Connected Rooftop Solar PV System.",
     },
     {
       question:
         "What types of roofs are suitable for Rooftop Solar (RTS) system?",
-      answer: "Any roof with sufficient load-bearing capacity.",
+      answer:
+        "Rooftop SPV systems can be installed on any type of roof having sufficient load bearing capacity.",
     },
     {
       question:
         "What is the daily energy generated from a One kWp Solar power plant?",
-      answer: "4 to 5.5 units on a clear sunny day.",
+      answer:
+        "On a clear sunny day, One kWp solar power plant can generate 4 to 5.5 units in a day.",
     },
     {
       question: "What are the advantages of Grid Connected Rooftop SPV system?",
       answer:
-        "Advantages include saving on electricity bills, utilizing vacant roof space, and long-term energy security.",
+        "Saving on electricity bill by the consumer, Utilization of available vacant roof space; no additional land required, Low gestation period, No additional requirement of transmission and distribution (T&D) lines, Long-term energy and ecological security by reduction in carbon emission, Better management of daytime peak loads by DISCOM/ utility.",
     },
     {
       question:
         "What is the average cost of a Grid Connected Rooftop SPV system?",
-      answer: "Current benchmark costs can be found on the provided website.",
+      answer:
+        "The current benchmark cost of grid connected rooftop solar systems can be seen in notification section at https://solarrooftop.gov.in/notifications/view.",
     },
     {
       question:
-        "What subsidies/ capital support are available from the Government?",
+        "What are the subsidies/ capital support available from the Government?",
       answer:
-        "Central Financial Assistance is available for residential sector projects.",
+        "Central Financial Assistance (CFA) is available only for residential sector grid connected solar rooftop projects. For other sectors e.g. government, institutional, social, commercial, industrial etc., CFA is not available.",
     },
     {
       question: "Is there any Subsidy/Support from State Government?",
       answer:
-        "Information on state subsidies can be found on the respective electricity distribution company websites.",
+        "Information on state subsidies can be seen on the website of the concerned electricity distribution company. The rooftop solar portals of electricity distribution companies can be assessed at: https://solarrooftop.gov.in/grid_others/discomPortalLink.",
     },
     {
       question: "What is the gross potential of solar power in the country?",
       answer:
-        "India has a vast solar energy potential, estimated to be around 750 GW.",
+        "India is endowed with vast solar energy potential. About 5,000 trillion kWh per year energy is incident over India’s land area with most parts receiving 3-5 kWh per sq. m per day. Based upon the availability of land and solar radiation, the potential of solar power in the country has been assessed to be around 750 GW.",
     },
     {
       question: "What is the potential for rooftop solar power in the country?",
-      answer: "Estimated at 43 GW by the National Institute of Solar Energy.",
+      answer:
+        "National Institute of Solar Energy (NISE), an autonomous institute under the Ministry of New and Renewable Energy, has estimated a potential of 43 GW for Grid Connected Rooftop Solar in the country.",
     },
     {
       question:
-        "What targets has the Government set for installation of Rooftop Solar Plants?",
-      answer: "40,000 MW by 2022.",
+        "What targets has the Government kept for installation of Rooftop Solar Plants in the country?",
+      answer:
+        "Government of India has set the target of installing 40,000 MW of Rooftop Solar Power by the year 2022. For State-wise tentative targets, click here.",
+    },
+    {
+      question:
+        "What is the State-wise breakup of sanctioned capacity under the Phase-II RTS scheme?",
+      answer:
+        "To know about the details on capacity sanctioned under Phase-II of RTS scheme, click here.",
     },
     {
       question: "What is net-metering?",
       answer:
-        "Net-metering allows self-consumption of generated power with excess exported to the grid.",
+        "All SPV systems generate power only during daytime when sun is available. In net-metered systems, the generated power is utilized for self-consumption, and excess power is exported to the grid as long as grid is available. In case, where solar power is not sufficient due to cloud cover etc., power is drawn from the grid to power the loads. A bi-directional or net meter records the energy flow in both the directions and at the end of billing period net energy used is calculated. The beneficiary has to pay for only the net energy used.",
     },
     {
       question: "What is net-billing?",
       answer:
-        "In net-billing, excess energy is purchased by the DISCOM at a pre-decided tariff.",
+        "Connections in net-billing RTS are similar to net-metering. However, at the end of the billing cycle (normally a month) any excess energy in the grid shall not be carried forward like in net metering, but shall be purchased by the DISCOM as per pre-decided tariff. Therefore, energy banking in the grid is only within a billing cycle.",
     },
     {
       question: "How can I apply for installation of solar rooftop system?",
       answer:
-        "Residential consumers and Group Housing Societies can apply through the DISCOMs' online portal.",
+        "Residential consumers and Group Housing Society can apply for installation of solar rooftop system through the online portal of DISCOMs. The link for the online portal of DISCOMs is https://solarrooftop.gov.in/grid_others/discomPortalLink.",
     },
   ];
 
@@ -105,18 +117,18 @@ const Faqs = () => {
         showSideNav={showSideNav ? "block" : "none"}
       />
 
-      <section className="bg-gray-100 pb-16 lg:pb-24">
+      <section className="bg-gray-100 pb-16 lg:pb-24 w-auto">
+        <div
+          className="h-96 flex items-center justify-center flex-col relative bg-no-repeat bg-center"
+          style={{ backgroundImage: `url(${imagefour})` }}
+        >
+          <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
+            Frequently Asked Questions
+          </h2>
+          {/* <div className="absolute bg-black w-full h-full opacity-25"></div> */}
+        </div>
         <div className="container mx-auto ">
-          <div
-            className="h-96 flex items-center justify-center flex-col px-5 md:px-20 relative bg-no-repeat bg-center"
-            style={{ backgroundImage: `url(${imagefour})` }}
-          >
-            <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
-              Frequently Asked Questions
-            </h2>
-            {/* <div className="absolute bg-black w-full h-full opacity-25"></div> */}
-          </div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto ">
             <div className="text-center">
               <div className="mt-8">
                 {faqs.map((faq, index) => (
