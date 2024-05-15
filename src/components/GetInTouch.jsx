@@ -53,7 +53,7 @@ const GetInTouch = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your Name"
-                  className="rounded-md  bg-white/5 text-white px-3.5 py-2 shadow-sm  w-full"
+                  className="rounded-md  px-3.5 py-2 shadow-sm  w-full"
                 />
                 <input
                   type="email"
@@ -61,7 +61,7 @@ const GetInTouch = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Your Email"
-                  className="rounded-md bg-white/5 text-white px-3.5 py-2 shadow-sm  w-full"
+                  className="rounded-md px-3.5 py-2 shadow-sm  w-full"
                 />
                 <input
                   type="tel"
@@ -69,7 +69,7 @@ const GetInTouch = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="Your Phone"
-                  className="rounded-md text-white bg-white/5 px-3.5 py-2 shadow-sm w-full"
+                  className="rounded-md  px-3.5 py-2 shadow-sm w-full"
                 />
                 <input
                   type="text"
@@ -77,7 +77,7 @@ const GetInTouch = () => {
                   value={formData.pincode}
                   onChange={handleChange}
                   placeholder="Your Pincode"
-                  className="rounded-md text-white bg-white/5 px-3.5 py-2 shadow-sm w-full"
+                  className="rounded-md  px-3.5 py-2 shadow-sm w-full"
                 />
               </div>
               <div className="flex justify-start gap-5 col-span-2 my-2">
@@ -88,7 +88,7 @@ const GetInTouch = () => {
                     name="isResidential"
                     checked={formData.isResidential}
                     onChange={handleChange}
-                    className="rounded-md border bg-white/5 shadow-sm w-full"
+                    className="rounded-md border  shadow-sm w-full"
                   />
                   <label
                     htmlFor="residential"
@@ -104,7 +104,7 @@ const GetInTouch = () => {
                     name="isCommercial"
                     checked={formData.isCommercial}
                     onChange={handleChange}
-                    className="rounded border bg-white/5 text-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-0"
+                    className="rounded border  text-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-0"
                   />
                   <label
                     htmlFor="commercial"
