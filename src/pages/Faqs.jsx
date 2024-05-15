@@ -162,9 +162,7 @@ const Faqs = () => {
                         className="flex justify-between items-center w-full bg-white rounded-lg focus:outline-none"
                         onClick={() => toggleAccordion(index)}
                       >
-                        <strong className="text-[18px]">
-                          Q {faq.id}. {faq.question}
-                        </strong>
+                        <strong className="text-[18px]">{faq.question}</strong>
                         <svg
                           className={`h-6 w-6 transition-transform ${
                             openIndex === index ? "rotate-180" : ""
@@ -177,13 +175,13 @@ const Faqs = () => {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             strokeWidth="2"
-                            d="M19 9l-7 7-7-7"
+                            d="M12 5v14m-7-7h14"
                           />
                         </svg>
                       </button>
                       {openIndex === index && (
                         <p className="mt-2 text-[16px] text-gray-700 text-start">
-                          <span className="font-bold">Ans.</span> {faq.answer}
+                          {faq.answer}
                         </p>
                       )}
                     </div>
