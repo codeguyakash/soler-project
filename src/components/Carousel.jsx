@@ -25,7 +25,7 @@ const Carousel = ({ images, showSideNavHandler }) => {
 
   return (
     <div className="relative top-0 bg-gradient-to-r from-blue-900 to-green-500">
-      <div className="overflow-hidden w-full">
+      <div className="overflow-hidden w-full ">
         <div
           className="flex transition-transform duration-500"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -33,12 +33,12 @@ const Carousel = ({ images, showSideNavHandler }) => {
           {images.map((image, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-full h-screen opacity-90"
+              className="flex-shrink-0 w-full h-screen opacity-90 "
             >
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-[90vh] opacity-95"
+                className="w-full h-[90vh]"
                 onClick={showSideNavHandler}
               />
             </div>
@@ -68,7 +68,7 @@ const Carousel = ({ images, showSideNavHandler }) => {
         >
           Illuminate your journey with our solar brilliance and expertise
         </h1>
-        <p className="text-1xl md:text-2xl leading-[1.2rem] md:leading-[2rem] lg:leading-[2rem] tracking-tighterF text-gray-800 py-2 lowercase font-semibold italic animate-fade-right animate-delay-300">
+        <p className="text-1xl md:text-2xl leading-[1.2rem] md:leading-[2rem] lg:leading-[2rem] tracking-tighterF text-white font-semibold py-2 lowercase italic animate-fade-right animate-delay-300">
           We are committed to harnessing the power of the sun to create
           sustainable and eco-friendly energy solutions for homes, businesses,
           and communities.

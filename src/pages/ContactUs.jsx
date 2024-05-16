@@ -5,6 +5,7 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import GetInTouch from "./../components/GetInTouch";
 import contactusImage from "../assets/images/contactus.jpg";
+import Form from "./../components/Form";
 
 const ContactUs = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -33,7 +34,8 @@ const ContactUs = () => {
           </div>
           {/* <div className="absolute bg-black w-full h-full opacity-45"></div> */}
         </div>
-        <GetInTouch />
+        <Form />
+        {/* <GetInTouch /> */}
       </section>
       <Footer />
     </>
