@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IoCall } from "react-icons/io5";
+import InputField from "./InputField";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -45,49 +46,49 @@ const ContactForm = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name">Name</label>
-                  <input
+                  <InputField
+                    id="name"
                     type="text"
                     name="name"
-                    id="name"
-                    value={formData.name}
                     onChange={handleChange}
                     placeholder="Your Name"
+                    value={formData.name}
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   />
                 </div>
                 <div>
                   <label htmlFor="contractNo">Phone Number</label>
-                  <input
+                  <InputField
+                    id="contractNo"
                     type="text"
                     name="contractNo"
-                    id="contractNo"
-                    value={formData.contractNo}
                     onChange={handleChange}
                     placeholder="Your Phone Number"
+                    value={formData.contractNo}
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   />
                 </div>
                 <div>
                   <label htmlFor="companyName">Company Name</label>
-                  <input
+                  <InputField
+                    id="companyName"
                     type="text"
                     name="companyName"
-                    id="companyName"
-                    value={formData.companyName}
                     onChange={handleChange}
                     placeholder="Company Name (if not for home)"
+                    value={formData.companyName}
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   />
                 </div>
                 <div>
                   <label htmlFor="email">Email</label>
-                  <input
+                  <InputField
+                    id="email"
                     type="email"
                     name="email"
-                    id="email"
-                    value={formData.email}
                     onChange={handleChange}
                     placeholder="Your Email"
+                    value={formData.email}
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   />
                 </div>
@@ -103,7 +104,6 @@ const ContactForm = () => {
                     <option value="">Select State</option>
                     <option value="State1">State1</option>
                     <option value="State2">State2</option>
-                    {/* Add more states as needed */}
                   </select>
                 </div>
                 <div>
@@ -118,30 +118,29 @@ const ContactForm = () => {
                     <option value="">Select City</option>
                     <option value="City1">City1</option>
                     <option value="City2">City2</option>
-                    {/* Add more cities as needed */}
                   </select>
                 </div>
                 <div>
                   <label htmlFor="pinCode">Pin Code</label>
-                  <input
+                  <InputField
+                    id="pinCode"
                     type="text"
                     name="pinCode"
-                    id="pinCode"
-                    value={formData.pinCode}
                     onChange={handleChange}
-                    placeholder="Enter PIN Code"
+                    placeholder="Your Pin Code"
+                    value={formData.pinCode}
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   />
                 </div>
                 <div>
                   <label htmlFor="address">Address</label>
-                  <input
+                  <InputField
+                    id="address"
                     type="text"
                     name="address"
-                    id="address"
-                    value={formData.address}
                     onChange={handleChange}
-                    placeholder="Enter Address"
+                    placeholder="Your Email"
+                    value={formData.address}
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   />
                 </div>
