@@ -128,7 +128,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="col-span-1 md:col-span-1 flex items-end justify-center">
+          <div className="col-span-1 md:col-span-1 flex items-end justify-center p-10">
             <div className="mt-5 md:mt-0 text-right">
               <div className="mb-4">
                 <div className="flex gap-4  items-start flex-col">
