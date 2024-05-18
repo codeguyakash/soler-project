@@ -9,7 +9,7 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const isBlock = showSideNav === "block";
   return (
     <div
-      className={`bg-primary backdrop-blur-lg1 w-72 h-screen fixed top-0 right-0 z-50 opacity-50 ${
+      className={`bg-primary backdrop-blur-lg1 w-72 h-screen fixed top-0 right-0 z-50 opacity-50 animate-delay-75 ${
         isBlock ? "animate-fade-left" : "animate-fade-right"
       }`}
       style={{ display: showSideNav }}
@@ -65,10 +65,10 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
           Why Go Solar
         </Link>
         <Link
-          to="/blogs"
+          to="/muft-bijli-yojana"
           className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
         >
-          Blogs
+          Muft Bijli Yojana
         </Link>
         <div className="my-5 cursor-pointer flex items-center justify-center gap-5">
           <TiSocialTwitter className="text-white font-light text-3xl hover:text-black" />

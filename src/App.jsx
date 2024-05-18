@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
-import Blogs from "./pages/Blogs";
+import Blogs from "./pages/muftBijliYojana";
 import WhyGoSolar from "./pages/WhyGoSolar";
 import SolarSurvey from "./pages/SolarSurvey";
 import SolarCalculator from "./pages/SolarCalculator";
@@ -25,7 +25,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/faq" element={<Faqs />} />
-          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/muft-bijli-yojana" element={<Blogs />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
