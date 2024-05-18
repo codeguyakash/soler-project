@@ -57,7 +57,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="col-span-1 md:col-span-1 p-10">
             <div className="mb-4">
-              <h1 className="text-6xl text-white font-bold">SOLER</h1>
+              <h1 className="text-6xl text-white font-bold">SOLAR</h1>
               <p className="text-white text-sm mt-2">
                 A rooftop solar photovoltaic (PV) system can either cater to the
                 mini-power needs of a building or feed excess electricity back

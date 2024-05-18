@@ -25,7 +25,7 @@ const WhyGoSolar = () => {
       id: 1,
       title: "Save Money",
       description:
-        "Save up to 50% on electricity bills with Tata Power solar panels. Cost savings are substantial, with residential customers saving over Rs 10 lakh+ and MSMEs saving over Rs 2 Cr+.",
+        "Save up to 50% on electricity bills with   solar panels. Cost savings are substantial, with residential customers saving over Rs 10 lakh+ and MSMEs saving over Rs 2 Cr+.",
       image: image1,
     },
     {
@@ -60,7 +60,7 @@ const WhyGoSolar = () => {
       id: 6,
       title: "Scalable Design",
       description:
-        "Enjoy easy upgrades for evolving energy needs with Tata Power's scalable solar panel design.",
+        "Enjoy easy upgrades for evolving energy needs with  's scalable solar panel design.",
       image: image6,
     },
     {
