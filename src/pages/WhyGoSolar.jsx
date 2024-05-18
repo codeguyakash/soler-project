@@ -5,15 +5,15 @@ import Nav from "../components/Nav";
 import Footer from "./../components/Footer";
 import imagefour from "../assets/images/faq-banner.jpg";
 import SolarAdvantage from "./../components/SolarAdvantage";
-import image1 from "../assets/why-solar-image/image1.jpg";
-import image2 from "../assets/why-solar-image/image2.jpg";
-import image3 from "../assets/why-solar-image/image3.jpg";
-import image4 from "../assets/why-solar-image/image4.jpg";
-import image5 from "../assets/why-solar-image/image5.jpg";
-import image6 from "../assets/why-solar-image/image6.jpg";
-import image7 from "../assets/why-solar-image/image7.jpg";
-import image8 from "../assets/why-solar-image/image8.jpg";
-import image9 from "../assets/why-solar-image/image9.jpg";
+import image1 from "../assets/image1.jpg";
+import image2 from "../assets/image2.jpg";
+import image3 from "../assets/image3.jpg";
+import image4 from "../assets/image4.jpg";
+import image5 from "../assets/image5.jpg";
+import image6 from "../assets/image6.jpg";
+import image7 from "../assets/image7.jpg";
+import image8 from "../assets/image8.jpg";
+import image9 from "../assets/image9.jpg";
 
 const WhyGoSolar = () => {
   const [showSideNav, setShowSideNav] = useState(false);
