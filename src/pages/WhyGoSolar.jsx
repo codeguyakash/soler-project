@@ -5,6 +5,15 @@ import Nav from "../components/Nav";
 import Footer from "./../components/Footer";
 import imagefour from "../assets/images/faq-banner.jpg";
 import SolarAdvantage from "./../components/SolarAdvantage";
+import image1 from "../assets/why-solar-image/image1.jpg";
+import image2 from "../assets/why-solar-image/image2.jpg";
+import image3 from "../assets/why-solar-image/image3.jpg";
+import image4 from "../assets/why-solar-image/image4.jpg";
+import image5 from "../assets/why-solar-image/image5.jpg";
+import image6 from "../assets/why-solar-image/image6.jpg";
+import image7 from "../assets/why-solar-image/image7.jpg";
+import image8 from "../assets/why-solar-image/image8.jpg";
+import image9 from "../assets/why-solar-image/image9.jpg";
 
 const WhyGoSolar = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -17,54 +26,63 @@ const WhyGoSolar = () => {
       title: "Save Money",
       description:
         "Save up to 50% on electricity bills with Tata Power solar panels. Cost savings are substantial, with residential customers saving over Rs 10 lakh+ and MSMEs saving over Rs 2 Cr+.",
+      image: image1,
     },
     {
       id: 2,
       title: "Long Lifetime",
       description:
         "Solar power systems have a long lifetime, lasting over 25 years.",
+      image: image2,
     },
     {
       id: 3,
       title: "Quick Payback",
       description:
         "Experience quick payback on your investment, with a typical payback period of 4-5 years.",
+      image: image3,
     },
     {
       id: 4,
       title: "Grid Independence",
       description:
         "Beat the ever-increasing electricity tariffs and achieve grid independence.",
+      image: image4,
     },
     {
       id: 5,
       title: "Minimal Maintenance",
       description:
         "Solar panels require minimal maintenance as they have no moving parts, resulting in low maintenance costs.",
+      image: image5,
     },
     {
       id: 6,
       title: "Scalable Design",
       description:
         "Enjoy easy upgrades for evolving energy needs with Tata Power's scalable solar panel design.",
+      image: image6,
     },
     {
       id: 7,
       title: "Tax Benefits",
       description:
         "Businesses can benefit from up to 40% accelerated tax depreciation in the first year of commissioning the solar plant.",
+      image: image7,
     },
     {
       id: 8,
       title: "Clean & Green Energy",
       description:
         "Solar plants provide clean and green energy for MSMEs, homes, and large enterprises. They can potentially abate thousands of tons of CO2 emissions annually, equivalent to planting thousands of trees.",
+      image: image8,
     },
     {
       id: 9,
       title: "Green Building Certification",
       description:
         "Earn crucial points for sustainable building design certifications like IGBC and LEED by incorporating solar power.",
+      image: image9,
     },
   ];
   return (
@@ -94,7 +112,14 @@ const WhyGoSolar = () => {
               key={content.id}
               className="shadow-lg p-10 min-h-64 border rounded-lg"
             >
-              <h2 className="text-2xl font-semibold">{content.title}</h2>
+              <h2 className="text-2xl font-semibold my-2">{content.title}</h2>
+              <img
+                src={content.image}
+                alt={`Image of ${content.title}`}
+                width="100%"
+                height={200}
+                className="rounded"
+              />
               <p className="text-lg my-2">{content.description}</p>
             </div>
           ))}
