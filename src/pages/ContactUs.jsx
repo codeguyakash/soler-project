@@ -12,6 +12,7 @@ const ContactUs = () => {
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
   };
+  
   return (
     <>
       <Nav showSideNavHandler={showSideNavHandler} />

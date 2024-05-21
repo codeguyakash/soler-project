@@ -30,7 +30,7 @@ const muftBijliYojana = () => {
   return (
     <>
       <Nav showSideNavHandler={showSideNavHandler} />
-      <Banner title="muft-bijli-yojana" />
+      <Banner title="Muft Bijli Yojana" />
       <SideNav
         showSideNavHandler={showSideNavHandler}
         showSideNav={showSideNav ? "block" : "none"}
