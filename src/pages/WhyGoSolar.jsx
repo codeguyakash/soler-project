@@ -33,7 +33,7 @@ const WhyGoSolar = () => {
       title: "Long Lifetime",
       description:
         "Solar power systems have a long lifetime, lasting over 25 years.",
-      image: image2,
+      image: image7,
     },
     {
       id: 3,
@@ -68,7 +68,7 @@ const WhyGoSolar = () => {
       title: "Tax Benefits",
       description:
         "Businesses can benefit from up to 40% accelerated tax depreciation in the first year of commissioning the solar plant.",
-      image: image7,
+      image: image2,
     },
     {
       id: 8,
