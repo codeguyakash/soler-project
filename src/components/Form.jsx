@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoCall } from "react-icons/io5";
 import InputField from "./InputField";
+import contactus from "../assets/icons/contact_us_re_4qqt.svg";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -33,13 +34,19 @@ const ContactForm = () => {
       <div className="mx-auto max-w-7xl px-6 w-full lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col items-center justify-center">
-            <h2 className="text-3xl text-center font-bold tracking-tight text-white md:text-6xl py-5">
+            {/* <h2 className="text-3xl text-center font-bold tracking-tight text-white md:text-6xl py-5">
               Contact Us
             </h2>
             <h2 className="text-3xl font-bold tracking-tight flex items-center gap-5 text-white md:text-6xl">
               <IoCall />
               1800 000 123
-            </h2>
+            </h2> */}
+            <img
+              src={contactus}
+              alt={contactus}
+              width={500}
+              className="rounded"
+            />
           </div>
           <div>
             <form onSubmit={handleSubmit}>
