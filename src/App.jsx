@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loader from "./pages/Loader";
+import Home from "./pages/Home";
 
 // Lazy loading components
-const Home = lazy(() => import("./pages/Home"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Products = lazy(() => import("./pages/Products"));
 const Blogs = lazy(() => import("./pages/muftBijliYojana"));
