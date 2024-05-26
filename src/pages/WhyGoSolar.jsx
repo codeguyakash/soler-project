@@ -16,6 +16,7 @@ import image8 from "../assets/image8.jpg";
 import image9 from "../assets/image9.jpg";
 
 const WhyGoSolar = () => {
+  const [showFullDescription, setShowFullDescription] = useState(false);
   const [showSideNav, setShowSideNav] = useState(false);
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
@@ -120,7 +121,20 @@ const WhyGoSolar = () => {
                 height={200}
                 className="rounded"
               />
-              <p className="text-lg my-2">{content.description}</p>
+
+              <p className="text-lg my-2">
+                {showFullDescription
+                  ? content.description
+                  : content.description.slice(0, 60) + "..."}
+                {content.description.length > 50 && (
+                  <button
+                    className="text-green-900 font-semibold hover:underline"
+                    onClick={() => setShowFullDescription(!showFullDescription)}
+                  >
+                    {showFullDescription ? "Read Less" : "Read More"}
+                  </button>
+                )}
+              </p>
             </div>
           ))}
         </div>
