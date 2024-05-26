@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
+import CalculatorContent from "../components/CalculatorContent";
 import Nav from "../components/Nav";
 import Footer from "./../components/Footer";
 import InputField from "../components/InputField";
@@ -8,6 +9,7 @@ import Toast from "../components/Toast";
 import { IoLocationSharp } from "react-icons/io5";
 
 const SolarCalculator = () => {
+  const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const [showSideNav, setShowSideNav] = useState(false);
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
@@ -26,6 +28,7 @@ const SolarCalculator = () => {
       };
       console.log(solarCalculation);
       setIsEmpty(false);
+      alert(JSON.stringify(solarCalculation));
     } else {
       setIsEmpty(true);
     }
@@ -36,7 +39,20 @@ const SolarCalculator = () => {
   };
 
   const handleLocation = () => {
-    console.log("okkk");
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  };
+  const success = (position) => {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    setLocation(`Latitude: ${latitude}, Longitude: ${longitude}`);
+  };
+
+  const error = () => {
+    console.log("Unable to retrieve your location");
   };
   return (
     <>
@@ -57,7 +73,14 @@ const SolarCalculator = () => {
             <div className="mt-12">
               <form className="max-w-xlg mx-auto bg-white p-8 rounded-lg shadow-lg">
                 <div className="flex items-center justify-center">
-                  {isEmpty ? <Toast message="All Fields Required" /> : ""}
+                  {isEmpty ? (
+                    <Toast
+                      message="All Fields Required"
+                      className="text-red-600"
+                    />
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className="mb-6">
                   <label className="block text-left text-gray-700 font-semibold mb-2">
@@ -71,7 +94,7 @@ const SolarCalculator = () => {
                       onChange={(e) => setLocation(e.target.value)}
                       placeholder="Location"
                       value={location}
-                      className="mt-1 block w-full border-none rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                      className="mt-1 block w-full border-none rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3"
                     />
                     <div className="text-primary text-2xl cursor-pointer">
                       <IoLocationSharp onClick={handleLocation} />
@@ -89,7 +112,7 @@ const SolarCalculator = () => {
                     onChange={(e) => setElectricBill(e.target.value)}
                     placeholder="Average Electric Bill"
                     value={electricBill}
-                    className="mt-1 block w-full border-none rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    className="mt-1 block w-full border-none rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3"
                   />
                 </div>
                 <div className="mb-6 flex items-center justify-center gap-6">
@@ -124,6 +147,7 @@ const SolarCalculator = () => {
                   Calculate
                 </button>
               </form>
+              <CalculatorContent />
             </div>
           </div>
         </div>

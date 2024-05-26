@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { IoCall } from "react-icons/io5";
 import InputField from "./InputField";
 import contactus from "../assets/icons/contact_us_re_4qqt.svg";
+// import contactus from "../assets/icons/message.png";
+
+import Toast from "./Toast";
 
 const ContactForm = () => {
+  const [isEmpty, setIsEmpty] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     contractNo: "",
@@ -11,6 +14,7 @@ const ContactForm = () => {
     email: "",
     state: "",
     city: "",
+    requirement: "",
     pinCode: "",
     address: "",
     comments: "",
@@ -26,21 +30,23 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form data submitted:", formData);
+    const isFormDataEmpty = Object.values(formData).some(
+      (value) => value.trim() === ""
+    );
+    if (isFormDataEmpty) {
+      setIsEmpty(true);
+    } else {
+      console.log("Form data submitted:", formData);
+      alert(JSON.stringify(formData));
+      setIsEmpty(false);
+    }
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-blue-900 to-green-500 py-16 sm:py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-r from-blue-900 to-green-500 py-2 sm:py-12 lg:py-16">
       <div className="mx-auto max-w-7xl px-6 w-full lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
-          <div className="flex flex-col items-center justify-center">
-            {/* <h2 className="text-3xl text-center font-bold tracking-tight text-white md:text-6xl py-5">
-              Contact Us
-            </h2>
-            <h2 className="text-3xl font-bold tracking-tight flex items-center gap-5 text-white md:text-6xl">
-              <IoCall />
-              1800 000 123
-            </h2> */}
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-4 gap-y-8 sm:max-w-none sm:grid-cols-2">
+          <div className="flex items-center justify-center">
             <img
               src={contactus}
               alt={contactus}
@@ -50,7 +56,7 @@ const ContactForm = () => {
           </div>
           <div>
             <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-4">
                 <div>
                   <label htmlFor="name">Name</label>
                   <InputField
@@ -139,6 +145,7 @@ const ContactForm = () => {
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   />
                 </div>
+
                 <div>
                   <label htmlFor="address">Address</label>
                   <InputField
@@ -146,11 +153,12 @@ const ContactForm = () => {
                     type="text"
                     name="address"
                     onChange={handleChange}
-                    placeholder="Your Email"
+                    placeholder="Your Address"
                     value={formData.address}
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   />
                 </div>
+
                 <label htmlFor="comments">Comment</label>
                 <textarea
                   name="comments"
@@ -158,8 +166,34 @@ const ContactForm = () => {
                   value={formData.comments}
                   onChange={handleChange}
                   placeholder="Please enter comments if any"
-                  className="rounded-md px-3.5 py-2 shadow-sm w-full col-span-2"
+                  className="rounded-md px-3.5 py-2 shadow-sm w-full sm:col-span-2"
                 />
+              </div>
+              <div>
+                <label htmlFor="requirement">Requirement</label>
+                <select
+                  name="requirement"
+                  id="requirement"
+                  value={formData.requirement}
+                  onChange={handleChange}
+                  className="rounded-md px-3.5 py-2 shadow-sm w-full"
+                >
+                  <option value="Solar for Home">Solar for Home</option>
+                  <option value="Solar for Office or Socity">
+                    Solar for Office or Socity
+                  </option>
+                  <option value="Solar for industry or ornanization or trust">
+                    Solar for industry or ornanization or trust
+                  </option>
+                </select>
+              </div>
+              <br />
+              <div>
+                {isEmpty ? (
+                  <Toast message="All Fields Required" className="text-white" />
+                ) : (
+                  " "
+                )}
               </div>
               <button
                 type="submit"

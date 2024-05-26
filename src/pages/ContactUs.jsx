@@ -22,7 +22,7 @@ const ContactUs = () => {
         showSideNav={showSideNav ? "block" : "none"}
       />
       <section
-        className="bg-gray-100 py-20 px-10 relative bg-cover bg-no-repeat backdrop-blur-lg "
+        className="bg-gray-100 p-2 md:py-20 md:px-10 relative bg-cover bg-no-repeat backdrop-blur-lg "
         style={{ backgroundImage: `url(${contactusImage})` }}
       >
         <div className="container mx-auto px-4">
