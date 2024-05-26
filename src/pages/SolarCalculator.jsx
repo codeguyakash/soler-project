@@ -18,6 +18,7 @@ const SolarCalculator = () => {
   const [electricBill, setElectricBill] = useState("");
   const [userType, setUserType] = useState("");
   const [isEmpty, setIsEmpty] = useState(false);
+  const [calculatedData, setCalculatedData] = useState(false);
 
   const handleCalculate = () => {
     if (location && electricBill && userType) {
@@ -28,9 +29,11 @@ const SolarCalculator = () => {
       };
       console.log(solarCalculation);
       setIsEmpty(false);
+      setCalculatedData(true);
       alert(JSON.stringify(solarCalculation));
     } else {
       setIsEmpty(true);
+      setCalculatedData(false);
     }
   };
 
@@ -86,7 +89,7 @@ const SolarCalculator = () => {
                   <label className="block text-left text-gray-700 font-semibold mb-2">
                     Location
                   </label>
-                  <div className="flex">
+                  <div className="flex shadow-sm border rounded-lg">
                     <InputField
                       id="location"
                       type="text"
@@ -94,10 +97,14 @@ const SolarCalculator = () => {
                       onChange={(e) => setLocation(e.target.value)}
                       placeholder="Location"
                       value={location}
-                      className="mt-1 block w-full border-none rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3"
+                      className="mt-1 block w-full border-none rounded-md focus:border-indigo-500 focus:ring-indigo-500 p-3 focus:outline-none"
                     />
-                    <div className="text-primary text-2xl cursor-pointer">
-                      <IoLocationSharp onClick={handleLocation} />
+                    <div
+                      className="flex items-center justify-center text-primary  cursor-pointer p-3 "
+                      onClick={handleLocation}
+                    >
+                      <h5 className="text-sm font-semibold"> DETECT</h5>
+                      <IoLocationSharp className="text-2xl" />
                     </div>
                   </div>
                 </div>
@@ -105,15 +112,17 @@ const SolarCalculator = () => {
                   <label className="block text-left text-gray-700 font-semibold mb-2">
                     Average Monthly Electric Bill:
                   </label>
-                  <InputField
-                    id="electricBill"
-                    type="text"
-                    name="electricBill"
-                    onChange={(e) => setElectricBill(e.target.value)}
-                    placeholder="Average Electric Bill"
-                    value={electricBill}
-                    className="mt-1 block w-full border-none rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3"
-                  />
+                  <div className="shadow-sm border rounded-lg">
+                    <InputField
+                      id="electricBill"
+                      type="text"
+                      name="electricBill"
+                      onChange={(e) => setElectricBill(e.target.value)}
+                      placeholder="Average Electric Bill"
+                      value={electricBill}
+                      className="mt-1 block w-full border-none rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3 focus:outline-none"
+                    />
+                  </div>
                 </div>
                 <div className="mb-6 flex items-center justify-center gap-6">
                   <button
@@ -147,7 +156,7 @@ const SolarCalculator = () => {
                   Calculate
                 </button>
               </form>
-              <CalculatorContent />
+              {calculatedData ? <CalculatorContent /> : ""}
             </div>
           </div>
         </div>
