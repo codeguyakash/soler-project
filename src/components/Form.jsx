@@ -158,18 +158,9 @@ const ContactForm = () => {
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   />
                 </div>
-
-                <label htmlFor="comments">Comment</label>
-                <textarea
-                  name="comments"
-                  id="comments"
-                  value={formData.comments}
-                  onChange={handleChange}
-                  placeholder="Please enter comments if any"
-                  className="rounded-md px-3.5 py-2 shadow-sm w-full sm:col-span-2"
-                />
               </div>
-              <div>
+
+              <div className="mt-3">
                 <label htmlFor="requirement">Requirement</label>
                 <select
                   name="requirement"
@@ -182,12 +173,24 @@ const ContactForm = () => {
                   <option value="Solar for Office or Socity">
                     Solar for Office or Socity
                   </option>
-                  <option value="Solar for industry or ornanization or trust">
-                    Solar for industry or ornanization or trust
+                  <option value="Solar for industry or organization or trust">
+                    Solar for industry or organization or trust
                   </option>
                 </select>
               </div>
-              <br />
+
+              <div className="mt-3">
+                <label htmlFor="comments">Comment</label>
+                <textarea
+                  name="comments"
+                  id="comments"
+                  value={formData.comments}
+                  onChange={handleChange}
+                  placeholder="Please enter comments if any"
+                  className="rounded-md px-3.5 py-2 shadow-sm w-full sm:col-span-2 mb-3"
+                />
+              </div>
+
               <div>
                 {isEmpty ? (
                   <Toast message="All Fields Required" className="text-white" />
