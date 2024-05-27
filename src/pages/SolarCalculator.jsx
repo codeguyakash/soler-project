@@ -6,11 +6,14 @@ import Nav from "../components/Nav";
 import Footer from "./../components/Footer";
 import InputField from "../components/InputField";
 import Toast from "../components/Toast";
+import { useCount } from "../context/Context";
 
 const SolarCalculator = () => {
   const [showSideNav, setShowSideNav] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [calculatedData, setCalculatedData] = useState(false);
+  const counterState = useCount();
+
   const [formData, setFormData] = useState({
     loadRequirement: "",
     roofArea: "",
@@ -56,6 +59,7 @@ const SolarCalculator = () => {
               <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
                 Solar Saving Calculator
               </h2>
+              <h2>Count {counterState.count}</h2>
             </div>
             <div className="mt-12">
               <form className="w-full mx-auto bg-white p-8 rounded-lg shadow-lg">
