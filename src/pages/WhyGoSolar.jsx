@@ -14,9 +14,9 @@ import image6 from "../assets/image6.jpg";
 import image7 from "../assets/image7.jpg";
 import image8 from "../assets/image8.jpg";
 import image9 from "../assets/image9.jpg";
+import Cards from "../components/Cards";
 
 const WhyGoSolar = () => {
-  const [showFullDescription, setShowFullDescription] = useState(false);
   const [showSideNav, setShowSideNav] = useState(false);
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
@@ -109,33 +109,7 @@ const WhyGoSolar = () => {
       <section className="bg-gray-100 py-16 lg:py-24">
         <div className="container mx-auto px-4 grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3  items-center justify-center gap-5">
           {contentArray.map((content) => (
-            <div
-              key={content.id}
-              className="shadow-lg p-10 min-h-64 border rounded-lg"
-            >
-              <h2 className="text-2xl font-semibold my-2">{content.title}</h2>
-              <img
-                src={content.image}
-                alt={`Image of ${content.title}`}
-                width="100%"
-                height={200}
-                className="rounded"
-              />
-
-              <p className="text-lg my-2">
-                {showFullDescription
-                  ? content.description
-                  : content.description.slice(0, 60) + "..."}
-                {content.description.length > 50 && (
-                  <button
-                    className="text-green-900 font-semibold hover:underline"
-                    onClick={() => setShowFullDescription(!showFullDescription)}
-                  >
-                    {showFullDescription ? "Read Less" : "Read More"}
-                  </button>
-                )}
-              </p>
-            </div>
+            <Cards key={content.id} props={content} />
           ))}
         </div>
       </section>
