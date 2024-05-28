@@ -4,7 +4,7 @@ import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 
-const MuftBijliYojana = () => {
+const muftBijliYojana = () => {
   const [showSideNav, setShowSideNav] = useState(false);
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
@@ -149,4 +149,4 @@ const MuftBijliYojana = () => {
   );
 };
 
-export default MuftBijliYojana;
+export default muftBijliYojana;

@@ -8,7 +8,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Register = lazy(() => import("./pages/Register"));
 const Login = lazy(() => import("./pages/Login"));
 const Products = lazy(() => import("./pages/Products"));
-const MuftBijliYojana = lazy(() => import("./pages/MuftBijliYojana"));
+const MuftBijliYojana = lazy(() => import("./pages/muftBijliYojana"));
 const WhyGoSolar = lazy(() => import("./pages/WhyGoSolar"));
 const SolarSurvey = lazy(() => import("./pages/SolarSurvey"));
 const SolarCalculator = lazy(() => import("./pages/SolarCalculator"));
