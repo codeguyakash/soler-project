@@ -148,8 +148,12 @@ const Footer = () => {
                   <div className="flex items-start justify-start gap-2">
                     <TiSocialTwitter className="text-primary font-light text-5xl rounded-full border-4 cursor-pointer bg-white hover:opacity-85 " />
                     <FaFacebookF className="text-primary font-light text-5xl rounded-full border-4 cursor-pointer bg-white hover:opacity-85 " />
-                    <FaLinkedin className="text-primary font-light text-5xl rounded-full border-4 cursor-pointer bg-white hover:opacity-85 " />
-                    <IoMdMail className="text-primary font-light text-5xl rounded-full border-4 cursor-pointer bg-white hover:opacity-85 " />
+                    <a href="https://www.linkedin.com/company/unified-solar-energy-private-limited">
+                      <FaLinkedin className="text-primary font-light text-5xl rounded-full border-4 cursor-pointer bg-white hover:opacity-85 " />
+                    </a>
+                    <a href="mailto:info@unifiedsolar.in">
+                      <IoMdMail className="text-primary font-light text-5xl rounded-full border-4 cursor-pointer bg-white hover:opacity-85 " />
+                    </a>
                   </div>
                 </div>
               </div>

@@ -70,6 +70,12 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
         >
           Muft Bijli Yojana
         </Link>
+        <Link
+          to="/login"
+          className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
+        >
+          Login/Register
+        </Link>
         <div className="my-5 cursor-pointer flex items-center justify-center gap-5">
           <TiSocialTwitter className="text-white font-light text-3xl hover:text-black" />
           <FaFacebookF className="text-white font-light text-2xl hover:text-black" />

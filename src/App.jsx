@@ -5,8 +5,10 @@ import Home from "./pages/Home";
 
 // Lazy loading components
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Register = lazy(() => import("./pages/Register"));
+const Login = lazy(() => import("./pages/Login"));
 const Products = lazy(() => import("./pages/Products"));
-const Blogs = lazy(() => import("./pages/muftBijliYojana"));
+const MuftBijliYojana = lazy(() => import("./pages/MuftBijliYojana"));
 const WhyGoSolar = lazy(() => import("./pages/WhyGoSolar"));
 const SolarSurvey = lazy(() => import("./pages/SolarSurvey"));
 const SolarCalculator = lazy(() => import("./pages/SolarCalculator"));
@@ -30,7 +32,9 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/faq" element={<Faqs />} />
-          <Route path="/muft-bijli-yojana" element={<Blogs />} />
+          <Route path="/muft-bijli-yojana" element={<MuftBijliYojana />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
