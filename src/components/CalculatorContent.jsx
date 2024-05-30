@@ -44,7 +44,7 @@ const CalculatorContent = ({ data }) => {
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-lg     font-extrabold text-gray-900 sm:text-4xl">
+              <h2 className="text-lg font-extrabold text-gray-900 sm:text-4xl">
                 Calculated Data
               </h2>
             </div>
@@ -63,6 +63,8 @@ const CalculatorContent = ({ data }) => {
                   </div>
                 </div>
               </div>
+
+              {/* Monthly Average Consumption */}
               <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
                 <h2 className="font-bold text-center rounded-md text-primary p-5">
                   Consumption
@@ -76,6 +78,8 @@ const CalculatorContent = ({ data }) => {
                   </div>
                 </div>
               </div>
+
+              {/* System Size */}
               <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
                 <h2 className="font-bold text-center rounded-md text-primary p-5">
                   System Size
@@ -89,6 +93,8 @@ const CalculatorContent = ({ data }) => {
                   </div>
                 </div>
               </div>
+
+              {/* Installation Cost */}
               <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
                 <h2 className="font-bold text-center rounded-md text-primary p-5">
                   Installation Cost
@@ -102,6 +108,8 @@ const CalculatorContent = ({ data }) => {
                   </div>
                 </div>
               </div>
+
+              {/* Cost Saving */}
               <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
                 <h2 className="font-bold text-center rounded-md text-primary p-5">
                   Cost Saving
@@ -115,6 +123,8 @@ const CalculatorContent = ({ data }) => {
                   </div>
                 </div>
               </div>
+
+              {/* ROI */}
               <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
                 <h2 className="font-bold text-center rounded-md text-primary p-5">
                   ROI
@@ -130,6 +140,8 @@ const CalculatorContent = ({ data }) => {
                   </div>
                 </div>
               </div>
+
+              {/* Payback Period */}
               <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
                 <h2 className="font-bold text-center rounded-md text-primary p-5">
                   Payback Period
@@ -143,6 +155,8 @@ const CalculatorContent = ({ data }) => {
                   </div>
                 </div>
               </div>
+
+              {/* Subsidy */}
               <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
                 <h2 className="font-bold text-center rounded-md text-primary p-5">
                   Subsidy
@@ -156,6 +170,8 @@ const CalculatorContent = ({ data }) => {
                   </div>
                 </div>
               </div>
+
+              {/* EMI */}
               <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
                 <h2 className="font-bold text-center rounded-md text-primary p-5">
                   EMI
@@ -169,10 +185,84 @@ const CalculatorContent = ({ data }) => {
                   </div>
                 </div>
               </div>
+
+              {/* New Fields */}
+              <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
+                <h2 className="font-bold text-center rounded-md text-primary p-5">
+                  Loan Amount
+                </h2>
+                <div className="flex datas-center justify-center w-60 mx-auto">
+                  <div className="bg-gray-300 mx-auto p-2 rounded-full w-32 h-32 border-2 border-gray-400 border-dashed flex datas-center justify-center flex-col">
+                    <h3 className="text-center my-2 max-content">Amount:</h3>
+                    <h3 className="text-center my-2 max-content">
+                      ₹{data.loan_amount}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
+                <h2 className="font-bold text-center rounded-md text-primary p-5">
+                  Down Payment
+                </h2>
+                <div className="flex datas-center justify-center w-60 mx-auto">
+                  <div className="bg-gray-300 mx-auto p-2 rounded-full w-32 h-32 border-2 border-gray-400 border-dashed flex datas-center justify-center flex-col">
+                    <h3 className="text-center my-2 max-content">Amount:</h3>
+                    <h3 className="text-center my-2 max-content">
+                      ₹{data.down_payment}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
+                <h2 className="font-bold text-center rounded-md text-primary p-5">
+                  Monthly Electricity Production
+                </h2>
+                <div className="flex datas-center justify-center w-60 mx-auto">
+                  <div className="bg-gray-300 mx-auto p-2 rounded-full w-32 h-32 border-2 border-gray-400 border-dashed flex datas-center justify-center flex-col">
+                    <h3 className="text-center my-2 max-content">
+                      Production:
+                    </h3>
+                    <h3 className="text-center my-2 max-content">
+                      {data.monthly_electricity_production} kWh
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
+                <h2 className="font-bold text-center rounded-md text-primary p-5">
+                  Area Requirement
+                </h2>
+                <div className="flex datas-center justify-center w-60 mx-auto">
+                  <div className="bg-gray-300 mx-auto p-2 rounded-full w-32 h-32 border-2 border-gray-400 border-dashed flex datas-center justify-center flex-col">
+                    <h3 className="text-center my-2 max-content">Area:</h3>
+                    <h3 className="text-center my-2 max-content">
+                      {data.area_requirement_in_sqft} sq. ft.
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
+                <h2 className="font-bold text-center rounded-md text-primary p-5">
+                  System Size Requirement (Load Details)
+                </h2>
+                <div className="flex datas-center justify-center w-60 mx-auto">
+                  <div className="bg-gray-300 mx-auto p-2 rounded-full w-32 h-32 border-2 border-gray-400 border-dashed flex datas-center justify-center flex-col">
+                    <h3 className="text-center my-2 max-content">Size:</h3>
+                    <h3 className="text-center my-2 max-content">
+                      {data.system_size_requirement_if_load_details} kW
+                    </h3>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
       {/* <div className="container mx-auto px-4 grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 datas-center justify-center gap-5">
         {cards.map((card, index) => (
           <CalcalatorCard
