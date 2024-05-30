@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputField from "./InputField";
 import contactus from "../assets/icons/contact_us_re_4qqt.svg";
 // import contactus from "../assets/icons/message.png";
@@ -10,18 +10,20 @@ const ContactForm = () => {
   const [showMessage, setShowMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const token = localStorage.getItem("accessToken");
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
 
   const [formData, setFormData] = useState({
-    state: "1",
-    city: "1",
-    interest_in: "home",
-    name: "test",
-    contract_number: "9758011111",
-    company_name: "test",
-    email: "test@12gmail.com",
-    pin_code: "251001",
-    address: "tets",
-    comments: "tets",
+    state: "",
+    city: "",
+    interest_in: "",
+    name: "",
+    contract_number: "",
+    company_name: "",
+    email: "",
+    pin_code: "",
+    address: "",
+    comments: "",
   });
 
   const handleChange = (e) => {
@@ -31,6 +33,46 @@ const ContactForm = () => {
       [name]: value,
     });
   };
+
+  const fetchStates = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/state/state/",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      setStates(response.data);
+    } catch (error) {
+      console.error("Failed to fetch states", error);
+      setShowMessage("Failed to load states, please refresh the page.");
+    }
+  };
+
+  const fetchCities = async (stateId) => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/state/city/?state_id=${stateId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      setCities(response.data);
+    } catch (error) {
+      console.error("Failed to fetch cities", error);
+      setShowMessage("Failed to load cities, please try again.");
+    }
+  };
+
+  const handleStateChange = (e) => {
+    const stateId = e.target.value;
+    setFormData({ ...formData, state: stateId, city: "" });
+    fetchCities(stateId);
+  };
+
+  useEffect(() => {
+    fetchStates();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,10 +97,10 @@ const ContactForm = () => {
           }
           setIsLoading(false);
         })
-        .catch(
-          (error) => alert(error.message, "Please Login")
+        .catch((error) => {
+          alert(error.message, "Please Login");
           // navigate("/login")
-        );
+        });
       setIsEmpty(false);
     }
   };
@@ -94,11 +136,11 @@ const ContactForm = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="contractNo">Phone Number</label>
+                  <label htmlFor="contract_number">Phone Number</label>
                   <InputField
-                    id="contractNo"
-                    type="text"
-                    name="contractNo"
+                    id="contract_number"
+                    type="number"
+                    name="contract_number"
                     onChange={handleChange}
                     placeholder="Your Phone Number"
                     value={formData.contract_number}
@@ -106,11 +148,11 @@ const ContactForm = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="companyName">Company Name</label>
+                  <label htmlFor="company_name">Company Name</label>
                   <InputField
-                    id="companyName"
+                    id="company_name"
                     type="text"
-                    name="companyName"
+                    name="company_name"
                     onChange={handleChange}
                     placeholder="Company Name (if not for home)"
                     value={formData.company_name}
@@ -135,12 +177,15 @@ const ContactForm = () => {
                     name="state"
                     id="state"
                     value={formData.state}
-                    onChange={handleChange}
+                    onChange={handleStateChange}
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   >
                     <option value="">Select State</option>
-                    <option value="State1">State1</option>
-                    <option value="State2">State2</option>
+                    {states.map((state) => (
+                      <option key={state.id} value={state.id}>
+                        {state.state}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -153,16 +198,20 @@ const ContactForm = () => {
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   >
                     <option value="">Select City</option>
-                    <option value="City1">City1</option>
-                    <option value="City2">City2</option>
+                    {cities &&
+                      cities.map((city) => (
+                        <option key={city.id} value={city.id}>
+                          {city.city_name}
+                        </option>
+                      ))}
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="pinCode">Pin Code</label>
+                  <label htmlFor="pin_code">Pin Code</label>
                   <InputField
-                    id="pinCode"
-                    type="text"
-                    name="pinCode"
+                    id="pin_code"
+                    type="number"
+                    name="pin_code"
                     onChange={handleChange}
                     placeholder="Your Pin Code"
                     value={formData.pin_code}
@@ -185,19 +234,17 @@ const ContactForm = () => {
               </div>
 
               <div className="mt-3">
-                <label htmlFor="requirement">Requirement</label>
+                <label htmlFor="interest_in">Requirement</label>
                 <select
-                  name="requirement"
-                  id="requirement"
+                  name="interest_in"
+                  id="interest_in"
                   value={formData.interest_in}
                   onChange={handleChange}
                   className="rounded-md px-3.5 py-2 shadow-sm w-full"
                 >
-                  <option value="Solar for Home">Solar for Home</option>
-                  <option value="Solar for Office or Socity">
-                    Solar for Office or Socity
-                  </option>
-                  <option value="Solar for industry or organization or trust">
+                  <option value="home">Solar for Home</option>
+                  <option value="office">Solar for Office or Society</option>
+                  <option value="industry">
                     Solar for industry or organization or trust
                   </option>
                 </select>
