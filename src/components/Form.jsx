@@ -2,22 +2,26 @@ import React, { useState } from "react";
 import InputField from "./InputField";
 import contactus from "../assets/icons/contact_us_re_4qqt.svg";
 // import contactus from "../assets/icons/message.png";
-
+import axios from "axios";
 import Toast from "./Toast";
 
 const ContactForm = () => {
   const [isEmpty, setIsEmpty] = useState(false);
+  const [showMessage, setShowMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const token = localStorage.getItem("accessToken");
+
   const [formData, setFormData] = useState({
-    name: "",
-    contractNo: "",
-    companyName: "",
-    email: "",
-    state: "",
-    city: "",
-    requirement: "",
-    pinCode: "",
-    address: "",
-    comments: "",
+    state: "1",
+    city: "1",
+    interest_in: "home",
+    name: "test",
+    contract_number: "9758011111",
+    company_name: "test",
+    email: "test@12gmail.com",
+    pin_code: "251001",
+    address: "tets",
+    comments: "tets",
   });
 
   const handleChange = (e) => {
@@ -36,8 +40,25 @@ const ContactForm = () => {
     if (isFormDataEmpty) {
       setIsEmpty(true);
     } else {
-      console.log("Form data submitted:", formData);
-      alert(JSON.stringify(formData));
+      setIsLoading(true);
+      axios
+        .post("http://127.0.0.1:8000/api/contact/inquiries/", formData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          if (res.status == 201) {
+            setShowMessage("Sent Success...");
+          }
+          setIsLoading(false);
+        })
+        .catch(
+          (error) => alert(error.message, "Please Login")
+          // navigate("/login")
+        );
       setIsEmpty(false);
     }
   };
@@ -55,6 +76,9 @@ const ContactForm = () => {
             />
           </div>
           <div>
+            <h3 className="text-center text-white font-semibold">
+              {showMessage}
+            </h3>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-4">
                 <div>
@@ -77,7 +101,7 @@ const ContactForm = () => {
                     name="contractNo"
                     onChange={handleChange}
                     placeholder="Your Phone Number"
-                    value={formData.contractNo}
+                    value={formData.contract_number}
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   />
                 </div>
@@ -89,7 +113,7 @@ const ContactForm = () => {
                     name="companyName"
                     onChange={handleChange}
                     placeholder="Company Name (if not for home)"
-                    value={formData.companyName}
+                    value={formData.company_name}
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   />
                 </div>
@@ -141,7 +165,7 @@ const ContactForm = () => {
                     name="pinCode"
                     onChange={handleChange}
                     placeholder="Your Pin Code"
-                    value={formData.pinCode}
+                    value={formData.pin_code}
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   />
                 </div>
@@ -165,7 +189,7 @@ const ContactForm = () => {
                 <select
                   name="requirement"
                   id="requirement"
-                  value={formData.requirement}
+                  value={formData.interest_in}
                   onChange={handleChange}
                   className="rounded-md px-3.5 py-2 shadow-sm w-full"
                 >
@@ -202,7 +226,7 @@ const ContactForm = () => {
                 type="submit"
                 className="mt-4 rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary hover:opacity-80 w-full"
               >
-                Submit
+                {isLoading ? "Please wait..." : "Submit"}
               </button>
             </form>
           </div>

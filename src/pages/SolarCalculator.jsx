@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import CalculatorContent from "../components/CalculatorContent";
@@ -186,7 +186,7 @@ const SolarCalculator = () => {
                         className="mt-1 block w-full border-none rounded-md shadow-sm  p-3 focus:outline-none"
                       >
                         <option value="">Select State</option>
-                        <option value="1">State1</option>
+                        <option value="1">Delhi</option>
                         <option value="2">State2</option>
                       </select>
                     </div>
