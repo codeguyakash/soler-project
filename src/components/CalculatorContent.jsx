@@ -277,3 +277,63 @@ const CalculatorContent = ({ data }) => {
 };
 
 export default CalculatorContent;
+
+import React from "react";
+
+// const CalculatorContent = ({ data }) => {
+//   const renderData = Object.entries(data).map(([key, value]) => {
+//     if (typeof value === "object") {
+//       return (
+//         <div key={key} className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
+//           <h2 className="font-bold text-center rounded-md text-primary p-5">
+//             {key}
+//           </h2>
+//           <div className="flex datas-center justify-center w-60 mx-auto">
+//             <div className="bg-gray-300 mx-auto p-2 rounded-full w-32 h-32 border-2 border-gray-400 border-dashed flex datas-center justify-center flex-col">
+//               {Object.entries(value).map(([subKey, subValue]) => (
+//                 <div key={subKey} className="text-center my-2 max-content">
+//                   {subKey}: {subValue}
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+//       );
+//     } else {
+//       return (
+//         <div key={key} className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
+//           <h2 className="font-bold text-center rounded-md text-primary p-5">
+//             {key}
+//           </h2>
+//           <div className="flex datas-center justify-center w-60 mx-auto">
+//             <div className="bg-gray-300 mx-auto p-2 rounded-full w-32 h-32 border-2 border-gray-400 border-dashed flex datas-center justify-center flex-col">
+//               <div className="text-center my-2 max-content">
+//                 {value}
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       );
+//     }
+//   });
+
+//   return (
+//     <section className="bg-gray-100 py-16 lg:py-24 rounded-lg my-5">
+//       <div className="container mx-auto px-4">
+//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//           <div className="text-center">
+//             <h2 className="text-lg font-extrabold text-gray-900 sm:text-4xl">
+//               Calculated Data
+//             </h2>
+//           </div>
+//           <br />
+//           <div className="container mx-auto px-4 grid grid-col-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 datas-center justify-center gap-5">
+//             {renderData}
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default CalculatorContent;

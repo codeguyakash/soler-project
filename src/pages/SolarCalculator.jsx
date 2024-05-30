@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import CalculatorContent from "../components/CalculatorContent";
@@ -7,7 +7,6 @@ import Footer from "./../components/Footer";
 import InputField from "../components/InputField";
 import Toast from "../components/Toast";
 import axios from "axios";
-// import { useCount } from "../context/Context";
 import contactusImage from "../assets/images/contactus.jpg";
 import { useNavigate } from "react-router-dom";
 
@@ -18,27 +17,71 @@ const SolarCalculator = () => {
   const [calculatedData, setCalculatedData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const token = localStorage.getItem("accessToken");
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    state_id: "1",
-    city_id: "1",
-    monthly_average_consumption: "800",
-    load_requirement: "0",
-    roof_area: "0",
-    average_rate_per_unit: "7",
-    margin_money_percentage: "21",
-    interest_rate: "5",
-    loan_period: "7",
+    state_id: "",
+    city_id: "",
+    monthly_average_consumption: "",
+    load_requirement: "",
+    roof_area: "",
+    average_rate_per_unit: "",
+    margin_money_percentage: "",
+    interest_rate: "",
+    loan_period: "",
   });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value,
-    });
+    }));
   };
 
+  const fetchStates = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/state/state/",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      setStates(response.data);
+    } catch (error) {
+      console.error("Failed to fetch states", error);
+      setShowMessage("Failed to load states, please refresh the page.");
+    }
+  };
+
+  const fetchCities = async (stateId) => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/state/city/?state_id=${stateId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      setCities(response.data);
+    } catch (error) {
+      console.error("Failed to fetch cities", error);
+      setShowMessage("Failed to load cities, please try again.");
+    }
+  };
+
+  const handleStateChange = (e) => {
+    const stateId = e.target.value;
+    setFormData({ ...formData, state_id: stateId, city_id: "" });
+    fetchCities(stateId);
+  };
+
+  useEffect(() => {
+    fetchStates();
+  }, []);
+
+  console.log(formData);
   const handleCalculate = (e) => {
     e.preventDefault();
     const isFormDataEmpty = Object.values(formData).some(
@@ -56,13 +99,14 @@ const SolarCalculator = () => {
           },
         })
         .then((res) => {
-          setCalculatedData(res.data), setIsData(true);
+          setCalculatedData(res.data);
+          setIsData(true);
           setIsLoading(false);
         })
-        .catch(
-          (error) => alert(error.message, "Please Login")
-          // navigate("/login")
-        );
+        .catch((error) => {
+          alert(error.message, "Please Login");
+          // navigate("/login");
+        });
       setIsEmpty(false);
     }
   };
@@ -179,15 +223,18 @@ const SolarCalculator = () => {
                     </label>
                     <div className="shadow-sm border rounded-lg">
                       <select
-                        name="state"
+                        name="state_id"
                         id="state_id"
                         value={formData.state_id}
-                        onChange={handleChange}
+                        onChange={handleStateChange}
                         className="mt-1 block w-full border-none rounded-md shadow-sm  p-3 focus:outline-none"
                       >
                         <option value="">Select State</option>
-                        <option value="1">Delhi</option>
-                        <option value="2">State2</option>
+                        {states.map((state) => (
+                          <option key={state.id} value={state.id}>
+                            {state.state}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -200,15 +247,19 @@ const SolarCalculator = () => {
                     </label>
                     <div className="shadow-sm border rounded-lg">
                       <select
-                        name="city"
+                        name="city_id"
                         id="city_id"
                         value={formData.city_id}
                         onChange={handleChange}
                         className="mt-1 block w-full border-none rounded-md shadow-sm   p-3 focus:outline-none"
                       >
                         <option value="">Select City</option>
-                        <option value="1">City1</option>
-                        <option value="2">City2</option>
+                        {cities &&
+                          cities.map((city) => (
+                            <option key={city.id} value={city.id}>
+                              {city.city_name}
+                            </option>
+                          ))}
                       </select>
                     </div>
                   </div>
@@ -247,7 +298,7 @@ const SolarCalculator = () => {
                         id="interest_rate"
                         type="text"
                         name="interest_rate"
-                        placeholder="Available Roof Area"
+                        placeholder="Rate of Interest"
                         onChange={handleChange}
                         value={formData.interest_rate}
                         className="mt-1 block w-full border-none rounded-md shadow-sm   p-3 focus:outline-none"
@@ -266,7 +317,7 @@ const SolarCalculator = () => {
                         id="loan_period"
                         type="text"
                         name="loan_period"
-                        placeholder="Electricity Unit Cost"
+                        placeholder="Loan Period"
                         onChange={handleChange}
                         value={formData.loan_period}
                         className="mt-1 block w-full border-none rounded-md shadow-sm   p-3 focus:outline-none"
