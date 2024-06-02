@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SideNav from "../components/SideNav";
 import Nav from "./../components/Nav";
 import Carousel from "../components/Carousel";
 import SolarAdvantage from "../components/SolarAdvantage";
-import OurCustomers from "./../components/OurCustomers";
-//images here
-
 import HowToUseSolar from "../components/HowToUseSolar";
-import SolarInstallation from "../components/SolarInstallation";
-import SolarWork from "../components/SolarWork";
-import Footer from "../components/Footer";
 import WhyRooftopSolar from "../components/WhyRooftopSolar";
+import SolarWork from "../components/SolarWork";
 import Services from "../components/Services";
+import SolarInstallation from "../components/SolarInstallation";
 import GetInTouch from "../components/GetInTouch";
+import Footer from "../components/Footer";
 import Loader from "./Loader";
 
 const Home = () => {
@@ -23,37 +20,30 @@ const Home = () => {
     "https://res.cloudinary.com/codeguyakash/image/upload/w_1200,h_600,c_fill/enermaxx_solar/files-1717309544395.jpg.webp",
     "https://res.cloudinary.com/codeguyakash/image/upload/w_1200,h_600,c_fill/enermaxx_solar/files-1717309544590.jpg.webp",
   ];
-  // const images = [, solarfive, solarsix, solarseven];
-  const [isLoading, setIsLoading] = useState(false);
   const [showSideNav, setShowSideNav] = useState(false);
 
-  const showSideNavHandler = () => {
-    setShowSideNav(!showSideNav);
+  const toggleSideNav = () => {
+    setShowSideNav((prev) => !prev);
   };
 
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <div className="hero-bg-imgs">
-          <Nav showSideNavHandler={showSideNavHandler} />
-          <Carousel images={images} showSideNavHandler={showSideNavHandler} />
-          <SideNav
-            showSideNavHandler={showSideNavHandler}
-            showSideNav={showSideNav ? "block" : "none"}
-          />
-          <SolarAdvantage />
-          <HowToUseSolar />
-          <WhyRooftopSolar />
-          <SolarWork />
-          <Services />
-          <SolarInstallation />
-          {/* <OurCustomers /> */}
-          <GetInTouch />
-          <Footer />
-        </div>
-      )}
+      <div className="hero-bg-imgs">
+        <Nav showSideNavHandler={toggleSideNav} />
+        <Carousel images={images} showSideNavHandler={toggleSideNav} />
+        <SideNav
+          showSideNavHandler={toggleSideNav}
+          showSideNav={showSideNav ? "block" : "none"}
+        />
+        <SolarAdvantage />
+        <HowToUseSolar />
+        <WhyRooftopSolar />
+        <SolarWork />
+        <Services />
+        <SolarInstallation />
+        <GetInTouch />
+        <Footer />
+      </div>
     </>
   );
 };
