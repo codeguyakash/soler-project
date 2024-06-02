@@ -21,11 +21,13 @@ const Carousel = ({ images, showSideNavHandler }) => {
     }, 5000);
 
     return () => clearInterval(intervalId);
-  }, [currentSlide]);
+  }, []); // Only run on mount and unmount
+
+  console.log("re-render");
 
   return (
     <div className="relative top-0 bg-gradient-to-r from-blue-900 to-green-500">
-      <div className="overflow-hidden w-full ">
+      <div className="overflow-hidden w-full">
         <div
           className="flex transition-transform duration-500"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -33,7 +35,7 @@ const Carousel = ({ images, showSideNavHandler }) => {
           {images.map((image, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-full h-screen opacity-90 "
+              className="flex-shrink-0 w-full h-screen opacity-90"
             >
               <img
                 src={image}
@@ -47,17 +49,13 @@ const Carousel = ({ images, showSideNavHandler }) => {
       </div>
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 text-white px-4 py-2 "
+        className="absolute top-1/2 left-0 transform -translate-y-1/2 text-white px-4 py-2"
       >
         •••
       </button>
-      <div
-        className="z-50 absolute top-28 md:top-48 mx-2 md:left-32 md:w-[80vw] lg:w-[86vw] xl:w-[86vw] 2xl:w-[60vw]
-
-      "
-      >
+      <div className="z-50 absolute top-28 md:top-48 mx-2 md:left-32 md:w-[80vw] lg:w-[86vw] xl:w-[86vw] 2xl:w-[60vw]">
         <h1
-          className="text-5xl md:text-[5.4rem] lg:text-[5.6rem] xl:text-[5.8rem] 2xl:text-[6rem]  leading-[3.4rem] md:leading-[4rem] lg:leading-[5rem] tracking-tighter text-gray-400 font-bold italic animate-fade-right animate-delay-300"
+          className="text-5xl md:text-[5.4rem] lg:text-[5.6rem] xl:text-[5.8rem] 2xl:text-[6rem] leading-[3.4rem] md:leading-[4rem] lg:leading-[5rem] tracking-tighter text-gray-400 font-bold italic animate-fade-right animate-delay-300"
           style={{
             backgroundClip: "text",
             WebkitBackgroundClip: "text",
@@ -77,7 +75,7 @@ const Carousel = ({ images, showSideNavHandler }) => {
 
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-0 transform -translate-y-1/2  text-white px-4 py-2 "
+        className="absolute top-1/2 right-0 transform -translate-y-1/2 text-white px-4 py-2"
       >
         •••
       </button>

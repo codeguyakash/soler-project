@@ -5,12 +5,7 @@ import Carousel from "../components/Carousel";
 import SolarAdvantage from "../components/SolarAdvantage";
 import OurCustomers from "./../components/OurCustomers";
 //images here
-import solartwo from "../assets/images/solar-image-two.webp";
-import solarthree from "../assets/images/solar-image-three.webp";
-import solarfour from "../assets/images/solar-image-four.webp";
-import solarfive from "../assets/images/bg.jpg";
-import solarsix from "../assets/images/solar-six.jpg";
-import solarseven from "../assets/images/solarseven.jpg";
+
 import HowToUseSolar from "../components/HowToUseSolar";
 import SolarInstallation from "../components/SolarInstallation";
 import SolarWork from "../components/SolarWork";
@@ -22,19 +17,13 @@ import Loader from "./Loader";
 
 const Home = () => {
   const images = [
-    solartwo,
-    solarthree,
-    solarfour,
-    solarfive,
-    solarsix,
-    solarseven,
-    solartwo,
-    solarthree,
-    solarfour,
-    solarfive,
-    solarsix,
-    solarseven,
+    "https://res.cloudinary.com/codeguyakash/image/upload/w_1200,h_600,c_fill/enermaxx_solar/files-1717309544577.webp.webp",
+    "https://res.cloudinary.com/codeguyakash/image/upload/w_1200,h_600,c_fill/enermaxx_solar/files-1717309544543.jpg.webp",
+    "https://res.cloudinary.com/codeguyakash/image/upload/w_1200,h_600,c_fill/enermaxx_solar/files-1717309544566.webp.webp",
+    "https://res.cloudinary.com/codeguyakash/image/upload/w_1200,h_600,c_fill/enermaxx_solar/files-1717309544395.jpg.webp",
+    "https://res.cloudinary.com/codeguyakash/image/upload/w_1200,h_600,c_fill/enermaxx_solar/files-1717309544590.jpg.webp",
   ];
+  // const images = [, solarfive, solarsix, solarseven];
   const [isLoading, setIsLoading] = useState(false);
   const [showSideNav, setShowSideNav] = useState(false);
 
