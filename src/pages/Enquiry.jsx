@@ -8,6 +8,7 @@ import Form from "../components/Form";
 import { useNavigate } from "react-router-dom";
 
 const Enquiry = () => {
+  const RequestType = `Enquiry of ${localStorage.getItem("Request-Type")}`;
   const [showSideNav, setShowSideNav] = useState(false);
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
@@ -22,7 +23,7 @@ const Enquiry = () => {
   return (
     <>
       <Nav showSideNavHandler={showSideNavHandler} />
-      <Banner title="Enquiry" />
+      <Banner title={RequestType} />
       <SideNav
         showSideNavHandler={showSideNavHandler}
         showSideNav={showSideNav ? "block" : "none"}

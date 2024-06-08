@@ -20,10 +20,12 @@ const ServiceRequest = () => {
     setServiceType(selectedService);
 
     if (selectedService === "installation") {
+      localStorage.setItem("Request-Type", "Installation");
       navigate("/enquiry");
     }
 
     if (selectedService === "maintenance") {
+      localStorage.setItem("Request-Type", "Maintenance");
       navigate("/enquiry");
     }
   };
