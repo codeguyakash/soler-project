@@ -58,7 +58,7 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-1 p-10">
             <div className="mb-4">
               <h1 className="text-6xl text-white font-bold">
-                <Link to="/">EnerMaxX</Link>
+                <Link to="/">Unified Solar</Link>
               </h1>
               <p className="text-white text-sm mt-2">
                 A rooftop solar photovoltaic (PV) system can either cater to the
@@ -70,7 +70,7 @@ const Footer = () => {
                 <br />
                 <br />
                 <Link href="#" className="text-blue-300">
-                  EnerMaxX Private Ltd, 2024
+                  Unified Solar Private Ltd, 2024
                 </Link>
               </p>
             </div>
@@ -141,7 +141,7 @@ const Footer = () => {
                       1800 1000 1234
                     </h2>
                     <h2 className="text-white text-start">
-                      EnerMaxX Private Ltd <br />
+                      Unified Solar Private Ltd <br />
                       New Delhi 123456
                     </h2>
                   </div>
