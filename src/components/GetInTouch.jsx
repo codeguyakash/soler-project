@@ -34,17 +34,17 @@ const GetInTouch = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-r from-blue-900 to-green-500 py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 w-full lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-1">
           <div className="flex flex-col items-center justify-center">
-            <h2 className="text-3xl text-center font-bold tracking-tight text-white md:text-6xl py-5">
+            <h2 className="text-3xl text-center font-bold tracking-tight text-white md:text-6xl py-5 flex">
               Enquiry
             </h2>
-            <h2 className="text-3xl font-bold tracking-tight flex items-center gap-5 text-white md:text-6xl">
+            <h2 className="text-3xl text-center font-bold tracking-tight text-white md:text-6xl py-5 flex">
               <IoCall />
-              1800 000 123
+              1800-000-123
             </h2>
           </div>
-          <div>
+          {/* <div>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-4 ">
                 <input
@@ -121,7 +121,7 @@ const GetInTouch = () => {
                 Submit
               </button>
             </form>
-          </div>
+          </div> */}
         </div>
       </div>
       <div
