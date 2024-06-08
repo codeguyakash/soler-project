@@ -13,7 +13,7 @@ import SolarForm from "./../components/SolarForm";
 const SolarCalculator = () => {
   const [showSideNav, setShowSideNav] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
-  const [isData, setIsData] = useState(true);
+  const [isData, setIsData] = useState(false);
   const [calculatedData, setCalculatedData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const token = localStorage.getItem("accessToken");

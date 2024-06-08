@@ -53,8 +53,9 @@ const CalculatorContent = ({ data }) => {
                   unit="Annual ROI"
                 />
               </div>
+              <hr />
               {/* part two here */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 my-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 my-5">
                 <InfoBox
                   title="Payback Period"
                   value={`${data?.investment_payback_period || "N/A"} Years`}
@@ -86,7 +87,7 @@ const CalculatorContent = ({ data }) => {
                   unit="Production"
                 />
               </div>
-
+              <hr />
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 my-5">
                 <InfoBox
                   title="Area Requirement"
