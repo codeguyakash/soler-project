@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 // Lazy loading components
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Register = lazy(() => import("./pages/Register"));
+const WarrantyCard = lazy(() => import("./pages/WarrantyCard"));
 const Login = lazy(() => import("./pages/Login"));
 const Products = lazy(() => import("./pages/Products"));
 const MuftBijli = lazy(() => import("./pages/MuftBijli"));
@@ -36,6 +37,7 @@ function App() {
           <Route path="/faq" element={<Faqs />} />
           <Route path="/muft-bijli-yojana" element={<MuftBijli />} />
           <Route path="/service-request" element={<ServiceRequest />} />
+          <Route path="/warranty-card" element={<WarrantyCard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />

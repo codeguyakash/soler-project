@@ -3,7 +3,7 @@ import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
 import Footer from "./../components/Footer";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import contactusImage from "../assets/images/login-register.jpeg";
 
 const ServiceRequest = () => {
@@ -70,6 +70,9 @@ const ServiceRequest = () => {
               </select>
             </div>
           </form>
+          <h3 className="text-xl text-white font-semibold text-center mt-10">
+            <Link to="/warranty-card">Warranty Card </Link>
+          </h3>
         </div>
       </section>
       <Footer />
