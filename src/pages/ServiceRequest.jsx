@@ -1,0 +1,74 @@
+import { useState } from "react";
+import Banner from "./../components/common/Banner";
+import SideNav from "../components/SideNav";
+import Nav from "../components/Nav";
+import Footer from "./../components/Footer";
+import { useNavigate } from "react-router-dom";
+import contactusImage from "../assets/images/login-register.jpeg";
+
+const ServiceRequest = () => {
+  const [showSideNav, setShowSideNav] = useState(false);
+  const [serviceType, setServiceType] = useState("");
+  const navigate = useNavigate();
+
+  const showSideNavHandler = () => {
+    setShowSideNav(!showSideNav);
+  };
+
+  const handleServiceChange = (e) => {
+    const selectedService = e.target.value;
+    setServiceType(selectedService);
+
+    if (selectedService === "installation") {
+      navigate("/solar-saving-calculator");
+    }
+  };
+
+  return (
+    <>
+      <Nav showSideNavHandler={showSideNavHandler} />
+      <Banner title="Service Request" />
+      <SideNav
+        showSideNavHandler={showSideNavHandler}
+        showSideNav={showSideNav ? "block" : "none"}
+      />
+      <section
+        className="bg-gray-100 py-8 lg:py-20"
+        style={{ backgroundImage: `url(${contactusImage})` }}
+      >
+        <div className="container mx-auto px-4">
+          <form className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+            <div>
+              <label
+                htmlFor="serviceType"
+                className="block text-lg font-medium text-gray-700"
+              >
+                Select Service Type
+              </label>
+              <select
+                id="serviceType"
+                name="serviceType"
+                value={serviceType}
+                onChange={handleServiceChange}
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"
+              >
+                <option value="" disabled className="text-xl">
+                  Select a service
+                </option>
+                <option value="installation" className="text-xl">
+                  Installation Request
+                </option>
+                <option value="maintenance" className="text-xl">
+                  Maintenance Request
+                </option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </section>
+      <Footer />
+    </>
+  );
+};
+
+export default ServiceRequest;

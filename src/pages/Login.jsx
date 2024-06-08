@@ -14,7 +14,6 @@ const Login = () => {
     setShowSideNav(!showSideNav);
   };
   const navigate = useNavigate();
-  const [isEmpty, setIsEmpty] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -28,9 +27,10 @@ const Login = () => {
       [name]: value,
     });
   };
+
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
+    const email = localStorage.getItem("email");
+    if (email) {
       navigate("/solar-saving-calculator");
     }
   }, [navigate]);
@@ -52,13 +52,15 @@ const Login = () => {
         }
       )
       .then((res) => {
-        const { access } = res.data;
-        localStorage.setItem("accessToken", access);
-        // localStorage.setItem("refreshToken", refresh);
+        const { email } = res.data;
+        localStorage.setItem("email", email);
         setIsLoading(false);
-        navigate("/solar-saving-calculator");
+        navigate("/service-request");
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        console.log(error.message);
+        setIsLoading(false);
+      });
   };
 
   return (

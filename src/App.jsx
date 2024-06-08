@@ -13,6 +13,7 @@ const MuftBijli = lazy(() => import("./pages/MuftBijli"));
 const WhyGoSolar = lazy(() => import("./pages/WhyGoSolar"));
 const SolarSurvey = lazy(() => import("./pages/SolarSurvey"));
 const SolarCalculator = lazy(() => import("./pages/SolarCalculator"));
+const ServiceRequest = lazy(() => import("./pages/ServiceRequest"));
 const Enquiry = lazy(() => import("./pages/Enquiry"));
 const Faqs = lazy(() => import("./pages/Faqs"));
 const Services = lazy(() => import("./pages/Services"));
@@ -34,6 +35,7 @@ function App() {
           <Route path="/contact-us" element={<Enquiry />} />
           <Route path="/faq" element={<Faqs />} />
           <Route path="/muft-bijli-yojana" element={<MuftBijli />} />
+          <Route path="/service-request" element={<ServiceRequest />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
