@@ -22,8 +22,8 @@ const WarrantyCard = () => {
     <>
       <Nav showSideNavHandler={showSideNavHandler} />
       <Banner
-        title="Powering Tomorrow with Sustainable Energy"
-        tagline="Empowering a Brighter Future through Innovative Solar Technology"
+        title="Comprehensive Solar Warranty Information"
+        tagline="Protecting Your Investment in Solar Technology"
       />
       <SideNav
         showSideNavHandler={showSideNavHandler}
