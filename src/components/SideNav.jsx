@@ -47,10 +47,10 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
         </Link>
 
         <Link
-          to="/contact-us"
+          to="/enquiry"
           className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
         >
-          Contact Us
+         Enquiry
         </Link>
         <Link
           to="/faq"

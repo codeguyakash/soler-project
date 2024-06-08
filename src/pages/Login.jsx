@@ -31,7 +31,7 @@ const Login = () => {
   useEffect(() => {
     const email = localStorage.getItem("email");
     if (email) {
-      navigate("/solar-saving-calculator");
+      navigate("/service-request");
     }
   }, [navigate]);
 
@@ -72,7 +72,7 @@ const Login = () => {
         showSideNav={showSideNav ? "block" : "none"}
       />
       <section
-        className="bg-gray-100 py-8 lg:py-12"
+        className="bg-gray-100 py-8 lg:py-12 bg-no-repeat bg-cover"
         style={{ backgroundImage: `url(${contactusImage})` }}
       >
         <div className="container mx-auto px-4">

@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Banner from "../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
-import GetInTouch from "../components/GetInTouch";
 import contactusImage from "../assets/images/photo-371900.jpeg";
 import Form from "../components/Form";
+import { useNavigate } from "react-router-dom";
 
 const Enquiry = () => {
   const [showSideNav, setShowSideNav] = useState(false);
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
   };
-
+  const navigate = useNavigate();
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+    if (!email) {
+      navigate("/login");
+    }
+  }, [navigate]);
   return (
     <>
       <Nav showSideNavHandler={showSideNavHandler} />

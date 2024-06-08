@@ -104,10 +104,10 @@ const Footer = () => {
                 Our Products
               </Link>
               <Link
-                to="/contact-us"
+                to="/enquiry"
                 className=" text-white border-white hover:text-black"
               >
-                Contact Us
+                Enquiry
               </Link>
               <Link
                 to="/faq"

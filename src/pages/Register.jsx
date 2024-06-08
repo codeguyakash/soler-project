@@ -13,6 +13,7 @@ const Register = () => {
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
   };
+
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -33,9 +34,9 @@ const Register = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      navigate("/solar-saving-calculator");
+    const email = localStorage.getItem("email");
+    if (email) {
+      navigate("/login");
     }
   }, [navigate]);
 
@@ -43,29 +44,23 @@ const Register = () => {
     e.preventDefault();
     setIsLoading(true);
     axios
-      .post(
-        "http://127.0.0.1:8000/api/token/",
-        {
-          formData,
+      .post("http://127.0.0.1:8000/api/accounts/register/", formData, {
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      })
       .then((res) => {
-        const { access } = res.data;
-        localStorage.setItem("accessToken", access);
+        const { email } = res.data;
+        localStorage.setItem("email", email);
+        alert("User Register Success");
         setIsLoading(false);
-        navigate("/solar-saving-calculator");
+        navigate("/login");
       })
       .catch((error) => {
         console.log(error.message);
         setIsLoading(false);
       });
   };
-  console.log(formData);
 
   return (
     <>
@@ -76,7 +71,7 @@ const Register = () => {
         showSideNav={showSideNav ? "block" : "none"}
       />
       <section
-        className="bg-gray-100 py-8 lg:py-12"
+        className="bg-gray-100 py-8 lg:py-12 bg-no-repeat bg-cover"
         style={{ backgroundImage: `url(${contactusImage})` }}
       >
         <div className="container mx-auto px-4">
@@ -94,7 +89,7 @@ const Register = () => {
                   type="text"
                   name="username"
                   onChange={handleChange}
-                  placeholder="Your Username / Email"
+                  placeholder="Your Username"
                   value={formData.username}
                   className="rounded-md px-3.5 py-2 shadow-sm w-full border"
                 />

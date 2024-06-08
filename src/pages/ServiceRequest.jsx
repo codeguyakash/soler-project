@@ -20,7 +20,11 @@ const ServiceRequest = () => {
     setServiceType(selectedService);
 
     if (selectedService === "installation") {
-      navigate("/solar-saving-calculator");
+      navigate("/enquiry");
+    }
+
+    if (selectedService === "maintenance") {
+      navigate("/enquiry");
     }
   };
 

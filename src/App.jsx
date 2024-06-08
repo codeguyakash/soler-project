@@ -32,7 +32,7 @@ function App() {
           <Route path="/why-go-solar" element={<WhyGoSolar />} />
           <Route path="/our-products" element={<Products />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/contact-us" element={<Enquiry />} />
+          <Route path="/enquiry" element={<Enquiry />} />
           <Route path="/faq" element={<Faqs />} />
           <Route path="/muft-bijli-yojana" element={<MuftBijli />} />
           <Route path="/service-request" element={<ServiceRequest />} />

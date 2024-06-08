@@ -81,7 +81,6 @@ const SolarCalculator = () => {
     fetchStates();
   }, []);
 
-  console.log(formData);
   const handleCalculate = (e) => {
     e.preventDefault();
     const isFormDataEmpty = Object.values(formData).some(
