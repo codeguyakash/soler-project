@@ -17,8 +17,8 @@ const Login = () => {
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    username: "solar-pro",
-    password: "admin123456",
+    username: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -40,7 +40,7 @@ const Login = () => {
     setIsLoading(true);
     axios
       .post(
-        "http://127.0.0.1:8000/api/token/",
+        "http://127.0.0.1:8000/api/login/",
         {
           username: formData.username,
           password: formData.password,

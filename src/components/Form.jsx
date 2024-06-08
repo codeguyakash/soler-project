@@ -76,35 +76,34 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const isFormDataEmpty = Object.values(formData).some(
-      (value) => value.trim() === ""
-    );
-    if (isFormDataEmpty) {
-      setIsEmpty(true);
-    } else {
-      setIsLoading(true);
-      axios
-        .post("http://127.0.0.1:8000/api/contact/inquiries/", formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          console.log(res.data);
-          if (res.status == 201) {
-            setShowMessage("Sent Success...");
-          }
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          alert(error.message, "Please Login");
-          // navigate("/login")
-        });
-      setIsEmpty(false);
-    }
+    // const isFormDataEmpty = Object.values(formData).some(
+    //   (value) => value.trim() === ""
+    // );
+    // if (isFormDataEmpty) {
+    //   setIsEmpty(true);
+    // } else {
+    setIsLoading(true);
+    axios
+      .post("http://127.0.0.1:8000/api/contact/inquiries/", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        if (res.status == 201) {
+          setShowMessage("Sent Success...");
+        }
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        alert(error.message, "Please Login");
+        // navigate("/login")
+      });
+    setIsEmpty(false);
+    // }
   };
-
   return (
     <section className="relative overflow-hidden bg-gradient-to-r from-blue-900 to-green-500 py-2 sm:py-12 lg:py-16">
       <div className="mx-auto max-w-7xl px-6 w-full lg:px-8">

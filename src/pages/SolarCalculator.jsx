@@ -22,15 +22,15 @@ const SolarCalculator = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    state_id: "",
-    city_id: "",
-    monthly_average_consumption: "",
-    load_requirement: "",
-    roof_area: "",
-    average_rate_per_unit: "",
-    margin_money_percentage: "",
-    interest_rate: "",
-    loan_period: "",
+    state_id: "1",
+    city_id: "1",
+    monthly_average_consumption: "1",
+    load_requirement: "1",
+    roof_area: "1",
+    average_rate_per_unit: "1",
+    margin_money_percentage: "1",
+    interest_rate: "1",
+    loan_period: "1",
   });
 
   const handleChange = (e) => {

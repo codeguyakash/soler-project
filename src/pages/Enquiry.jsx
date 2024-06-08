@@ -1,13 +1,13 @@
 import { useState } from "react";
-import Banner from "./../components/common/Banner";
+import Banner from "../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
-import GetInTouch from "./../components/GetInTouch";
+import GetInTouch from "../components/GetInTouch";
 import contactusImage from "../assets/images/photo-371900.jpeg";
-import Form from "./../components/Form";
+import Form from "../components/Form";
 
-const ContactUs = () => {
+const Enquiry = () => {
   const [showSideNav, setShowSideNav] = useState(false);
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
@@ -16,7 +16,7 @@ const ContactUs = () => {
   return (
     <>
       <Nav showSideNavHandler={showSideNavHandler} />
-      <Banner title="Contact Us" />
+      <Banner title="Enquiry" />
       <SideNav
         showSideNavHandler={showSideNavHandler}
         showSideNav={showSideNav ? "block" : "none"}
@@ -36,4 +36,4 @@ const ContactUs = () => {
   );
 };
 
-export default ContactUs;
+export default Enquiry;

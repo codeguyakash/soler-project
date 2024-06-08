@@ -14,21 +14,24 @@ const Register = () => {
     setShowSideNav(!showSideNav);
   };
   const navigate = useNavigate();
-  const [isEmpty, setIsEmpty] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    username: "admin",
-    email: "admin@gmail.com",
-    password: "admin12345",
+    username: "",
+    email: "",
+    password: "",
+    is_customer: false,
+    is_channel_partner: false,
+    is_employee: false,
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     });
   };
+
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
@@ -38,14 +41,12 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    return;
     setIsLoading(true);
     axios
       .post(
         "http://127.0.0.1:8000/api/token/",
         {
-          username: formData.username,
-          password: formData.password,
+          formData,
         },
         {
           headers: {
@@ -56,12 +57,15 @@ const Register = () => {
       .then((res) => {
         const { access } = res.data;
         localStorage.setItem("accessToken", access);
-        // localStorage.setItem("refreshToken", refresh);
         setIsLoading(false);
         navigate("/solar-saving-calculator");
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        console.log(error.message);
+        setIsLoading(false);
+      });
   };
+  console.log(formData);
 
   return (
     <>
@@ -120,6 +124,44 @@ const Register = () => {
                   value={formData.password}
                   className="rounded-md px-3.5 py-2 shadow-sm w-full border"
                 />
+              </div>
+              <div className="flex my-5 gap-5">
+                <br />
+                <div>
+                  <label htmlFor="is_customer">Customer</label>
+                  <input
+                    id="is_customer"
+                    type="checkbox"
+                    name="is_customer"
+                    onChange={handleChange}
+                    checked={formData.is_customer}
+                    className="ml-2"
+                  />
+                </div>
+                <br />
+                <div>
+                  <label htmlFor="is_channel_partner">Channel Partner</label>
+                  <input
+                    id="is_channel_partner"
+                    type="checkbox"
+                    name="is_channel_partner"
+                    onChange={handleChange}
+                    checked={formData.is_channel_partner}
+                    className="ml-2"
+                  />
+                </div>
+                <br />
+                <div>
+                  <label htmlFor="is_employee">Employee</label>
+                  <input
+                    id="is_employee"
+                    type="checkbox"
+                    name="is_employee"
+                    onChange={handleChange}
+                    checked={formData.is_employee}
+                    className="ml-2"
+                  />
+                </div>
               </div>
             </div>
 
