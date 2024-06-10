@@ -1,25 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { IoIosClose, IoMdMail } from "react-icons/io";
 import { TiSocialTwitter } from "react-icons/ti";
-import { FaFacebookF } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
+import { FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
 const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const isBlock = showSideNav === "block";
   const [loginStatus, setLoginStatus] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     const email = localStorage.getItem("email");
-    if (!email) {
-      setLoginStatus(true);
-    }
+    setLoginStatus(!email);
   }, []);
-  const logoutHandler = () => {
+
+  const logoutHandler = useCallback(() => {
     localStorage.removeItem("email");
     alert("Logout Successfully");
     navigate("/");
-  };
+  }, [navigate]);
+
+  const links = [
+    { to: "/solar-saving-calculator", label: "Solar Saving Calculator" },
+    { to: "/services", label: "Our Services" },
+    { to: "/our-products", label: "Our Products" },
+    { to: "/enquiry", label: "Enquiry" },
+    { to: "/faq", label: "Some FAQs" },
+    { to: "/why-go-solar", label: "Why Go Solar" },
+    { to: "/muft-bijli-yojana", label: "Muft Bijli Yojana" },
+    loginStatus
+      ? { to: "/login", label: "Login/Register" }
+      : { label: "Logout", onClick: logoutHandler },
+  ];
 
   return (
     <div
@@ -35,90 +47,17 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
         />
       </div>
       <div className="flex flex-col items-center justify-center px-3">
-        {/* <Link
-          to="/solar-survay"
-          className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-        >
-          Book Solar Survey
-        </Link> */}
-        <Link
-          to="/solar-saving-calculator"
-          className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-        >
-          Solar Saving Calculator
-        </Link>
-        <Link
-          to="/services"
-          className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-        >
-          Our Services
-        </Link>
-        <Link
-          to="/our-products"
-          className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-        >
-          Our Products
-        </Link>
-
-        <Link
-          to="/enquiry"
-          className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-        >
-          Enquiry
-        </Link>
-        <Link
-          to="/faq"
-          className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-        >
-          Some FAQs
-        </Link>
-        <Link
-          to="/why-go-solar"
-          className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-        >
-          Why Go Solar
-        </Link>
-        <Link
-          to="/muft-bijli-yojana"
-          className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-        >
-          Muft Bijli Yojana
-        </Link>
-        {loginStatus ? (
+        {/* Map over links array to render Link elements */}
+        {links.map((link, index) => (
           <Link
-            to="/login"
+            key={index}
+            to={link.to}
+            onClick={link.onClick}
             className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
           >
-            Login/Register
+            {link.label}
           </Link>
-        ) : (
-          <>
-            <Link
-              to="#"
-              className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-            >
-              #
-            </Link>
-            <Link
-              to="#"
-              className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-            >
-              #
-            </Link>
-            <Link
-              to="#"
-              className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-            >
-              #
-            </Link>
-            <div
-              onClick={logoutHandler}
-              className="border-b-[0.05rem] cursor-pointer border-white text-white py-5 w-full hover:text-black"
-            >
-              Logout
-            </div>
-          </>
-        )}
+        ))}
         <div className="my-5 cursor-pointer flex items-center justify-center gap-5">
           <TiSocialTwitter className="text-white font-light text-3xl hover:text-black" />
           <FaFacebookF className="text-white font-light text-2xl hover:text-black" />
