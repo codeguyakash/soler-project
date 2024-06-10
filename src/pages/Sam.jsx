@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Footer from "./../components/Footer";
 
-const AdminDashboard = () => {
+const Sam = () => {
   const [users, setUsers] = useState([]);
   const [showSideNav, setShowSideNav] = useState(false);
   const showSideNavHandler = () => {
@@ -76,7 +76,7 @@ const AdminDashboard = () => {
   return (
     <>
       <Nav showSideNavHandler={showSideNavHandler} />
-      <Banner title="Registration Approvals" />
+      <Banner title="ooo Approvals" />
       <SideNav
         showSideNavHandler={showSideNavHandler}
         showSideNav={showSideNav ? "block" : "none"}
@@ -136,4 +136,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default Sam;

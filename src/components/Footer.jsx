@@ -78,12 +78,12 @@ const Footer = () => {
 
           <div className="col-span-1 md:col-span-1 bg-green-700 flex items-center p-10">
             <div className="flex flex-col">
-              <Link
+              {/* <Link
                 to="/solar-survay"
                 className=" text-white border-white hover:text-black"
               >
                 Book Free Solar Survey
-              </Link>
+              </Link> */}
 
               <Link
                 to="/solar-saving-calculator"

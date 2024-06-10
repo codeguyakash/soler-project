@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosClose, IoMdMail } from "react-icons/io";
 import { TiSocialTwitter } from "react-icons/ti";
 import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const isBlock = showSideNav === "block";
+  const [loginStatus, setLoginStatus] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+    if (!email) {
+      setLoginStatus(true);
+    }
+  }, []);
+  const logoutHandler = () => {
+    localStorage.removeItem("email");
+    alert("Logout Successfully");
+    navigate("/");
+  };
+
   return (
     <div
       className={`bg-primary backdrop-blur-lg1 w-72 h-screen fixed top-0 right-0 z-50 opacity-50 animate-delay-75 ${
@@ -21,12 +35,12 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
         />
       </div>
       <div className="flex flex-col items-center justify-center px-3">
-        <Link
+        {/* <Link
           to="/solar-survay"
           className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
         >
           Book Solar Survey
-        </Link>
+        </Link> */}
         <Link
           to="/solar-saving-calculator"
           className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
@@ -50,7 +64,7 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
           to="/enquiry"
           className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
         >
-         Enquiry
+          Enquiry
         </Link>
         <Link
           to="/faq"
@@ -70,12 +84,41 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
         >
           Muft Bijli Yojana
         </Link>
-        <Link
-          to="/login"
-          className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-        >
-          Login/Register
-        </Link>
+        {loginStatus ? (
+          <Link
+            to="/login"
+            className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
+          >
+            Login/Register
+          </Link>
+        ) : (
+          <>
+            <Link
+              to="#"
+              className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
+            >
+              #
+            </Link>
+            <Link
+              to="#"
+              className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
+            >
+              #
+            </Link>
+            <Link
+              to="#"
+              className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
+            >
+              #
+            </Link>
+            <div
+              onClick={logoutHandler}
+              className="border-b-[0.05rem] cursor-pointer border-white text-white py-5 w-full hover:text-black"
+            >
+              Logout
+            </div>
+          </>
+        )}
         <div className="my-5 cursor-pointer flex items-center justify-center gap-5">
           <TiSocialTwitter className="text-white font-light text-3xl hover:text-black" />
           <FaFacebookF className="text-white font-light text-2xl hover:text-black" />
