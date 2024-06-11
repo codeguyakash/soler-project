@@ -34,12 +34,8 @@ const Register = () => {
     });
   };
   useEffect(() => {
-    const email = localStorage.getItem("email");
-    const myCookieValue = getCookie("csrftoken");
-
-    if (email && myCookieValue) {
-      navigate("/login");
-    }
+    const isCookie = getCookie("csrftoken");
+    if (!isCookie == null) navigate("/login");
   }, [navigate]);
 
   const handleSubmit = (e) => {
