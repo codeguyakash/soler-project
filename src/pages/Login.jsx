@@ -56,7 +56,7 @@ const Login = () => {
         navigate("/service-request");
       })
       .catch((error) => {
-        console.log(error.message);
+        alert(error.message);
         setIsLoading(false);
       });
   };
