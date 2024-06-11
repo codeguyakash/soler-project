@@ -5,6 +5,7 @@ import Nav from "../components/Nav";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import { getCookie } from "../utils/cookieUtils";
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -15,10 +16,8 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const email = localStorage.getItem("email");
-    if (!email) {
-      navigate("/login");
-    }
+    const isCookie = getCookie("csrftoken");
+    if (!isCookie == null) navigate("/login");
   }, [navigate]);
 
   useEffect(() => {

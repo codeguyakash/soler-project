@@ -14,7 +14,7 @@ import { getCookie } from "./../utils/cookieUtils";
 const SolarCalculator = () => {
   const [showSideNav, setShowSideNav] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
-  const [isData, setIsData] = useState(false);
+  const [isData, setIsData] = useState(true);
   const [calculatedData, setCalculatedData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [states, setStates] = useState([]);
