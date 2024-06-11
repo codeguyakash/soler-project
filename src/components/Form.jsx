@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import InputField from "./InputField";
 import contactus from "../assets/icons/contact_us_re_4qqt.svg";
-// import contactus from "../assets/icons/message.png";
 import axios from "axios";
 import Toast from "./Toast";
+import { getCookie } from "./../utils/cookieUtils";
+import { useNavigate } from "react-router-dom";
 
 const ContactForm = () => {
   const [isEmpty, setIsEmpty] = useState(false);
@@ -11,6 +12,7 @@ const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     state: "",
@@ -33,12 +35,17 @@ const ContactForm = () => {
     });
   };
 
+  useEffect(() => {
+    const isCookie = getCookie("csrftoken");
+    if (isCookie == null) navigate("/login");
+  }, [navigate]);
+
   const fetchStates = async () => {
     try {
-      const response = await axios.get("/api/state/state/");
-      setStates(response.data);
+      const res = await axios.get("/api/state/state/");
+      setStates(res.data);
     } catch (error) {
-      console.error("Failed to fetch states", error);
+      console.error(error.message);
       setShowMessage("Failed to load states, please refresh the page.");
     }
   };
@@ -63,25 +70,22 @@ const ContactForm = () => {
     fetchStates();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    axios
-      .post("/api/contact/inquiries/", formData)
-      .then((res) => {
-        console.log(res.data);
-        if (res.status == 201) {
-          setShowMessage("Sent Success...");
-        }
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        alert(error.message, "Please Login");
-        navigate("/login");
-      });
-    setIsEmpty(false);
-  };
 
+    try {
+      const res = await axios.post("/api/contact/inquiries/", formData);
+      console.log(res.data);
+      if (res.status === 201) {
+        setShowMessage("Sent Success...");
+      }
+      setIsLoading(false);
+    } catch (error) {
+      alert(`${error.message}. Please Login`);
+      navigate("/login");
+    }
+  };
   return (
     <section className="relative overflow-hidden bg-gradient-to-r from-blue-900 to-green-500 py-2 sm:py-12 lg:py-16">
       <div className="mx-auto max-w-7xl px-6 w-full lg:px-8">

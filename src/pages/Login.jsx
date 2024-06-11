@@ -33,24 +33,15 @@ const Login = () => {
     if (!isCookie == null) navigate("/login");
   }, [navigate]);
 
-  const { email, password } = formData;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await axios.post(
-        "/api/accounts/login/",
-        {
-          email: email,
-          password: password,
+      const res = await axios.post("/api/accounts/login/", formData, {
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      });
 
       console.log(res.data);
       navigate("/service-request");
