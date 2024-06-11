@@ -7,6 +7,7 @@ import InputField from "../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
 import contactusImage from "../assets/images/login-register.jpeg";
 import axios from "axios";
+import { getCookie } from "../utils/cookieUtils";
 
 const Register = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -32,10 +33,11 @@ const Register = () => {
       [name]: type === "checkbox" ? checked : value,
     });
   };
-
   useEffect(() => {
     const email = localStorage.getItem("email");
-    if (email) {
+    const myCookieValue = getCookie("csrftoken");
+
+    if (email && myCookieValue) {
       navigate("/login");
     }
   }, [navigate]);
@@ -44,15 +46,16 @@ const Register = () => {
     e.preventDefault();
     setIsLoading(true);
     axios
-      .post("http://127.0.0.1:8000/api/accounts/register/", formData, {
+      .post("/api/accounts/register/", formData, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        const { email } = res.data;
-        localStorage.setItem("email", email);
-        alert("User Register Success");
+        const { user } = res.data;
+        localStorage.setItem("email", user.email);
+        localStorage.setItem("username", user.username);
+        alert(res.data.message);
         setIsLoading(false);
         navigate("/login");
       })

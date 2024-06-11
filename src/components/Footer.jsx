@@ -9,49 +9,6 @@ import { IoCall } from "react-icons/io5";
 
 const Footer = () => {
   return (
-    // <div className="bg-primary py-10">
-    //   {/* <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 py-4 px-8 text-white"> */}
-    //   <div className="py-4 px-8 text-white flex items-center justify-center border">
-    //     <div className="flex flex-col items-center justify-center border">
-    //       <img src={imagefour} alt="logo-here" width={200} />
-    //     </div>
-    //     <div className="px-8 py-4 text-white flex justify-center items-center border flex-col">
-    //       <div>
-    //         <img src={imagefour} alt="logo-here" width={100} />
-    //       </div>
-    //
-    //     </div>
-    //     <div className="flex flex-col border">
-    //       <Link to="/solar-survay" className="  border-white hover:text-black">
-    //         Book Free Solar Survey
-    //       </Link>
-    //       <Link
-    //         to="/solar-saving-calculator"
-    //         className="  border-white hover:text-black"
-    //       >
-    //         Solar Saving Calculator
-    //       </Link>
-    //       <Link to="/our-products" className="  border-white hover:text-black">
-    //         Our Products
-    //       </Link>
-    //       <Link to="/contact-us" className="  border-white hover:text-black">
-    //         Contact Us
-    //       </Link>
-    //       <Link to="/faqs" className=" border-white hover:text-black">
-    //         Some FAQs
-    //       </Link>
-    //       <Link to="/blogs" className=" border-white hover:text-black">
-    //         Blogs
-    //       </Link>
-    //     </div>
-    //   </div>
-    //   <div className="flex">
-    //     <h1 className="text-white text-center inline-block mx-auto">
-    //       &copy; 2024 Solar Private Limited. All rights reserved.
-    //     </h1>
-    //   </div>
-    // </div>
-
     <div className="bg-primary relative">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

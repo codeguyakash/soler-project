@@ -13,13 +13,8 @@ const Enquiry = () => {
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
   };
-  const navigate = useNavigate();
-  useEffect(() => {
-    const email = localStorage.getItem("email");
-    if (!email) {
-      navigate("/login");
-    }
-  }, [navigate]);
+  // const navigate = useNavigate();
+
   return (
     <>
       <Nav showSideNavHandler={showSideNavHandler} />

@@ -7,16 +7,18 @@ import InputField from "../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
 import contactusImage from "../assets/images/login-register.jpeg";
 import axios from "axios";
+import { getCookie } from "./../utils/cookieUtils";
 
 const Login = () => {
   const [showSideNav, setShowSideNav] = useState(false);
+  const [cookieValue, setCookieValue] = useState("");
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
   };
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -29,31 +31,27 @@ const Login = () => {
   };
 
   useEffect(() => {
-    const email = localStorage.getItem("email");
-    if (email) {
-      navigate("/service-request");
-    }
+    const myCookieValue = getCookie("csrftoken");
+    setCookieValue(myCookieValue);
+    if (myCookieValue) navigate("/service-request");
   }, [navigate]);
 
+  const payLoad = {
+    email: formData.email,
+    password: formData.password,
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
     axios
-      .post(
-        "http://127.0.0.1:8000/api/login/",
-        {
-          username: formData.username,
-          password: formData.password,
+      .post("/api/accounts/login/", payLoad, {
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      })
       .then((res) => {
-        const { email } = res.data;
-        localStorage.setItem("email", email);
+        alert(res.data.message);
+        document.cookie = `csrftoken=${csrftoken}; path=/;`;
         setIsLoading(false);
         navigate("/service-request");
       })
@@ -62,7 +60,6 @@ const Login = () => {
         setIsLoading(false);
       });
   };
-
   return (
     <>
       <Nav showSideNavHandler={showSideNavHandler} />
@@ -84,14 +81,14 @@ const Login = () => {
               <h1 className="text-3xl font-semibold">Login</h1>
               <br />
               <div>
-                <label htmlFor="username">Email / Username</label>
+                <label htmlFor="email">Email</label>
                 <InputField
-                  id="username"
+                  id="email"
                   type="text"
-                  name="username"
+                  name="email"
                   onChange={handleChange}
-                  placeholder="Your Username / Email"
-                  value={formData.username}
+                  placeholder="Your Email"
+                  value={formData.email}
                   className="rounded-md px-3.5 py-2 shadow-sm w-full border"
                 />
               </div>

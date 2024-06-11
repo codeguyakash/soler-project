@@ -3,21 +3,35 @@ import { IoIosClose, IoMdMail } from "react-icons/io";
 import { TiSocialTwitter } from "react-icons/ti";
 import { FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import { getCookie } from "./../utils/cookieUtils";
 
 const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const isBlock = showSideNav === "block";
   const [loginStatus, setLoginStatus] = useState(false);
   const navigate = useNavigate();
 
+  const removeCookie = (name) => {
+    document.cookie = `${name}=; Max-Age=0; path=/; domain=${window.location.hostname}`;
+  };
+
   useEffect(() => {
-    const email = localStorage.getItem("email");
-    setLoginStatus(!email);
-  }, []);
+    const myCookieValue = getCookie("csrftoken");
+    if (myCookieValue) {
+      setLoginStatus(true);
+      navigate("/service-request");
+    } else {
+      setLoginStatus(false);
+    }
+  }, [navigate]);
 
   const logoutHandler = useCallback(() => {
     localStorage.removeItem("email");
-    alert("Logout Successfully");
+    localStorage.removeItem("usernam");
+    removeCookie("csrftoken");
+    removeCookie("sessionid");
+    setLoginStatus(false);
     navigate("/");
+    alert("Logout Successfully");
   }, [navigate]);
 
   const links = [
@@ -29,8 +43,8 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
     { to: "/why-go-solar", label: "Why Go Solar" },
     { to: "/muft-bijli-yojana", label: "Muft Bijli Yojana" },
     loginStatus
-      ? { to: "/login", label: "Login/Register" }
-      : { label: "Logout", onClick: logoutHandler },
+      ? { label: "Logout", onClick: logoutHandler }
+      : { to: "/login", label: "Login/Register" },
   ];
 
   return (
@@ -47,7 +61,6 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
         />
       </div>
       <div className="flex flex-col items-center justify-center px-3">
-        {/* Map over links array to render Link elements */}
         {links.map((link, index) => (
           <Link
             key={index}
