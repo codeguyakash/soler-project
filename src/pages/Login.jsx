@@ -7,7 +7,7 @@ import InputField from "../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
 import contactusImage from "../assets/images/login-register.jpeg";
 import axios from "axios";
-// import { getCookie } from "./../utils/cookieUtils";
+import { getCookie } from "./../utils/cookieUtils";
 
 const Login = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -28,32 +28,41 @@ const Login = () => {
       [name]: value,
     });
   };
+  useEffect(() => {
+    const isCookie = getCookie("csrftoken");
+    if (!isCookie == null) navigate("/login");
+  }, [navigate]);
 
-  const payLoad = {
-    email: formData.email,
-    password: formData.password,
-  };
-  const handleSubmit = (e) => {
+  const { email, password } = formData;
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    axios
-      .post("/api/accounts/login/", payLoad, {
-        headers: {
-          "Content-Type": "application/json",
+    try {
+      const res = await axios.post(
+        "/api/accounts/login/",
+        {
+          email: email,
+          password: password,
         },
-      })
-      .then((res) => {
-        alert(res.data.message);
-        document.cookie = `csrftoken=${csrftoken}; path=/;`;
-        document.cookie = `sessionid=${sessionid}; path=/;`;
-        setIsLoading(false);
-        navigate("/service-request");
-      })
-      .catch((error) => {
-        alert(error.message);
-        setIsLoading(false);
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log(res.data);
+      navigate("/service-request");
+      document.cookie = `csrftoken=${csrftoken}; path=/;`;
+      document.cookie = `sessionid=${sessionid}; path=/;`;
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error.message);
+      setIsLoading(false);
+    }
   };
+
   return (
     <>
       <Nav showSideNavHandler={showSideNavHandler} />
