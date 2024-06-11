@@ -3,7 +3,7 @@ import { IoIosClose, IoMdMail } from "react-icons/io";
 import { TiSocialTwitter } from "react-icons/ti";
 import { FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { getCookie } from "./../utils/cookieUtils";
+// import { getCookie } from "./../utils/cookieUtils";
 
 const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const isBlock = showSideNav === "block";
@@ -13,16 +13,6 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const removeCookie = (name) => {
     document.cookie = `${name}=; Max-Age=0; path=/; domain=${window.location.hostname}`;
   };
-
-  useEffect(() => {
-    const myCookieValue = getCookie("csrftoken");
-    if (myCookieValue) {
-      setLoginStatus(true);
-      navigate("/service-request");
-    } else {
-      setLoginStatus(false);
-    }
-  }, [navigate]);
 
   const logoutHandler = useCallback(() => {
     localStorage.removeItem("email");

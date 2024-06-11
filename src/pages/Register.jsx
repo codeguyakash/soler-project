@@ -60,7 +60,14 @@ const Register = () => {
         navigate("/login");
       })
       .catch((error) => {
-        console.log(error.message);
+        alert(error.response.data.email[0]);
+        console.log(error.response.data.email[0]);
+        if (
+          error.response.data.email[0] ==
+          "user with this email address already exists."
+        ) {
+          navigate("/login");
+        }
         setIsLoading(false);
       });
   };

@@ -8,8 +8,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const csrftoken = getCookie("csrftoken");
-    const email = localStorage.getItem("email");
-    if (csrftoken && email) {
+    if (csrftoken) {
       setIsAuthenticated(true);
     }
   }, []);

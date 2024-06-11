@@ -7,11 +7,10 @@ import InputField from "../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
 import contactusImage from "../assets/images/login-register.jpeg";
 import axios from "axios";
-import { getCookie } from "./../utils/cookieUtils";
+// import { getCookie } from "./../utils/cookieUtils";
 
 const Login = () => {
   const [showSideNav, setShowSideNav] = useState(false);
-  const [cookieValue, setCookieValue] = useState("");
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
   };
@@ -30,12 +29,6 @@ const Login = () => {
     });
   };
 
-  useEffect(() => {
-    const myCookieValue = getCookie("csrftoken");
-    setCookieValue(myCookieValue);
-    if (myCookieValue) navigate("/service-request");
-  }, [navigate]);
-
   const payLoad = {
     email: formData.email,
     password: formData.password,
@@ -52,6 +45,7 @@ const Login = () => {
       .then((res) => {
         alert(res.data.message);
         document.cookie = `csrftoken=${csrftoken}; path=/;`;
+        document.cookie = `sessionid=${sessionid}; path=/;`;
         setIsLoading(false);
         navigate("/service-request");
       })

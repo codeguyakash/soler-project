@@ -14,8 +14,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="col-span-1 md:col-span-1 p-10">
             <div className="mb-4">
-              <h1 className="text-6xl text-white font-bold">
-                <Link to="/">Unified Solar</Link>
+              <h1 className="text-4xl md:text-6xl text-white font-bold">
+                <Link className="text-3xl md:text-6xl" to="/">Unified Solar</Link>
               </h1>
               <p className="text-white text-sm mt-2">
                 A rooftop solar photovoltaic (PV) system can either cater to the
