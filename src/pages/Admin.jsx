@@ -4,7 +4,7 @@ import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Footer from "./../components/Footer";
+import Footer from "../components/Footer";
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -22,55 +22,31 @@ const AdminDashboard = () => {
   }, [navigate]);
 
   useEffect(() => {
-    // Fetch the user data from the API
-    // axios
-    //   .get("/api/registrations")
-    //   .then((response) => {
-    //     setUsers(response.data);
-    //     setLoading(false);
-    //   })
-    //   .catch((error) => {
-    //     console.error("There was an error fetching the data!", error);
-    //     setLoading(false);
-    //   });
     const fetchData = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      const dummyData = [
-        { id: 1, name: "John Doe", email: "john@example.com", approved: false },
-        { id: 2, name: "Jane Doe", email: "jane@example.com", approved: true },
-        {
-          id: 3,
-          name: "Alice Smith",
-          email: "alice@example.com",
-          approved: true,
-        },
-        {
-          id: 4,
-          name: "Akash Smith",
-          email: "akash@example.com",
-          approved: false,
-        },
-      ];
-
-      setUsers(dummyData);
+      try {
+        const res = await axios.get("/api/contact/status/");
+        setUsers(res.data);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchData();
   }, []);
 
-  const handleApproval = (userId, approved) => {
-    axios
-      .post(`/api/registrations/${userId}/approve`, { approved })
-      .then((response) => {
-        setUsers(
-          users.map((user) =>
-            user.id === userId ? { ...user, approved } : user
-          )
-        );
-      })
-      .catch((error) => {
-        console.error("There was an error updating the status!", error);
+  const handleApproval = async (userId, statusType, statusValue) => {
+    try {
+      await axios.post(`/api/registrations/${userId}/status`, {
+        statusType,
+        statusValue,
       });
+      setUsers((prevUsers) =>
+        prevUsers.map((user) =>
+          user.id === userId ? { ...user, [statusType]: statusValue } : user
+        )
+      );
+    } catch (error) {
+      console.error("There was an error updating the status!", error);
+    }
   };
 
   return (
@@ -81,50 +57,108 @@ const AdminDashboard = () => {
         showSideNavHandler={showSideNavHandler}
         showSideNav={showSideNav ? "block" : "none"}
       />
-      <section
-        className="bg-gray-100 p-5 md:py-20 md:px-10 relative bg-cover bg-no-repeat backdrop-blur-lg"
-        // style={{ backgroundImage: `url(${contactusImage})` }}
-      >
+      <section className="bg-gray-100 p-5 md:py-20 md:px-10 relative bg-cover bg-no-repeat backdrop-blur-lg">
         <table className="w-full md:w-[80vw] mx-auto border-collapse border border-gray-300">
           <thead>
             <tr>
-              <th className="border border-gray-300 px-4 py-2">ID</th>
               <th className="border border-gray-300 px-4 py-2">Name</th>
+              <th className="border border-gray-300 px-4 py-2">Pincode</th>
+              <th className="border border-gray-300 px-4 py-2">Comment</th>
+              <th className="border border-gray-300 px-4 py-2">Address</th>
               <th className="border border-gray-300 px-4 py-2">Email</th>
-              <th className="border border-gray-300 px-4 py-2">Approved</th>
-              <th className="border border-gray-300 px-4 py-2">Actions</th>
+              <th className="border border-gray-300 px-4 py-2">Order Status</th>
+              <th className="border border-gray-300 px-4 py-2">
+                Site Survey Status
+              </th>
+              <th className="border border-gray-300 px-4 py-2">
+                Installation Status
+              </th>
+              <th className="border border-gray-300 px-4 py-2">
+                Grid Connectivity Status
+              </th>
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td className="border border-gray-300 px-4 py-2">{user.id}</td>
+            {users.map((user, index) => (
+              <tr key={index}>
                 <td className="border border-gray-300 px-4 py-2">
                   {user.name}
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  {user.pincode}
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  {user.comment}
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  {user.address}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
                   {user.email}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  {user.approved ? "Yes" : "No"}
+                  <select
+                    value={user.order_status}
+                    onChange={(e) =>
+                      handleApproval(user.id, "order_status", e.target.value)
+                    }
+                    className="w-full px-3 py-2 border rounded"
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                  </select>
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  {!user.approved && (
-                    <button
-                      className="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded"
-                      onClick={() => handleApproval(user.id, true)}
-                    >
-                      Approve
-                    </button>
-                  )}
-                  {user.approved && (
-                    <button
-                      className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-                      onClick={() => handleApproval(user.id, false)}
-                    >
-                      Reject
-                    </button>
-                  )}
+                  <select
+                    value={user.site_survey_status}
+                    onChange={(e) =>
+                      handleApproval(
+                        user.id,
+                        "site_survey_status",
+                        e.target.value
+                      )
+                    }
+                    className="w-full px-3 py-2 border rounded"
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                  </select>
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  <select
+                    value={user.installation_status}
+                    onChange={(e) =>
+                      handleApproval(
+                        user.id,
+                        "installation_status",
+                        e.target.value
+                      )
+                    }
+                    className="w-full px-3 py-2 border rounded"
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                  </select>
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  <select
+                    value={user.grid_connectivity_status}
+                    onChange={(e) =>
+                      handleApproval(
+                        user.id,
+                        "grid_connectivity_status",
+                        e.target.value
+                      )
+                    }
+                    className="w-full px-3 py-2 border rounded"
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                  </select>
                 </td>
               </tr>
             ))}
