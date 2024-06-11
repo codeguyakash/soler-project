@@ -9,6 +9,7 @@ import Footer from "./../components/Footer";
 import contactusImage from "../assets/images/contactus.jpg";
 import { useNavigate } from "react-router-dom";
 import SolarForm from "./../components/SolarForm";
+import { getCookie } from "./../utils/cookieUtils";
 
 const SolarCalculator = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -16,7 +17,6 @@ const SolarCalculator = () => {
   const [isData, setIsData] = useState(false);
   const [calculatedData, setCalculatedData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const token = localStorage.getItem("accessToken");
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const navigate = useNavigate();
@@ -41,32 +41,27 @@ const SolarCalculator = () => {
     }));
   };
 
+  useEffect(() => {
+    const isCookie = getCookie("csrftoken");
+    if (isCookie == null) navigate("/login");
+  }, [navigate]);
+
   const fetchStates = async () => {
     try {
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/state/state/",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      setStates(response.data);
+      const res = await axios.get("/api/state/state/");
+      setStates(res.data);
     } catch (error) {
-      console.error("Failed to fetch states", error);
+      console.error(error.message);
       setShowMessage("Failed to load states, please refresh the page.");
     }
   };
-  console.table(formData);
+
   const fetchCities = async (stateId) => {
     try {
-      const response = await axios.get(
-        `http://127.0.0.1:8000/api/state/city/?state_id=${stateId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      setCities(response.data);
+      const res = await axios.get(`/api/state/city/?state_id=${stateId}`);
+      setCities(res.data);
     } catch (error) {
-      console.error("Failed to fetch cities", error);
+      console.error(error.message);
       setShowMessage("Failed to load cities, please try again.");
     }
   };
@@ -81,32 +76,26 @@ const SolarCalculator = () => {
     fetchStates();
   }, []);
 
-  const handleCalculate = (e) => {
+  const handleCalculate = async (e) => {
     e.preventDefault();
     const isFormDataEmpty = Object.values(formData).some(
       (value) => value.trim() === ""
     );
+
     if (isFormDataEmpty) {
       setIsEmpty(true);
     } else {
       setIsLoading(true);
-      axios
-        .post("http://127.0.0.1:8000/solar-calculators/", formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          setCalculatedData(res.data);
-          setIsData(true);
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          alert(error.message, "Please Login");
-          // navigate("/login");
-        });
-      setIsEmpty(false);
+
+      try {
+        const res = await axios.post("/api/solar-calculators/", formData);
+        setCalculatedData(res.data);
+        setIsData(true);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error.message);
+        setIsLoading(false);
+      }
     }
   };
 
