@@ -39,13 +39,8 @@ body::-webkit-scrollbar-thumb {
   background-image: url("./assets/images/solar-image-one.jpg");
 }
 
-/* .bg-dots {
+.bg-dotss {
   background-image: radial-gradient(#6b6b6b 1px, transparent 0);
   background-size: 25px 25px;
   background-position: -11px -11px;
-} */
-/* @media only screen and (min-width: 1024px) {
-  .hero-content {
-    width: 100%;
-  }
-} */
+}
