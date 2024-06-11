@@ -21,9 +21,7 @@ const Carousel = ({ images, showSideNavHandler }) => {
     }, 5000);
 
     return () => clearInterval(intervalId);
-  }, []); // Only run on mount and unmount
-
-  console.log("re-render");
+  }, []);
 
   return (
     <div className="relative top-0 bg-gradient-to-r from-blue-900 to-green-500">

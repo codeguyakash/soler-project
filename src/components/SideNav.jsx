@@ -3,28 +3,44 @@ import { IoIosClose, IoMdMail } from "react-icons/io";
 import { TiSocialTwitter } from "react-icons/ti";
 import { FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-// import { getCookie } from "./../utils/cookieUtils";
+import { getCookie } from "./../utils/cookieUtils";
 
 const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const isBlock = showSideNav === "block";
   const [loginStatus, setLoginStatus] = useState(false);
   const navigate = useNavigate();
 
-  const removeCookie = (name) => {
-    document.cookie = `${name}=; Max-Age=0; path=/; domain=${window.location.hostname}`;
+  const removeCookie = (
+    name,
+    path = "/",
+    domain = window.location.hostname
+  ) => {
+    console.log(`Attempting to remove cookie: ${name}`);
+    console.log(`Current cookies: ${document.cookie}`);
+    document.cookie = `${name}=; Max-Age=0; path=${path}; domain=${domain};`;
+    console.log(`Cookies after removal attempt: ${document.cookie}`);
   };
 
   const logoutHandler = useCallback(() => {
     localStorage.removeItem("email");
-    localStorage.removeItem("usernam");
-    removeCookie("csrftoken");
+    localStorage.removeItem("username");
     removeCookie("sessionid");
     setLoginStatus(false);
-    navigate("/");
     alert("Logout Successfully");
+    navigate("/");
   }, [navigate]);
 
-  const links = [
+  useEffect(() => {
+    const isCookie = getCookie("sessionid");
+    if (isCookie !== null) {
+      setLoginStatus(true);
+    } else {
+      setLoginStatus(false);
+      navigate("/login");
+    }
+  }, [navigate]);
+
+  const publicLinks = [
     { to: "/solar-saving-calculator", label: "Solar Saving Calculator" },
     { to: "/services", label: "Our Services" },
     { to: "/our-products", label: "Our Products" },
@@ -32,9 +48,13 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
     { to: "/faq", label: "Some FAQs" },
     { to: "/why-go-solar", label: "Why Go Solar" },
     { to: "/muft-bijli-yojana", label: "Muft Bijli Yojana" },
-    loginStatus
-      ? { label: "Logout", onClick: logoutHandler }
-      : { to: "/login", label: "Login/Register" },
+  ];
+
+  const authenticatedLinks = [
+    { to: "/service-request", label: "Service Request" },
+    { to: "/warranty-card", label: "Warranty Card" },
+    { to: "/dashboard", label: "Dashboard" },
+    { label: "Logout", onClick: logoutHandler },
   ];
 
   return (
@@ -51,16 +71,29 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
         />
       </div>
       <div className="flex flex-col items-center justify-center px-3">
-        {links.map((link, index) => (
+        {publicLinks.map((link, index) => (
           <Link
             key={index}
             to={link.to}
-            onClick={link.onClick}
             className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
           >
             {link.label}
           </Link>
         ))}
+        {loginStatus && (
+          <>
+            {authenticatedLinks.map((link, index) => (
+              <Link
+                key={index}
+                to={link.to}
+                onClick={link.onClick}
+                className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </>
+        )}
         <div className="my-5 cursor-pointer flex items-center justify-center gap-5">
           <TiSocialTwitter className="text-white font-light text-3xl hover:text-black" />
           <FaFacebookF className="text-white font-light text-2xl hover:text-black" />

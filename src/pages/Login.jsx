@@ -29,8 +29,10 @@ const Login = () => {
     });
   };
   useEffect(() => {
-    const isCookie = getCookie("csrftoken");
-    if (!isCookie == null) navigate("/login");
+    const isCookie = getCookie("sessionid");
+    if (isCookie !== null) {
+      navigate("/service-request");
+    }
   }, [navigate]);
 
   const handleSubmit = async (e) => {
