@@ -70,8 +70,9 @@ const ServiceRequest = () => {
               </select>
             </div>
           </form>
-          <h3 className="text-xl text-white font-semibold text-center mt-10">
-            <Link to="/warranty-card">Warranty Card </Link>
+
+          <h3 className="text-xl text-gradient-to-r from-blue-900 to-green-500  font-semibold text-center mt-10">
+            <Link to="/warranty-card">Download Warranty Card </Link>
           </h3>
         </div>
       </section>

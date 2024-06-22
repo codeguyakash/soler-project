@@ -4,6 +4,7 @@ import { TiSocialTwitter } from "react-icons/ti";
 import { FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { getCookie } from "./../utils/cookieUtils";
+import axios from "axios";
 
 const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const isBlock = showSideNav === "block";
@@ -21,24 +22,31 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
     console.log(`Cookies after removal attempt: ${document.cookie}`);
   };
 
-  const logoutHandler = useCallback(() => {
-    localStorage.removeItem("email");
-    localStorage.removeItem("username");
-    removeCookie("sessionid");
-    setLoginStatus(false);
-    alert("Logout Successfully");
-    navigate("/");
-  }, [navigate]);
-
-  useEffect(() => {
-    const isCookie = getCookie("sessionid");
-    if (isCookie !== null) {
-      setLoginStatus(true);
-    } else {
-      setLoginStatus(false);
+  let refresh = localStorage.getItem("refreshToken");
+  const logoutHandler = async () => {
+    try {
+      const res = await axios.post("/api/accounts/api/logout", {
+        refresh_token: refresh,
+      });
+      console.log(res);
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      alert("Logout Successfully");
       navigate("/login");
+    } catch (error) {
+      console.log(error);
     }
-  }, [navigate]);
+  };
+
+  // useEffect(() => {
+  //   const isCookie = getCookie("sessionid");
+  //   if (isCookie !== null) {
+  //     setLoginStatus(true);
+  //   } else {
+  //     setLoginStatus(false);
+  //     navigate("/login");
+  //   }
+  // }, [navigate]);
 
   const publicLinks = [
     { to: "/solar-saving-calculator", label: "Solar Saving Calculator" },
@@ -48,6 +56,7 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
     { to: "/faq", label: "Some FAQs" },
     { to: "/why-go-solar", label: "Why Go Solar" },
     { to: "/muft-bijli-yojana", label: "Muft Bijli Yojana" },
+    { label: "Logout", onClick: logoutHandler },
   ];
 
   const authenticatedLinks = [
@@ -75,12 +84,14 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
           <Link
             key={index}
             to={link.to}
+            onClick={link.onClick}
             className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
           >
             {link.label}
           </Link>
         ))}
-        {loginStatus && (
+
+        {/* {loginStatus && (
           <>
             {authenticatedLinks.map((link, index) => (
               <Link
@@ -93,7 +104,7 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
               </Link>
             ))}
           </>
-        )}
+        )} */}
         <div className="my-5 cursor-pointer flex items-center justify-center gap-5">
           <TiSocialTwitter className="text-white font-light text-3xl hover:text-black" />
           <FaFacebookF className="text-white font-light text-2xl hover:text-black" />

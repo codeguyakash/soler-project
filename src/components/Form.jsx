@@ -35,10 +35,10 @@ const ContactForm = () => {
     });
   };
 
-  useEffect(() => {
-    const isCookie = getCookie("csrftoken");
-    if (isCookie == null) navigate("/login");
-  }, [navigate]);
+  // useEffect(() => {
+  //   const isCookie = getCookie("csrftoken");
+  //   if (isCookie == null) navigate("/login");
+  // }, [navigate]);
 
   const fetchStates = async () => {
     try {
@@ -83,7 +83,7 @@ const ContactForm = () => {
       setIsLoading(false);
     } catch (error) {
       alert(`${error.message}. Please Login`);
-      navigate("/login");
+      // navigate("/login");
     }
   };
   return (

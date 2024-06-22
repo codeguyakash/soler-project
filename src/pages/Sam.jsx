@@ -14,12 +14,12 @@ const Sam = () => {
   };
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const email = localStorage.getItem("email");
-    if (!email) {
-      navigate("/login");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   const email = localStorage.getItem("email");
+  //   if (!email) {
+  //     navigate("/login");
+  //   }
+  // }, [navigate]);
 
   useEffect(() => {
     // Fetch the user data from the API

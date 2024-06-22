@@ -15,10 +15,10 @@ const AdminDashboard = () => {
   };
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const isCookie = getCookie("sessionid");
-    if (!isCookie == null) navigate("/login");
-  }, [navigate]);
+  // useEffect(() => {
+  //   const isCookie = getCookie("sessionid");
+  //   if (!isCookie == null) navigate("/login");
+  // }, [navigate]);
 
   useEffect(() => {
     const fetchData = async () => {

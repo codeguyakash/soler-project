@@ -33,10 +33,14 @@ const Register = () => {
       [name]: type === "checkbox" ? checked : value,
     });
   };
-  useEffect(() => {
-    const isCookie = getCookie("csrftoken");
-    if (!isCookie == null) navigate("/login");
-  }, [navigate]);
+  // useEffect(() => {
+  //   const email = localStorage.getItem("email");
+  //   const myCookieValue = getCookie("csrftoken");
+
+  //   if (email && myCookieValue) {
+  //     navigate("/login");
+  //   }
+  // }, [navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

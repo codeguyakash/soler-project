@@ -41,10 +41,10 @@ const SolarCalculator = () => {
     }));
   };
 
-  useEffect(() => {
-    const isCookie = getCookie("sessionid");
-    if (isCookie == null) navigate("/login");
-  }, [navigate]);
+  // useEffect(() => {
+  //   const isCookie = getCookie("sessionid");
+  //   if (isCookie == null) navigate("/login");
+  // }, [navigate]);
 
   const fetchStates = async () => {
     try {
@@ -86,9 +86,13 @@ const SolarCalculator = () => {
       setIsEmpty(true);
     } else {
       setIsLoading(true);
-
+      let token = localStorage.getItem("accessToken");
       try {
-        const res = await axios.post("/api/solar-calculators/", formData);
+        const res = await axios.post("/api/solar/solar-calculators/", formData, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
         setCalculatedData(res.data);
         setIsData(true);
         setIsLoading(false);

@@ -7,7 +7,6 @@ import InputField from "../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
 import contactusImage from "../assets/images/login-register.jpeg";
 import axios from "axios";
-import { getCookie } from "./../utils/cookieUtils";
 
 const Login = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -28,30 +27,30 @@ const Login = () => {
       [name]: value,
     });
   };
-  useEffect(() => {
-    const isCookie = getCookie("sessionid");
-    if (isCookie !== null) {
-      navigate("/service-request");
-    }
-  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.email || !formData.password) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
     setIsLoading(true);
     try {
-      const res = await axios.post("/api/accounts/login/", formData, {
+      const res = await axios.post("/api/accounts/api/token/", formData, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-
-      console.log(res.data);
+      const { access, refresh } = res.data;
+      localStorage.setItem("accessToken", access);
+      localStorage.setItem("refreshToken", refresh);
       navigate("/service-request");
-      document.cookie = `csrftoken=${csrftoken}; path=/;`;
-      document.cookie = `sessionid=${sessionid}; path=/;`;
       setIsLoading(false);
     } catch (error) {
       console.log(error.message);
+      alert("Login failed. Please check your credentials and try again.");
       setIsLoading(false);
     }
   };
