@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosClose, IoMdMail } from "react-icons/io";
 import { TiSocialTwitter } from "react-icons/ti";
 import { FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { getCookie } from "./../utils/cookieUtils";
 import axios from "axios";
 
 const SideNav = ({ showSideNavHandler, showSideNav }) => {
@@ -11,24 +10,12 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const [loginStatus, setLoginStatus] = useState(false);
   const navigate = useNavigate();
 
-  const removeCookie = (
-    name,
-    path = "/",
-    domain = window.location.hostname
-  ) => {
-    console.log(`Attempting to remove cookie: ${name}`);
-    console.log(`Current cookies: ${document.cookie}`);
-    document.cookie = `${name}=; Max-Age=0; path=${path}; domain=${domain};`;
-    console.log(`Cookies after removal attempt: ${document.cookie}`);
-  };
-
-  let refresh = localStorage.getItem("refreshToken");
   const logoutHandler = async () => {
     try {
+      const refresh = localStorage.getItem("refreshToken");
       const res = await axios.post("/api/accounts/api/logout", {
         refresh_token: refresh,
       });
-      console.log(res);
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
       alert("Logout Successfully");
@@ -38,15 +25,14 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
     }
   };
 
-  // useEffect(() => {
-  //   const isCookie = getCookie("sessionid");
-  //   if (isCookie !== null) {
-  //     setLoginStatus(true);
-  //   } else {
-  //     setLoginStatus(false);
-  //     navigate("/login");
-  //   }
-  // }, [navigate]);
+  useEffect(() => {
+    const refresh = localStorage.getItem("refreshToken");
+    if (refresh) {
+      setLoginStatus(true);
+    } else {
+      setLoginStatus(false);
+    }
+  }, []);
 
   const publicLinks = [
     { to: "/solar-saving-calculator", label: "Solar Saving Calculator" },
@@ -56,7 +42,7 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
     { to: "/faq", label: "Some FAQs" },
     { to: "/why-go-solar", label: "Why Go Solar" },
     { to: "/muft-bijli-yojana", label: "Muft Bijli Yojana" },
-    { label: "Logout", onClick: logoutHandler },
+    { to: "/login", label: "Login/Register" },
   ];
 
   const authenticatedLinks = [
@@ -65,6 +51,10 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
     { to: "/dashboard", label: "Dashboard" },
     { label: "Logout", onClick: logoutHandler },
   ];
+
+  const combinedLinks = loginStatus
+    ? [...publicLinks, ...authenticatedLinks]
+    : publicLinks;
 
   return (
     <div
@@ -80,31 +70,26 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
         />
       </div>
       <div className="flex flex-col items-center justify-center px-3">
-        {publicLinks.map((link, index) => (
-          <Link
-            key={index}
-            to={link.to}
-            onClick={link.onClick}
-            className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-          >
-            {link.label}
-          </Link>
-        ))}
-
-        {/* {loginStatus && (
-          <>
-            {authenticatedLinks.map((link, index) => (
-              <Link
-                key={index}
-                to={link.to}
-                onClick={link.onClick}
-                className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </>
-        )} */}
+        {combinedLinks.map((link, index) =>
+          link.to ? (
+            <Link
+              key={index}
+              to={link.to}
+              onClick={link.onClick}
+              className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black"
+            >
+              {link.label}
+            </Link>
+          ) : (
+            <div
+              key={index}
+              onClick={link.onClick}
+              className="border-b-[0.05rem] border-white text-white py-5 w-full hover:text-black cursor-pointer"
+            >
+              {link.label}
+            </div>
+          )
+        )}
         <div className="my-5 cursor-pointer flex items-center justify-center gap-5">
           <TiSocialTwitter className="text-white font-light text-3xl hover:text-black" />
           <FaFacebookF className="text-white font-light text-2xl hover:text-black" />
