@@ -42,19 +42,20 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
     { to: "/faq", label: "Some FAQs" },
     { to: "/why-go-solar", label: "Why Go Solar" },
     { to: "/muft-bijli-yojana", label: "Muft Bijli Yojana" },
-    { to: "/login", label: "Login/Register" },
   ];
 
   const authenticatedLinks = [
     { to: "/service-request", label: "Service Request" },
     { to: "/warranty-card", label: "Warranty Card" },
     { to: "/dashboard", label: "Dashboard" },
-    { label: "Logout", onClick: logoutHandler },
   ];
 
+  const loginRegisterLink = { to: "/login", label: "Login/Register" };
+  const logoutLink = { label: "Logout", onClick: logoutHandler };
+
   const combinedLinks = loginStatus
-    ? [...publicLinks, ...authenticatedLinks]
-    : publicLinks;
+    ? [...publicLinks, ...authenticatedLinks, logoutLink]
+    : [...publicLinks, loginRegisterLink];
 
   return (
     <div

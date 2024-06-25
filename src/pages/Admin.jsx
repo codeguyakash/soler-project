@@ -14,30 +14,39 @@ const AdminDashboard = () => {
     setShowSideNav(!showSideNav);
   };
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const isCookie = getCookie("sessionid");
-  //   if (!isCookie == null) navigate("/login");
-  // }, [navigate]);
+  let token = localStorage.getItem("accessToken");
+  console.log(users);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("/api/contact/status/");
+        const res = await axios.get("/api/contact/status/", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
         setUsers(res.data);
       } catch (error) {
         console.error(error);
       }
     };
     fetchData();
-  }, []);
+  }, [token]);
 
   const handleApproval = async (userId, statusType, statusValue) => {
     try {
-      await axios.post(`/api/registrations/${userId}/status`, {
-        statusType,
-        statusValue,
-      });
+      await axios.post(
+        `/api/registrations/${userId}/status`,
+        {
+          statusType,
+          statusValue,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
           user.id === userId ? { ...user, [statusType]: statusValue } : user
