@@ -7,7 +7,6 @@ import InputField from "../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
 import contactusImage from "../assets/images/login-register.jpeg";
 import axios from "axios";
-import { getCookie } from "../utils/cookieUtils";
 
 const Register = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -33,14 +32,6 @@ const Register = () => {
       [name]: type === "checkbox" ? checked : value,
     });
   };
-  // useEffect(() => {
-  //   const email = localStorage.getItem("email");
-  //   const myCookieValue = getCookie("csrftoken");
-
-  //   if (email && myCookieValue) {
-  //     navigate("/login");
-  //   }
-  // }, [navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,6 +43,7 @@ const Register = () => {
         },
       })
       .then((res) => {
+        console.log(res, "---------------------------");
         const { user } = res.data;
         localStorage.setItem("email", user.email);
         localStorage.setItem("username", user.username);
@@ -61,6 +53,7 @@ const Register = () => {
       })
       .catch((error) => {
         alert(error.response.data.email[0]);
+        alert(error.response.data.password[0]);
         console.log(error.response.data.email[0]);
         if (
           error.response.data.email[0] ==
