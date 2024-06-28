@@ -3,8 +3,6 @@ import InputField from "./InputField";
 import contactus from "../assets/icons/contact_us_re_4qqt.svg";
 import axios from "axios";
 import Toast from "./Toast";
-import { getCookie } from "./../utils/cookieUtils";
-import { useNavigate } from "react-router-dom";
 
 const ContactForm = () => {
   const [isEmpty, setIsEmpty] = useState(false);
@@ -12,7 +10,6 @@ const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
-  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     state: "",
@@ -25,6 +22,7 @@ const ContactForm = () => {
     pin_code: "",
     address: "",
     comments: "",
+    distributor_id: "1",
   });
 
   const handleChange = (e) => {
@@ -84,6 +82,7 @@ const ContactForm = () => {
     } catch (error) {
       alert(`${error.message}. Please Login`);
       // navigate("/login");
+      setIsLoading(false);
     }
   };
   return (

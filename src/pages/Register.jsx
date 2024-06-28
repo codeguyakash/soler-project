@@ -43,7 +43,6 @@ const Register = () => {
         },
       })
       .then((res) => {
-        console.log(res, "---------------------------");
         const { user } = res.data;
         localStorage.setItem("email", user.email);
         localStorage.setItem("username", user.username);
