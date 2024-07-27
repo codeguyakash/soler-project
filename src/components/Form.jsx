@@ -10,11 +10,22 @@ const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
+  const [apiUrl, setApiUrl] = useState("");
+
+  const requestType = localStorage.getItem("Request-Type");
+
+  useEffect(() => {
+    if (requestType === "Maintenance") {
+      setApiUrl("/api/contact/api/contact/maintance/");
+    } else {
+      setApiUrl("/api/contact/inquiries/");
+    }
+  }, [requestType]);
 
   const [formData, setFormData] = useState({
     state: "",
     city: "",
-    interest_in: "",
+    interest_in: "Solar for Home",
     name: "",
     contract_number: "",
     company_name: "",
@@ -22,7 +33,6 @@ const ContactForm = () => {
     pin_code: "",
     address: "",
     comments: "",
-    distributor_id: "1",
   });
 
   const handleChange = (e) => {
@@ -32,11 +42,6 @@ const ContactForm = () => {
       [name]: value,
     });
   };
-
-  // useEffect(() => {
-  //   const isCookie = getCookie("csrftoken");
-  //   if (isCookie == null) navigate("/login");
-  // }, [navigate]);
 
   const fetchStates = async () => {
     try {
@@ -73,10 +78,22 @@ const ContactForm = () => {
     setIsLoading(true);
 
     try {
-      const res = await axios.post("/api/contact/inquiries/", formData);
+      const res = await axios.post(apiUrl, formData);
       console.log(res.data);
       if (res.status === 201) {
         setShowMessage("Sent Success...");
+        setFormData({
+          state: "",
+          city: "",
+          interest_in: "Solar for Home",
+          name: "",
+          contract_number: "",
+          company_name: "",
+          email: "",
+          pin_code: "",
+          address: "",
+          comments: "",
+        });
       }
       setIsLoading(false);
     } catch (error) {
@@ -85,6 +102,7 @@ const ContactForm = () => {
       setIsLoading(false);
     }
   };
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-r from-blue-900 to-green-500 py-2 sm:py-12 lg:py-16">
       <div className="mx-auto max-w-7xl px-6 w-full lg:px-8">
@@ -198,7 +216,6 @@ const ContactForm = () => {
                     className="rounded-md px-3.5 py-2 shadow-sm w-full"
                   />
                 </div>
-
                 <div>
                   <label htmlFor="address">Address</label>
                   <InputField
@@ -212,7 +229,6 @@ const ContactForm = () => {
                   />
                 </div>
               </div>
-
               <div className="mt-3">
                 <label htmlFor="interest_in">Requirement</label>
                 <select
@@ -226,12 +242,11 @@ const ContactForm = () => {
                   <option value="Solar for Office or Society">
                     Solar for Office or Society
                   </option>
-                  <option value="Solar for industry or organization or trust">
-                    Solar for industry or organization or trust
+                  <option value="Solar for Industry or Organization or Trust">
+                    Solar for Industry or Organization or Trust
                   </option>
                 </select>
               </div>
-
               <div className="mt-3">
                 <label htmlFor="comments">Comment</label>
                 <textarea
@@ -243,7 +258,6 @@ const ContactForm = () => {
                   className="rounded-md px-3.5 py-2 shadow-sm w-full sm:col-span-2 mb-3"
                 />
               </div>
-
               <div>
                 {isEmpty ? (
                   <Toast message="All Fields Required" className="text-white" />
