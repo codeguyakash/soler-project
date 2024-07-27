@@ -5,55 +5,65 @@ import Nav from "../components/Nav";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
-import { getCookie } from "../utils/cookieUtils";
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
   const [showSideNav, setShowSideNav] = useState(false);
+  const navigate = useNavigate();
+  let token = localStorage.getItem("accessToken");
+
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
   };
-  const navigate = useNavigate();
-  let token = localStorage.getItem("accessToken");
-  console.log(users);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get("/api/contact/status/", {
           headers: {
-            Authorization: "Bearer " + token,
+            Authorization: `Bearer ${token}`,
           },
         });
         setUsers(res.data);
       } catch (error) {
-        console.error(error);
+        console.error("Failed to fetch data:", error);
       }
     };
     fetchData();
   }, [token]);
 
   const handleApproval = async (userId, statusType, statusValue) => {
+    console.log(
+      "Updating user:",
+      userId,
+      "StatusType:",
+      statusType,
+      "StatusValue:",
+      statusValue
+    );
     try {
-      await axios.post(
-        `/api/registrations/${userId}/status`,
+      await axios.put(
+        `/api/contact/status/${userId}/`,
         {
-          statusType,
-          statusValue,
+          [statusType]: statusValue,
         },
         {
           headers: {
-            Authorization: "Bearer " + token,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
-          user.id === userId ? { ...user, [statusType]: statusValue } : user
+          user.solar_inquiry_id === userId
+            ? { ...user, [statusType]: statusValue }
+            : user
         )
       );
     } catch (error) {
-      console.error("There was an error updating the status!", error);
+      console.error("Error updating the status:", error);
+      console.error("Response data:", error.response.data);
+      console.error("Response status:", error.response.status);
     }
   };
 
@@ -117,8 +127,7 @@ const AdminDashboard = () => {
                     className="w-full px-3 py-2 border rounded"
                   >
                     <option value="pending">Pending</option>
-                    <option value="approved">Approved</option>
-                    <option value="rejected">Rejected</option>
+                    <option value="completed">Completed</option>
                   </select>
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
@@ -134,8 +143,8 @@ const AdminDashboard = () => {
                     className="w-full px-3 py-2 border rounded"
                   >
                     <option value="pending">Pending</option>
-                    <option value="approved">Approved</option>
-                    <option value="rejected">Rejected</option>
+                    <option value="incomplete">Incomplete</option>
+                    <option value="completed">Completed</option>
                   </select>
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
@@ -151,8 +160,8 @@ const AdminDashboard = () => {
                     className="w-full px-3 py-2 border rounded"
                   >
                     <option value="pending">Pending</option>
-                    <option value="approved">Approved</option>
-                    <option value="rejected">Rejected</option>
+                    <option value="incomplete">Incomplete</option>
+                    <option value="completed">Completed</option>
                   </select>
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
@@ -168,8 +177,8 @@ const AdminDashboard = () => {
                     className="w-full px-3 py-2 border rounded"
                   >
                     <option value="pending">Pending</option>
-                    <option value="approved">Approved</option>
-                    <option value="rejected">Rejected</option>
+                    <option value="incomplete">Incomplete</option>
+                    <option value="completed">Completed</option>
                   </select>
                 </td>
               </tr>
