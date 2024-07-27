@@ -19,11 +19,14 @@ const MaintanceStatus = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("/api/contact/status/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await axios.get(
+          "/api/contact/api/contact/maintancestatus/",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setUsers(res.data);
       } catch (error) {
         console.error("Failed to fetch data:", error);
@@ -35,7 +38,7 @@ const MaintanceStatus = () => {
   const handleApproval = async (userId, statusType, statusValue) => {
     try {
       await axios.put(
-        `/api/contact/status/${userId}/`,
+        `/api/contact/api/contact/maintancestatus/${userId}/`,
         {
           [statusType]: statusValue,
         },
@@ -62,7 +65,7 @@ const MaintanceStatus = () => {
   return (
     <>
       <Nav showSideNavHandler={showSideNavHandler} />
-      <Banner title="Maintance Status" />
+      <Banner title="Maintenance Status" />
       <SideNav
         showSideNavHandler={showSideNavHandler}
         showSideNav={showSideNav ? "block" : "none"}
@@ -88,23 +91,20 @@ const MaintanceStatus = () => {
                   Email
                 </th>
                 <th className="border border-gray-300 text-sm px-4 py-2">
-                  Order Status
+                  Request Status
                 </th>
                 <th className="border border-gray-300 text-sm px-4 py-2">
-                  Site Survey Status
+                  Technician Status
                 </th>
-                <th className="border border-gray-300 px-4 py-2">
-                  Installation Status
-                </th>
-                <th className="border border-gray-300 px-4 py-2">
-                  Grid Connectivity Status
+                <th className="border border-gray-300 text-sm px-4 py-2">
+                  Service Status
                 </th>
               </tr>
             </thead>
             <tbody>
               {users.map((user, index) => (
                 <tr key={index}>
-                  <td className="border text-sm border-gray-300 p-2 ">
+                  <td className="border text-sm border-gray-300 p-2">
                     {user.name}
                   </td>
                   <td className="border text-sm border-gray-300 p-2">
@@ -121,70 +121,50 @@ const MaintanceStatus = () => {
                   </td>
                   <td className="border text-sm border-gray-300 p-2">
                     <select
-                      value={user.order_status}
+                      value={user.request_status}
                       onChange={(e) =>
                         handleApproval(
                           user.solar_inquiry_id,
-                          "order_status",
+                          "request_status",
                           e.target.value
                         )
                       }
                       className="w-full p-2 text-sm border rounded"
                     >
-                      <option value="pending">Pending</option>
-                      <option value="incomplete">Incomplete</option>
-                      <option value="completed">Completed</option>
+                      <option value="Open">Open</option>
+                      <option value="Closed">Closed</option>
                     </select>
                   </td>
-                  <td className="border border-gray-300 p-2">
+                  <td className="border text-sm border-gray-300 p-2">
                     <select
-                      value={user.site_survey_status}
+                      value={user.Technician_status}
                       onChange={(e) =>
                         handleApproval(
                           user.solar_inquiry_id,
-                          "site_survey_status",
+                          "Technician_status",
                           e.target.value
                         )
                       }
                       className="w-full p-2 text-sm border rounded"
                     >
-                      <option value="pending">Pending</option>
-                      <option value="incomplete">Incomplete</option>
-                      <option value="completed">Completed</option>
+                      <option value="Assigned">Assigned</option>
+                      <option value="Not Assigned">Not Assigned</option>
                     </select>
                   </td>
-                  <td className="border border-gray-300 p-2">
+                  <td className="border text-sm border-gray-300 p-2">
                     <select
-                      value={user.installation_status}
+                      value={user.service_status}
                       onChange={(e) =>
                         handleApproval(
                           user.solar_inquiry_id,
-                          "installation_status",
+                          "service_status",
                           e.target.value
                         )
                       }
                       className="w-full p-2 text-sm border rounded"
                     >
-                      <option value="pending">Pending</option>
-                      <option value="incomplete">Incomplete</option>
-                      <option value="completed">Completed</option>
-                    </select>
-                  </td>
-                  <td className="border border-gray-300 p-2">
-                    <select
-                      value={user.grid_connectivity_status}
-                      onChange={(e) =>
-                        handleApproval(
-                          user.solar_inquiry_id,
-                          "grid_connectivity_status",
-                          e.target.value
-                        )
-                      }
-                      className="w-full p-2 text-sm border rounded"
-                    >
-                      <option value="pending">Pending</option>
-                      <option value="incomplete">Incomplete</option>
-                      <option value="completed">Completed</option>
+                      <option value="Not complete">Not Complete</option>
+                      <option value="Complete">Complete</option>
                     </select>
                   </td>
                 </tr>
