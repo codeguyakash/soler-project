@@ -108,7 +108,11 @@ const AdminDashboard = () => {
                   <select
                     value={user.order_status}
                     onChange={(e) =>
-                      handleApproval(user.id, "order_status", e.target.value)
+                      handleApproval(
+                        user.solar_inquiry_id,
+                        "order_status",
+                        e.target.value
+                      )
                     }
                     className="w-full px-3 py-2 border rounded"
                   >
@@ -122,7 +126,7 @@ const AdminDashboard = () => {
                     value={user.site_survey_status}
                     onChange={(e) =>
                       handleApproval(
-                        user.id,
+                        user.solar_inquiry_id,
                         "site_survey_status",
                         e.target.value
                       )
@@ -139,7 +143,7 @@ const AdminDashboard = () => {
                     value={user.installation_status}
                     onChange={(e) =>
                       handleApproval(
-                        user.id,
+                        user.solar_inquiry_id,
                         "installation_status",
                         e.target.value
                       )
@@ -156,7 +160,7 @@ const AdminDashboard = () => {
                     value={user.grid_connectivity_status}
                     onChange={(e) =>
                       handleApproval(
-                        user.id,
+                        user.solar_inquiry_id,
                         "grid_connectivity_status",
                         e.target.value
                       )

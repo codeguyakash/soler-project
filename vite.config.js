@@ -5,7 +5,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "http://localhost:8000/",
+      "/api": "https://j2mbwf96-8000.inc1.devtunnels.ms/",
+      // "/api": "http://localhost:8000/",
     },
   },
 });

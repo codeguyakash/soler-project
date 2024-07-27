@@ -222,9 +222,11 @@ const ContactForm = () => {
                   onChange={handleChange}
                   className="rounded-md px-3.5 py-2 shadow-sm w-full"
                 >
-                  <option value="home">Solar for Home</option>
-                  <option value="office">Solar for Office or Society</option>
-                  <option value="industry">
+                  <option value="Solar for Home">Solar for Home</option>
+                  <option value="Solar for Office or Society">
+                    Solar for Office or Society
+                  </option>
+                  <option value="Solar for industry or organization or trust">
                     Solar for industry or organization or trust
                   </option>
                 </select>
