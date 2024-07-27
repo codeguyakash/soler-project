@@ -8,6 +8,8 @@ import contactusImage from "../assets/images/login-register.jpeg";
 
 const Admin = () => {
   const [showSideNav, setShowSideNav] = useState(false);
+  let username = localStorage.getItem("username");
+  let email = localStorage.getItem("email");
 
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
@@ -16,7 +18,8 @@ const Admin = () => {
   return (
     <div>
       <Nav showSideNavHandler={showSideNavHandler} />
-      <Banner title="View Status" />
+      <Banner title="Welcome" username={username} email={email} />
+
       <SideNav
         showSideNavHandler={showSideNavHandler}
         showSideNav={showSideNav ? "block" : "none"}
@@ -27,17 +30,11 @@ const Admin = () => {
       >
         <div className="flex items-center justify-center ">
           <div className="bg-white p-6 rounded-lg">
-            <Link
-              to="/maintance-status"
-              className="bg-primary text-white px-5 py-2 mx-2 rounded-lg"
-            >
+            <Link to="/maintance-status" className="px-5 py-2 mx-2 rounded-lg">
               Maintance Status
             </Link>
-
-            <Link
-              to="/enquiry-status"
-              className="bg-primary text-white px-5 py-2 mx-2 rounded-lg"
-            >
+            |
+            <Link to="/enquiry-status" className=" px-5 py-2 mx-2 rounded-lg">
               Enquiry Status
             </Link>
           </div>
