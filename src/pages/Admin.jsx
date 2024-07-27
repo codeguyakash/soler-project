@@ -33,14 +33,6 @@ const AdminDashboard = () => {
   }, [token]);
 
   const handleApproval = async (userId, statusType, statusValue) => {
-    console.log(
-      "Updating user:",
-      userId,
-      "StatusType:",
-      statusType,
-      "StatusValue:",
-      statusValue
-    );
     try {
       await axios.put(
         `/api/contact/status/${userId}/`,
