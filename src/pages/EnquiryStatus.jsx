@@ -3,7 +3,6 @@ import Banner from "../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 
 const MaintanceStatus = () => {

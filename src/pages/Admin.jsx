@@ -1,25 +1,16 @@
-import EnquiryStatus from "./EnquiryStatus";
-import MaintanceStatus from "./MaintanceStatus";
 import { useState } from "react";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
 import Footer from "./../components/Footer";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import contactusImage from "../assets/images/login-register.jpeg";
 
 const Admin = () => {
   const [showSideNav, setShowSideNav] = useState(false);
-  const [serviceType, setServiceType] = useState("");
-  const navigate = useNavigate();
 
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
-  };
-
-  const handleServiceChange = (e) => {
-    const selectedService = e.target.value;
-    setServiceType(selectedService);
   };
 
   return (
