@@ -17,6 +17,10 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 // -------------Private Routes-------------------------
 const Sam = lazy(() => import("./pages/Sam"));
 const Admin = lazy(() => import("./pages/Admin"));
+
+const EnquiryStatus = lazy(() => import("./pages/EnquiryStatus"));
+const MaintanceStatus = lazy(() => import("./pages/MaintanceStatus"));
+
 const Enquiry = lazy(() => import("./pages/Enquiry"));
 const SolarCalculator = lazy(() => import("./pages/SolarCalculator"));
 const ServiceRequest = lazy(() => import("./pages/ServiceRequest"));
@@ -44,6 +48,9 @@ function App() {
           <Route path="/service-request" element={<ServiceRequest />} />
           <Route path="/warranty-card" element={<WarrantyCard />} />
           <Route path="/dashboard" element={<Admin />} />
+
+          <Route path="/maintance-status" element={<MaintanceStatus />} />
+          <Route path="/enquiry-status" element={<EnquiryStatus />} />
           <Route path="/sam" element={<Sam />} />
         </Routes>
       </Suspense>

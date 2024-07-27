@@ -1,186 +1,60 @@
-import React, { useEffect, useState } from "react";
-import Banner from "../components/common/Banner";
+import EnquiryStatus from "./EnquiryStatus";
+import MaintanceStatus from "./MaintanceStatus";
+import { useState } from "react";
+import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
+import Footer from "./../components/Footer";
+import { Link, useNavigate } from "react-router-dom";
+import contactusImage from "../assets/images/login-register.jpeg";
 
-const AdminDashboard = () => {
-  const [users, setUsers] = useState([]);
+const Admin = () => {
   const [showSideNav, setShowSideNav] = useState(false);
+  const [serviceType, setServiceType] = useState("");
   const navigate = useNavigate();
-  let token = localStorage.getItem("accessToken");
 
   const showSideNavHandler = () => {
     setShowSideNav(!showSideNav);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get("/api/contact/status/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setUsers(res.data);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      }
-    };
-    fetchData();
-  }, [token]);
-
-  const handleApproval = async (userId, statusType, statusValue) => {
-    try {
-      await axios.put(
-        `/api/contact/status/${userId}/`,
-        {
-          [statusType]: statusValue,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setUsers((prevUsers) =>
-        prevUsers.map((user) =>
-          user.solar_inquiry_id === userId
-            ? { ...user, [statusType]: statusValue }
-            : user
-        )
-      );
-    } catch (error) {
-      console.error("Error updating the status:", error);
-      console.error("Response data:", error.response.data);
-      console.error("Response status:", error.response.status);
-    }
+  const handleServiceChange = (e) => {
+    const selectedService = e.target.value;
+    setServiceType(selectedService);
   };
 
   return (
-    <>
+    <div>
       <Nav showSideNavHandler={showSideNavHandler} />
-      <Banner title="Registration Approvals" />
+      <Banner title="View Status" />
       <SideNav
         showSideNavHandler={showSideNavHandler}
         showSideNav={showSideNav ? "block" : "none"}
       />
-      <section className="bg-gray-100 p-5 md:py-20 md:px-10 relative bg-cover bg-no-repeat backdrop-blur-lg">
-        <table className="w-full md:w-[80vw] mx-auto border-collapse border border-gray-300">
-          <thead>
-            <tr>
-              <th className="border border-gray-300 px-4 py-2">Name</th>
-              <th className="border border-gray-300 px-4 py-2">Pincode</th>
-              <th className="border border-gray-300 px-4 py-2">Comment</th>
-              <th className="border border-gray-300 px-4 py-2">Address</th>
-              <th className="border border-gray-300 px-4 py-2">Email</th>
-              <th className="border border-gray-300 px-4 py-2">Order Status</th>
-              <th className="border border-gray-300 px-4 py-2">
-                Site Survey Status
-              </th>
-              <th className="border border-gray-300 px-4 py-2">
-                Installation Status
-              </th>
-              <th className="border border-gray-300 px-4 py-2">
-                Grid Connectivity Status
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => (
-              <tr key={index}>
-                <td className="border border-gray-300 px-4 py-2">
-                  {user.name}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {user.pincode}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {user.comment}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {user.address}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {user.email}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  <select
-                    value={user.order_status}
-                    onChange={(e) =>
-                      handleApproval(
-                        user.solar_inquiry_id,
-                        "order_status",
-                        e.target.value
-                      )
-                    }
-                    className="w-full px-3 py-2 border rounded"
-                  >
-                    <option value="pending">Pending</option>
-                    <option value="completed">Completed</option>
-                  </select>
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  <select
-                    value={user.site_survey_status}
-                    onChange={(e) =>
-                      handleApproval(
-                        user.solar_inquiry_id,
-                        "site_survey_status",
-                        e.target.value
-                      )
-                    }
-                    className="w-full px-3 py-2 border rounded"
-                  >
-                    <option value="pending">Pending</option>
-                    <option value="incomplete">Incomplete</option>
-                    <option value="completed">Completed</option>
-                  </select>
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  <select
-                    value={user.installation_status}
-                    onChange={(e) =>
-                      handleApproval(
-                        user.solar_inquiry_id,
-                        "installation_status",
-                        e.target.value
-                      )
-                    }
-                    className="w-full px-3 py-2 border rounded"
-                  >
-                    <option value="pending">Pending</option>
-                    <option value="incomplete">Incomplete</option>
-                    <option value="completed">Completed</option>
-                  </select>
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  <select
-                    value={user.grid_connectivity_status}
-                    onChange={(e) =>
-                      handleApproval(
-                        user.solar_inquiry_id,
-                        "grid_connectivity_status",
-                        e.target.value
-                      )
-                    }
-                    className="w-full px-3 py-2 border rounded"
-                  >
-                    <option value="pending">Pending</option>
-                    <option value="incomplete">Incomplete</option>
-                    <option value="completed">Completed</option>
-                  </select>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <section
+        className="py-8 lg:py-20"
+        style={{ backgroundImage: `url(${contactusImage})` }}
+      >
+        <div className="flex items-center justify-center ">
+          <div className="bg-white p-6 rounded-lg">
+            <Link
+              to="/maintance-status"
+              className="bg-primary text-white px-5 py-2 mx-2 rounded-lg"
+            >
+              Maintance Status
+            </Link>
+
+            <Link
+              to="/enquiry-status"
+              className="bg-primary text-white px-5 py-2 mx-2 rounded-lg"
+            >
+              Enquiry Status
+            </Link>
+          </div>
+        </div>
       </section>
       <Footer />
-    </>
+    </div>
   );
 };
 
-export default AdminDashboard;
+export default Admin;
