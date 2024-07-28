@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { IoTrashOutline } from "react-icons/io5";
 import Banner from "../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
@@ -57,6 +58,19 @@ const MaintanceStatus = () => {
       console.error("Response status:", error.response.status);
     }
   };
+  const deleteUserHandler = async (userId) => {
+    // console.log(userId);
+    // return;
+    try {
+      await axios.delete(`/api/contact/status/${userId}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (error) {
+      console.error("Response data:", error.response.data);
+    }
+  };
 
   return (
     <>
@@ -98,6 +112,7 @@ const MaintanceStatus = () => {
                 <th className="border border-gray-300 px-4 py-2">
                   Grid Connectivity Status
                 </th>
+                <th className="border border-gray-300 px-4 py-2">Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -185,6 +200,12 @@ const MaintanceStatus = () => {
                       <option value="incomplete">Incomplete</option>
                       <option value="completed">Completed</option>
                     </select>
+                  </td>
+                  <td className="border text-sm border-gray-300 p-2">
+                    <IoTrashOutline
+                      className="mx-auto cursor-pointer"
+                      onClick={() => deleteUserHandler(user.solar_inquiry_id)}
+                    />
                   </td>
                 </tr>
               ))}

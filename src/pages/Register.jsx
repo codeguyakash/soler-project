@@ -122,7 +122,7 @@ const Register = () => {
                   className="rounded-md px-3.5 py-2 shadow-sm w-full border"
                 />
               </div>
-              <div className="flex my-5 gap-5">
+              <div className="flex my-5 gap-5 items-center">
                 <br />
                 <div>
                   <label htmlFor="is_customer">Customer</label>
@@ -147,8 +147,8 @@ const Register = () => {
                     className="ml-2"
                   />
                 </div>
-                <br />
-                <div>
+
+                {/* <div>
                   <label htmlFor="is_employee">Employee</label>
                   <input
                     id="is_employee"
@@ -158,7 +158,7 @@ const Register = () => {
                     checked={formData.is_employee}
                     className="ml-2"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
 
