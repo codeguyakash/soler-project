@@ -2,7 +2,6 @@ import { useState } from "react";
 import Banner from "../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
-import Footer from "../components/Footer";
 
 const MuftBijli = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -144,7 +143,6 @@ const MuftBijli = () => {
           </main>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

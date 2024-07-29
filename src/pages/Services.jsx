@@ -2,7 +2,6 @@ import { useState } from "react";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
-import Footer from "./../components/Footer";
 import solarseven from "../assets/images/solar-power-6860359_1280.jpg";
 import installationOne from "../assets/images/installation-solar.jpg";
 import installationTwo from "../assets/images/installation-solar2.jpg";
@@ -114,8 +113,6 @@ const Services = () => {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 };

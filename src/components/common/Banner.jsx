@@ -1,6 +1,9 @@
-import React from "react";
-
-const Banner = ({ title = "", tagline = "", username = "", email = "" }) => {
+const Banner = ({
+  title = "",
+  tagline = "",
+  username = "",
+  email = "",
+} = {}) => {
   return (
     <div className="bg-gradient-to-r from-blue-900 to-green-500 py-32 px-6 flex items-center justify-center">
       <div className="inline-block backdrop-blur-lg">

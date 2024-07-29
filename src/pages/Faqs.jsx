@@ -2,7 +2,6 @@ import { useState } from "react";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
-import Footer from "./../components/Footer";
 import imagefour from "../assets/images/faq-banner.jpg";
 
 const Faqs = () => {
@@ -143,12 +142,6 @@ const Faqs = () => {
           <div className="absolute bg-black w-full h-full opacity-25"></div>
         </div>
         <section className="bg-gray-100 pb-16 lg:pb-24 w-auto px-4">
-          {/* <div
-          className="h-96 flex items-center justify-center flex-col relative bg-no-repeat bg-center"
-          style={{ backgroundImage: `url(${imagefour})` }}
-        >
-
-        </div> */}
           <div className="container mx-auto ">
             <div className="max-w-7xl mx-auto ">
               <div className="text-center">
@@ -191,37 +184,8 @@ const Faqs = () => {
             </div>
           </div>
         </section>
-        <Footer />
       </div>
     </>
-    // <>
-    //   <Nav showSideNavHandler={showSideNavHandler} />
-    //   <Banner title="From FAQs Page" />
-    //   <SideNav
-    //     showSideNavHandler={showSideNavHandler}
-    //     showSideNav={showSideNav ? "block" : "none"}
-    //   />
-    //   <section className="bg-gray-100 py-16 lg:py-24">
-    //     <div className="container mx-auto px-4 relative">
-    //       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    //         <div className="text-center">
-    //           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-    //             under maintenance...
-    //           </h2>
-    //           <div className="border-red-200 border">
-    //             {faqs.map((faq, index) => (
-    //               <div key={index}>
-    //                 <strong>{faq.question}</strong>
-    //                 <p>{faq.answer}</p>
-    //               </div>
-    //             ))}
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </section>
-    //   <Footer />
-    // </>
   );
 };
 

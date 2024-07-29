@@ -2,7 +2,6 @@ import { useState } from "react";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
-import Footer from "./../components/Footer";
 import imagefour from "../assets/images/faq-banner.jpg";
 import SolarAdvantage from "./../components/SolarAdvantage";
 import image1 from "../assets/image1.jpg";
@@ -114,7 +113,6 @@ const WhyGoSolar = () => {
         </div>
       </section>
       <SolarAdvantage />
-      <Footer />
     </>
   );
 };

@@ -2,7 +2,6 @@ import { useState } from "react";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
-import Footer from "./../components/Footer";
 import solarthree from "../assets/images/solar-image-three.webp";
 import solarfour from "../assets/images/commerial.jpg";
 
@@ -97,7 +96,6 @@ const Products = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

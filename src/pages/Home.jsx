@@ -9,7 +9,6 @@ import SolarWork from "../components/SolarWork";
 import Services from "../components/Services";
 import SolarInstallation from "../components/SolarInstallation";
 import GetInTouch from "../components/GetInTouch";
-import Footer from "../components/Footer";
 
 const Home = () => {
   const images = [
@@ -41,7 +40,6 @@ const Home = () => {
         <Services />
         <SolarInstallation />
         <GetInTouch />
-        <Footer />
       </div>
     </>
   );

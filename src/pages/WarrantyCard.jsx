@@ -2,7 +2,6 @@ import { useState } from "react";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
-import Footer from "./../components/Footer";
 import backgroundImage from "../assets/images/bg-line-2.png";
 
 const WarrantyCard = () => {
@@ -101,8 +100,6 @@ const WarrantyCard = () => {
           </table>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 };

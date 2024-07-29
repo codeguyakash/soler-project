@@ -2,7 +2,6 @@ import { useState } from "react";
 import Banner from "../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
-import Footer from "../components/Footer";
 import contactusImage from "../assets/images/photo-371900.jpeg";
 import Form from "../components/Form";
 
@@ -28,7 +27,6 @@ const Enquiry = () => {
         <div className="container mx-auto px-4"></div>
         <Form />
       </section>
-      <Footer />
     </>
   );
 };

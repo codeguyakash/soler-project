@@ -1,4 +1,3 @@
-import React from "react";
 import howsolarwork from "../assets/images/roof-top-solar.png";
 import backgroundImage from "../assets/images/bg-line-2.png";
 

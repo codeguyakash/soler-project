@@ -2,7 +2,6 @@ import { useState } from "react";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
-import Footer from "./../components/Footer";
 
 const SolarSurvey = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -17,7 +16,7 @@ const SolarSurvey = () => {
         showSideNavHandler={showSideNavHandler}
         showSideNav={showSideNav ? "block" : "none"}
       />
-       <section className="bg-gray-100 py-16 lg:py-24">
+      <section className="bg-gray-100 py-16 lg:py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
@@ -28,7 +27,6 @@ const SolarSurvey = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

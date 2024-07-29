@@ -24,6 +24,7 @@ const MaintanceStatus = lazy(() => import("./pages/MaintanceStatus"));
 const Enquiry = lazy(() => import("./pages/Enquiry"));
 const SolarCalculator = lazy(() => import("./pages/SolarCalculator"));
 const ServiceRequest = lazy(() => import("./pages/ServiceRequest"));
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           <Route path="/sam" element={<Sam />} />
         </Routes>
       </Suspense>
+      <Footer />
     </Router>
   );
 }

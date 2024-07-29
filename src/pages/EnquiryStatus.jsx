@@ -4,7 +4,6 @@ import Banner from "../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
 import axios from "axios";
-import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import ShowMessage from "../components/ShowMessage";
 
@@ -22,7 +21,7 @@ const EnquiryStatus = () => {
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
-    setMessage(""); // Clear previous messages
+    setMessage("");
     try {
       const res = await axios.get("/api/contact/status/", {
         headers: {
@@ -242,7 +241,6 @@ const EnquiryStatus = () => {
           <ShowMessage message={message} className="text-black" />
         </div>
       </section>
-      <Footer />
     </>
   );
 };

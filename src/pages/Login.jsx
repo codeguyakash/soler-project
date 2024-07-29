@@ -1,10 +1,7 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react/jsx-no-comment-textnodes */
 import { useState } from "react";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
-import Footer from "./../components/Footer";
 import InputField from "../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
 import contactusImage from "../assets/images/login-register.jpeg";
@@ -148,7 +145,6 @@ const Login = () => {
           </form>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

@@ -4,7 +4,6 @@ import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
 import axios from "axios";
 import { IoTrashOutline } from "react-icons/io5";
-import Footer from "../components/Footer";
 import Loader from "../components/Loader";
 import ShowMessage from "../components/ShowMessage";
 
@@ -228,7 +227,6 @@ const MaintanceStatus = () => {
           <ShowMessage message={message} className="text-black" />
         </div>
       </section>
-      <Footer />
     </>
   );
 };

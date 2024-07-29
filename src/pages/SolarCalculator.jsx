@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import CalculatorContent from "../components/CalculatorContent";
 import Nav from "../components/Nav";
-import Footer from "./../components/Footer";
 
 import contactusImage from "../assets/images/contactus.jpg";
-import { useNavigate } from "react-router-dom";
 import SolarForm from "./../components/SolarForm";
-import { getCookie } from "./../utils/cookieUtils";
 
 const SolarCalculator = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -19,7 +16,6 @@ const SolarCalculator = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
-  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     state_id: "",
@@ -41,18 +37,12 @@ const SolarCalculator = () => {
     }));
   };
 
-  // useEffect(() => {
-  //   const isCookie = getCookie("sessionid");
-  //   if (isCookie == null) navigate("/login");
-  // }, [navigate]);
-
   const fetchStates = async () => {
     try {
       const res = await axios.get("/api/state/state/");
       setStates(res.data);
     } catch (error) {
       console.error(error.message);
-      setShowMessage("Failed to load states, please refresh the page.");
     }
   };
 
@@ -62,7 +52,6 @@ const SolarCalculator = () => {
       setCities(res.data);
     } catch (error) {
       console.error(error.message);
-      setShowMessage("Failed to load cities, please try again.");
     }
   };
 
@@ -88,11 +77,15 @@ const SolarCalculator = () => {
       setIsLoading(true);
       let token = localStorage.getItem("accessToken");
       try {
-        const res = await axios.post("/api/solar/solar-calculators/", formData, {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
+        const res = await axios.post(
+          "/api/solar/solar-calculators/",
+          formData,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
         setCalculatedData(res.data);
         setIsData(true);
         setIsLoading(false);
@@ -133,7 +126,6 @@ const SolarCalculator = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 };

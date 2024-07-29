@@ -1,4 +1,3 @@
-import React from "react";
 import InputField from "../components/InputField";
 
 const SolarForm = ({
@@ -10,7 +9,7 @@ const SolarForm = ({
   handleCalculate,
   isEmpty,
   isLoading,
-}) => {
+} = {}) => {
   return (
     <form className="w-full mx-auto bg-white p-8 rounded-lg shadow-lg">
       <div className="flex items-center justify-center">
