@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import Loader from "./pages/Loader";
+import Loader from "./components/Loader";
 import Home from "./pages/Home";
 
 // -------------Public Routes-------------------------

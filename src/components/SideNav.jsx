@@ -11,9 +11,12 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const navigate = useNavigate();
 
   const logoutHandler = async () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    navigate("/login");
     try {
       const refresh = localStorage.getItem("refreshToken");
-      const res = await axios.post("/api/accounts/api/logout", {
+      await axios.post("/api/accounts/api/logout", {
         refresh_token: refresh,
       });
       localStorage.removeItem("accessToken");

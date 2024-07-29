@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/jsx-no-comment-textnodes */
+import { useState } from "react";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
@@ -7,18 +9,25 @@ import InputField from "../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
 import contactusImage from "../assets/images/login-register.jpeg";
 import axios from "axios";
+import Loader from "../components/Loader";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const [showSideNav, setShowSideNav] = useState(false);
-  const showSideNavHandler = () => {
-    setShowSideNav(!showSideNav);
-  };
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+
+  const showSideNavHandler = () => {
+    setShowSideNav(!showSideNav);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +41,7 @@ const Login = () => {
     e.preventDefault();
 
     if (!formData.email || !formData.password) {
-      alert("Please fill in all fields.");
+      toast.error("Please fill in all fields.");
       return;
     }
 
@@ -44,15 +53,21 @@ const Login = () => {
         },
       });
       const { access, refresh } = res.data;
+      toast.success("Login successful!");
       localStorage.setItem("accessToken", access);
       localStorage.setItem("refreshToken", refresh);
+
       navigate("/service-request");
-      setIsLoading(false);
     } catch (error) {
-      console.log(error.message);
-      alert("Login failed. Please check your credentials and try again.");
+      console.error(error.message);
+      toast.error("Login failed. Please check your credentials and try again.");
+    } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -63,10 +78,13 @@ const Login = () => {
         showSideNavHandler={showSideNavHandler}
         showSideNav={showSideNav ? "block" : "none"}
       />
+      <Toaster position="top-center" reverseOrder={false} />{" "}
+      {/* Add Toaster here */}
       <section
-        className="bg-gray-100 py-8 lg:py-12 bg-no-repeat bg-cover"
+        className="bg-gray-100 py-8 lg:py-12 bg-no-repeat bg-cover relative backdrop-blur-lg"
         style={{ backgroundImage: `url(${contactusImage})` }}
       >
+        {isLoading && <Loader />}
         <div className="container mx-auto px-4">
           <form
             onSubmit={handleSubmit}
@@ -84,21 +102,29 @@ const Login = () => {
                   onChange={handleChange}
                   placeholder="Your Email"
                   value={formData.email}
-                  className="rounded-md px-3.5 py-2 shadow-sm w-full border"
+                  className="rounded-md px-3.5 py-2 shadow-sm w-full border outline-none"
                 />
               </div>
               <br />
               <div>
                 <label htmlFor="password">Password</label>
-                <InputField
-                  id="password"
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  placeholder="Your Password"
-                  value={formData.password}
-                  className="rounded-md px-3.5 py-2 shadow-sm w-full border"
-                />
+                <div className="flex items-center border rounded-md">
+                  <InputField
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    onChange={handleChange}
+                    placeholder="Your Password"
+                    value={formData.password}
+                    className="rounded-md px-3.5 py-2 shadow-sm w-full outline-none"
+                  />
+                  <div
+                    className="cursor-pointer mr-3"
+                    onClick={handleShowPassword}
+                  >
+                    {showPassword ? <FiEye /> : <FiEyeOff />}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -110,7 +136,7 @@ const Login = () => {
             </button>
             <div>
               <h3 className="text-center">
-                Don't have an account?
+                Don't have an account ? <br />
                 <Link
                   to="/register"
                   className="font-semibold text-center mx-auto w-full hover:text-primary"

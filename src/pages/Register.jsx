@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Banner from "./../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
@@ -7,15 +7,15 @@ import InputField from "../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
 import contactusImage from "../assets/images/login-register.jpeg";
 import axios from "axios";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
+import Loader from "../components/Loader";
+import toast, { Toaster } from "react-hot-toast";
 
 const Register = () => {
   const [showSideNav, setShowSideNav] = useState(false);
-  const showSideNavHandler = () => {
-    setShowSideNav(!showSideNav);
-  };
-
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -25,6 +25,12 @@ const Register = () => {
     is_employee: false,
   });
 
+  const navigate = useNavigate();
+
+  const showSideNavHandler = () => {
+    setShowSideNav(!showSideNav);
+  };
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -33,35 +39,42 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    axios
-      .post("/api/accounts/register/", formData, {
+    try {
+      const res = await axios.post("/api/accounts/register/", formData, {
         headers: {
           "Content-Type": "application/json",
         },
-      })
-      .then((res) => {
-        const { user } = res.data;
-        localStorage.setItem("email", user.email);
-        localStorage.setItem("username", user.username);
-        alert(res.data.message);
-        setIsLoading(false);
-        navigate("/login");
-      })
-      .catch((error) => {
-        alert(error.response.data.email[0]);
-        alert(error.response.data.password[0]);
-        console.log(error.response.data.email[0]);
-        if (
-          error.response.data.email[0] ==
-          "user with this email address already exists."
-        ) {
-          navigate("/login");
-        }
-        setIsLoading(false);
       });
+      const { user } = res.data;
+      localStorage.setItem("email", user.email);
+      localStorage.setItem("username", user.username);
+      toast.success(res.data.message);
+      setIsLoading(false);
+      navigate("/login");
+    } catch (error) {
+      const errorData = error.response.data;
+      if (errorData.email) {
+        toast.error(errorData.email[0]);
+      }
+      if (errorData.password) {
+        toast.error(errorData.password[0]);
+      }
+      console.log(errorData);
+      if (
+        errorData.email &&
+        errorData.email[0] === "user with this email address already exists."
+      ) {
+        navigate("/login");
+      }
+      setIsLoading(false);
+    }
+  };
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -73,9 +86,11 @@ const Register = () => {
         showSideNav={showSideNav ? "block" : "none"}
       />
       <section
-        className="bg-gray-100 py-8 lg:py-12 bg-no-repeat bg-cover"
+        className="bg-gray-100 py-8 lg:py-12 bg-no-repeat bg-cover relative"
         style={{ backgroundImage: `url(${contactusImage})` }}
       >
+        {isLoading && <Loader />}
+        <Toaster /> {/* Add this to render the toast notifications */}
         <div className="container mx-auto px-4">
           <form
             onSubmit={handleSubmit}
@@ -93,7 +108,7 @@ const Register = () => {
                   onChange={handleChange}
                   placeholder="Your Username"
                   value={formData.username}
-                  className="rounded-md px-3.5 py-2 shadow-sm w-full border"
+                  className="rounded-md px-3.5 py-2 shadow-sm w-full border outline-none"
                 />
               </div>
               <br />
@@ -106,21 +121,29 @@ const Register = () => {
                   onChange={handleChange}
                   placeholder="Your Email"
                   value={formData.email}
-                  className="rounded-md px-3.5 py-2 shadow-sm w-full border"
+                  className="rounded-md px-3.5 py-2 shadow-sm w-full border outline-none"
                 />
               </div>
               <br />
               <div>
                 <label htmlFor="password">Password</label>
-                <InputField
-                  id="password"
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  placeholder="Your Password"
-                  value={formData.password}
-                  className="rounded-md px-3.5 py-2 shadow-sm w-full border"
-                />
+                <div className="flex items-center border rounded-md ">
+                  <InputField
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    onChange={handleChange}
+                    placeholder="Your Password"
+                    value={formData.password}
+                    className="rounded-md px-3.5 py-2 shadow-sm w-full outline-none"
+                  />
+                  <div
+                    className="cursor-pointer mr-3"
+                    onClick={handleShowPassword}
+                  >
+                    {showPassword ? <FiEye /> : <FiEyeOff />}
+                  </div>
+                </div>
               </div>
               <div className="flex my-5 gap-5 items-center">
                 <br />
@@ -171,6 +194,7 @@ const Register = () => {
             <div>
               <h3 className="text-center">
                 Already have an account?
+                <br />
                 <Link
                   to="/login"
                   className="font-semibold text-center mx-auto w-full hover:text-primary"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SideNav from "../components/SideNav";
 import Nav from "./../components/Nav";
 import Carousel from "../components/Carousel";
@@ -10,7 +10,6 @@ import Services from "../components/Services";
 import SolarInstallation from "../components/SolarInstallation";
 import GetInTouch from "../components/GetInTouch";
 import Footer from "../components/Footer";
-import Loader from "./Loader";
 
 const Home = () => {
   const images = [
