@@ -1,44 +1,56 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import Banner from "../components/common/Banner";
 import SideNav from "../components/SideNav";
 import Nav from "../components/Nav";
 import axios from "axios";
 import Footer from "../components/Footer";
+import Loader from "../components/Loader";
+import ShowMessage from "../components/ShowMessage";
 
-const MaintanceStatus = () => {
+const EnquiryStatus = () => {
   const [users, setUsers] = useState([]);
   const [showSideNav, setShowSideNav] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
-  let token = localStorage.getItem("accessToken");
+  const token = localStorage.getItem("accessToken");
 
   const showSideNavHandler = () => {
-    setShowSideNav(!showSideNav);
+    setShowSideNav((prev) => !prev);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get("/api/contact/status/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setUsers(res.data);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
+  const fetchData = useCallback(async () => {
+    setIsLoading(true);
+    setMessage(""); // Clear previous messages
+    try {
+      const res = await axios.get("/api/contact/status/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUsers(res.data);
+      if (res.data.length === 0) {
+        setMessage("No Users Found");
       }
-    };
-    fetchData();
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+      setMessage("Failed to fetch data. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   }, [token]);
 
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   const handleApproval = async (userId, statusType, statusValue) => {
+    setIsLoading(true);
     try {
       await axios.put(
         `/api/contact/status/${userId}/`,
-        {
-          [statusType]: statusValue,
-        },
+        { [statusType]: statusValue },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -52,23 +64,36 @@ const MaintanceStatus = () => {
             : user
         )
       );
+      setIsLoading(false);
+      setMessage("Status updated successfully");
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
     } catch (error) {
       console.error("Error updating the status:", error);
-      console.error("Response data:", error.response.data);
-      console.error("Response status:", error.response.status);
+      setMessage("Failed to update status. Please try again.");
     }
   };
+
   const deleteUserHandler = async (userId) => {
-    // console.log(userId);
-    // return;
+    setIsLoading(true);
     try {
       await axios.delete(`/api/contact/status/${userId}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      setUsers((prevUsers) =>
+        prevUsers.filter((user) => user.solar_inquiry_id !== userId)
+      );
+      setIsLoading(false);
+      setMessage("Delete successfully");
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
     } catch (error) {
-      console.error("Response data:", error.response.data);
+      console.error("Failed to delete user:", error);
+      setMessage("Failed to delete user. Please try again.");
     }
   };
 
@@ -81,6 +106,8 @@ const MaintanceStatus = () => {
         showSideNav={showSideNav ? "block" : "none"}
       />
       <section className="bg-gray-100 p-5 md:py-20 md:px-10 relative bg-cover bg-no-repeat backdrop-blur-lg">
+        {isLoading && <Loader />}
+
         <div className="overflow-x-auto">
           <table className="min-w-full border-collapse border border-gray-300">
             <thead>
@@ -115,10 +142,11 @@ const MaintanceStatus = () => {
                 <th className="border border-gray-300 px-4 py-2">Delete</th>
               </tr>
             </thead>
+
             <tbody>
               {users.map((user, index) => (
                 <tr key={index}>
-                  <td className="border text-sm border-gray-300 p-2 ">
+                  <td className="border text-sm border-gray-300 p-2">
                     {user.name}
                   </td>
                   <td className="border text-sm border-gray-300 p-2">
@@ -211,6 +239,7 @@ const MaintanceStatus = () => {
               ))}
             </tbody>
           </table>
+          <ShowMessage message={message} className="text-black" />
         </div>
       </section>
       <Footer />
@@ -218,4 +247,4 @@ const MaintanceStatus = () => {
   );
 };
 
-export default MaintanceStatus;
+export default EnquiryStatus;

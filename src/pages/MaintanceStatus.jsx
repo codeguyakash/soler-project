@@ -67,6 +67,9 @@ const MaintanceStatus = () => {
           )
         );
         setMessage("Status updated successfully");
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
       } catch (error) {
         setMessage("Error updating the status: " + error.message);
         setTimeout(() => {
@@ -94,7 +97,10 @@ const MaintanceStatus = () => {
         setUsers((prevUsers) =>
           prevUsers.filter((user) => user.solar_inquiry_id !== userId)
         );
-        setMessage("User deleted successfully");
+        setMessage("Deleted successfully");
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
       } catch (error) {
         setMessage("Failed to delete user: " + error.message);
       } finally {
@@ -114,7 +120,7 @@ const MaintanceStatus = () => {
       />
       <section className="relative bg-gray-100 p-5 md:py-20 md:px-10">
         {isLoading && <Loader />}
-        <ShowMessage message={message} className="text-red-500" />
+
         <div className="overflow-x-auto relative">
           <table className="min-w-full border-collapse border border-gray-300">
             <thead>
@@ -219,6 +225,7 @@ const MaintanceStatus = () => {
                 ))}
             </tbody>
           </table>
+          <ShowMessage message={message} className="text-black" />
         </div>
       </section>
       <Footer />
