@@ -6,6 +6,7 @@ import axios from "axios";
 import { IoTrashOutline } from "react-icons/io5";
 import Loader from "../components/Loader";
 import ShowMessage from "../components/ShowMessage";
+import BASE_URL from "../config/config";
 
 const MaintanceStatus = () => {
   const [users, setUsers] = useState([]);
@@ -24,11 +25,14 @@ const MaintanceStatus = () => {
     setIsLoading(true);
     setMessage("");
     try {
-      const res = await axios.get("/api/contact/api/contact/maintancestatus/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        `${BASE_URL}/api/contact/api/contact/maintancestatus/`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setUsers(res.data);
       if (res.data.length === 0) {
         setMessage("No User Found");

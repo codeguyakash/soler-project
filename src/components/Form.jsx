@@ -3,6 +3,8 @@ import InputField from "./InputField";
 import contactus from "../assets/icons/contact_us_re_4qqt.svg";
 import axios from "axios";
 import Toast from "./Toast";
+import BASE_URL from "../config/config";
+import { useNavigate } from "react-router-dom";
 
 const ContactForm = () => {
   const [isEmpty, setIsEmpty] = useState(false);
@@ -11,14 +13,15 @@ const ContactForm = () => {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [apiUrl, setApiUrl] = useState("");
+  const navigate = useNavigate();
 
   const requestType = localStorage.getItem("Request-Type");
 
   useEffect(() => {
     if (requestType === "Maintenance") {
-      setApiUrl("/api/contact/api/contact/maintance/");
+      setApiUrl(`${BASE_URL}/api/contact/api/contact/maintance/`);
     } else {
-      setApiUrl("/api/contact/inquiries/");
+      setApiUrl(`${BASE_URL}/api/contact/inquiries/`);
     }
   }, [requestType]);
 
@@ -45,7 +48,7 @@ const ContactForm = () => {
 
   const fetchStates = async () => {
     try {
-      const res = await axios.get("/api/state/state/");
+      const res = await axios.get(`${BASE_URL}/api/state/state/`);
       setStates(res.data);
     } catch (error) {
       console.error(error.message);
@@ -55,7 +58,9 @@ const ContactForm = () => {
 
   const fetchCities = async (stateId) => {
     try {
-      const response = await axios.get(`/api/state/city/?state_id=${stateId}`);
+      const response = await axios.get(
+        `${BASE_URL}/api/state/city/?state_id=${stateId}`
+      );
       setCities(response.data);
     } catch (error) {
       console.error("Failed to fetch cities", error);
@@ -82,6 +87,7 @@ const ContactForm = () => {
       console.log(res.data);
       if (res.status === 201) {
         setShowMessage("Sent Success...");
+
         setFormData({
           state: "",
           city: "",
@@ -94,6 +100,9 @@ const ContactForm = () => {
           address: "",
           comments: "",
         });
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
       }
       setIsLoading(false);
     } catch (error) {

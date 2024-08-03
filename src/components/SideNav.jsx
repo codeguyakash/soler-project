@@ -4,6 +4,7 @@ import { TiSocialTwitter } from "react-icons/ti";
 import { FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import BASE_URL from "../config/config";
 
 const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const isBlock = showSideNav === "block";
@@ -13,10 +14,12 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
   const logoutHandler = async () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("username");
+    localStorage.removeItem("email");
     navigate("/login");
     try {
       const refresh = localStorage.getItem("refreshToken");
-      await axios.post("/api/accounts/api/logout", {
+      await axios.post(`${BASE_URL}/api/accounts/api/logout`, {
         refresh_token: refresh,
       });
       localStorage.removeItem("accessToken");
@@ -41,7 +44,7 @@ const SideNav = ({ showSideNavHandler, showSideNav }) => {
     { to: "/solar-saving-calculator", label: "Solar Saving Calculator" },
     { to: "/services", label: "Our Services" },
     { to: "/our-products", label: "Our Products" },
-    { to: "/enquiry", label: "Enquiry" },
+    // { to: "/enquiry", label: "Enquiry" },
     { to: "/faq", label: "Some FAQs" },
     { to: "/why-go-solar", label: "Why Go Solar" },
     { to: "/muft-bijli-yojana", label: "Muft Bijli Yojana" },

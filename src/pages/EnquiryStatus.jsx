@@ -6,6 +6,7 @@ import Nav from "../components/Nav";
 import axios from "axios";
 import Loader from "../components/Loader";
 import ShowMessage from "../components/ShowMessage";
+import BASE_URL from "../config/config";
 
 const EnquiryStatus = () => {
   const [users, setUsers] = useState([]);
@@ -23,7 +24,7 @@ const EnquiryStatus = () => {
     setIsLoading(true);
     setMessage("");
     try {
-      const res = await axios.get("/api/contact/status/", {
+      const res = await axios.get(`${BASE_URL}/api/contact/status/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,7 +49,7 @@ const EnquiryStatus = () => {
     setIsLoading(true);
     try {
       await axios.put(
-        `/api/contact/status/${userId}/`,
+        `${BASE_URL}/api/contact/status/${userId}/`,
         { [statusType]: statusValue },
         {
           headers: {
@@ -77,7 +78,7 @@ const EnquiryStatus = () => {
   const deleteUserHandler = async (userId) => {
     setIsLoading(true);
     try {
-      await axios.delete(`/api/contact/status/${userId}/`, {
+      await axios.delete(`${BASE_URL}/api/contact/status/${userId}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

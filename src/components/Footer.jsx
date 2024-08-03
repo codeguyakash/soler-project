@@ -60,12 +60,12 @@ const Footer = () => {
               >
                 Our Products
               </Link>
-              <Link
+              {/* <Link
                 to="/enquiry"
                 className=" text-white border-white hover:text-black"
               >
                 Enquiry
-              </Link>
+              </Link> */}
               <Link
                 to="/faq"
                 className="text-white border-white hover:text-black"

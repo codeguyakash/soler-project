@@ -10,6 +10,7 @@ import Loader from "../components/Loader";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import toast, { Toaster } from "react-hot-toast";
+import BASE_URL from "../config/config";
 
 const Login = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -44,11 +45,15 @@ const Login = () => {
 
     setIsLoading(true);
     try {
-      const res = await axios.post("/api/accounts/api/token/", formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await axios.post(
+        `${BASE_URL}/api/accounts/api/token/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const { access, refresh } = res.data;
       toast.success("Login successful!");
       localStorage.setItem("accessToken", access);

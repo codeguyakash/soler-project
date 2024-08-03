@@ -5,6 +5,7 @@ import Nav from "../components/Nav";
 import contactusImage from "../assets/images/photo-371900.jpeg";
 import Form from "../components/Form";
 
+
 const Enquiry = () => {
   const RequestType = `Enquiry of ${localStorage.getItem("Request-Type")}`;
   const [showSideNav, setShowSideNav] = useState(false);

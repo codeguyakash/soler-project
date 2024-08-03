@@ -7,6 +7,7 @@ import Nav from "../components/Nav";
 
 import contactusImage from "../assets/images/contactus.jpg";
 import SolarForm from "./../components/SolarForm";
+import BASE_URL from "../config/config";
 
 const SolarCalculator = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -39,7 +40,7 @@ const SolarCalculator = () => {
 
   const fetchStates = async () => {
     try {
-      const res = await axios.get("/api/state/state/");
+      const res = await axios.get(`${BASE_URL}/api/state/state/`);
       setStates(res.data);
     } catch (error) {
       console.error(error.message);
@@ -48,7 +49,9 @@ const SolarCalculator = () => {
 
   const fetchCities = async (stateId) => {
     try {
-      const res = await axios.get(`/api/state/city/?state_id=${stateId}`);
+      const res = await axios.get(
+        `${BASE_URL}/api/state/city/?state_id=${stateId}`
+      );
       setCities(res.data);
     } catch (error) {
       console.error(error.message);
@@ -78,7 +81,7 @@ const SolarCalculator = () => {
       let token = localStorage.getItem("accessToken");
       try {
         const res = await axios.post(
-          "/api/solar/solar-calculators/",
+          `${BASE_URL}/api/solar/solar-calculators/`,
           formData,
           {
             headers: {
