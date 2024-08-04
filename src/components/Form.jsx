@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import InputField from "./InputField";
 import contactus from "../assets/icons/contact_us_re_4qqt.svg";
 import axios from "axios";
-import Toast from "./Toast";
-import BASE_URL from "../config/config";
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import PROD_BASE_URL from "../config/config";
+
+const BASE_URL = PROD_BASE_URL || "http://13.201.119.28:5001";
 
 const ContactForm = () => {
   const [isEmpty, setIsEmpty] = useState(false);
-  const [showMessage, setShowMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -78,16 +79,25 @@ const ContactForm = () => {
     fetchStates();
   }, []);
 
+  const validateForm = () => {
+    const { state, city, name, contract_number, email, pin_code, address } =
+      formData;
+    return (
+      state && city && name && contract_number && email && pin_code && address
+    );
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      toast.error("All Fields Required");
+      setIsEmpty(true);
+      return;
+    }
     setIsLoading(true);
-
     try {
       const res = await axios.post(apiUrl, formData);
-      console.log(res.data);
       if (res.status === 201) {
-        setShowMessage("Sent Success...");
-
+        toast.success("Sent Success...");
         setFormData({
           state: "",
           city: "",
@@ -125,9 +135,8 @@ const ContactForm = () => {
             />
           </div>
           <div>
-            <h3 className="text-center text-white font-semibold">
-              {showMessage}
-            </h3>
+            <Toaster />
+            <div>{isEmpty ? <Toaster /> : " "}</div>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-4">
                 <div>
@@ -266,13 +275,6 @@ const ContactForm = () => {
                   placeholder="Please enter comments if any"
                   className="rounded-md px-3.5 py-2 shadow-sm w-full sm:col-span-2 mb-3"
                 />
-              </div>
-              <div>
-                {isEmpty ? (
-                  <Toast message="All Fields Required" className="text-white" />
-                ) : (
-                  " "
-                )}
               </div>
               <button
                 type="submit"
