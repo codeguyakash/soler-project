@@ -7,7 +7,9 @@ import Nav from "../components/Nav";
 
 import contactusImage from "../assets/images/contactus.jpg";
 import SolarForm from "./../components/SolarForm";
-import BASE_URL from "../config/config";
+import PROD_BASE_URL from "../config/config";
+
+const BASE_URL = PROD_BASE_URL || "http://13.201.119.28:5001";
 
 const SolarCalculator = () => {
   const [showSideNav, setShowSideNav] = useState(false);

@@ -10,8 +10,9 @@ import Loader from "../components/Loader";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import toast, { Toaster } from "react-hot-toast";
-import BASE_URL from "../config/config";
+import PROD_BASE_URL from "../config/config";
 
+const BASE_URL = PROD_BASE_URL || "http://13.201.119.28:5001";
 const Login = () => {
   const [showSideNav, setShowSideNav] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

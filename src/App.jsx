@@ -15,7 +15,6 @@ const Services = lazy(() => import("./pages/Services"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // -------------Private Routes-------------------------
-const Sam = lazy(() => import("./pages/Sam"));
 const Admin = lazy(() => import("./pages/Admin"));
 
 const EnquiryStatus = lazy(() => import("./pages/EnquiryStatus"));
@@ -52,7 +51,6 @@ function App() {
 
           <Route path="/maintance-status" element={<MaintanceStatus />} />
           <Route path="/enquiry-status" element={<EnquiryStatus />} />
-          <Route path="/sam" element={<Sam />} />
         </Routes>
       </Suspense>
       <Footer />
