@@ -40,7 +40,11 @@ const SolarCalculator = () => {
   const fetchStates = async () => {
     try {
       const res = await axios.get("/api/state/state/");
-      setStates(res.data);
+      if (Array.isArray(res.data)) {
+        setStates(res.data);
+      } else {
+        console.error("Expected an array but got:", res.data);
+      }
     } catch (error) {
       console.error(error.message);
     }
@@ -49,7 +53,11 @@ const SolarCalculator = () => {
   const fetchCities = async (stateId) => {
     try {
       const res = await axios.get(`/api/state/city/?state_id=${stateId}`);
-      setCities(res.data);
+      if (Array.isArray(res.data)) {
+        setCities(res.data);
+      } else {
+        console.error("Expected an array but got:", res.data);
+      }
     } catch (error) {
       console.error(error.message);
     }
