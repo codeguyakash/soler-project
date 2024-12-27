@@ -10,6 +10,9 @@ import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import Loader from "../components/Loader";
 import toast, { Toaster } from "react-hot-toast";
+import PROD_BASE_URL from "../config/config";
+
+const BASE_URL = PROD_BASE_URL || "http://13.201.119.28:5001";
 
 const Register = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -42,11 +45,15 @@ const Register = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await axios.post("/api/accounts/register/", formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await axios.post(
+        `${BASE_URL}/api/accounts/register/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const { user } = res.data;
       localStorage.setItem("email", user.email);
       localStorage.setItem("username", user.username);

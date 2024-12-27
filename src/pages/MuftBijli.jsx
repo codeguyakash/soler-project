@@ -133,12 +133,12 @@ const MuftBijli = () => {
                   ))}
                 </select>
               </div>
-              <div>
-                <h3 className="text-center mt-5 font-bold text-primary">
-                  👉
-                  <a href="/">Click here</a>
-                </h3>
-              </div>
+              <a
+                className="text-center mt-5 font-bold text-primary block"
+                href="#"
+              >
+                👉Click here
+              </a>
             </section>
           </main>
         </div>

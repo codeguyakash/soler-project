@@ -6,6 +6,9 @@ import axios from "axios";
 import { IoTrashOutline } from "react-icons/io5";
 import Loader from "../components/Loader";
 import ShowMessage from "../components/ShowMessage";
+import PROD_BASE_URL from "../config/config";
+
+const BASE_URL = PROD_BASE_URL || "http://13.201.119.28:5001";
 
 const MaintanceStatus = () => {
   const [users, setUsers] = useState([]);
@@ -24,11 +27,14 @@ const MaintanceStatus = () => {
     setIsLoading(true);
     setMessage("");
     try {
-      const res = await axios.get("/api/contact/api/contact/maintancestatus/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        `${BASE_URL}/api/contact/api/contact/maintancestatus/`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setUsers(res.data);
       if (res.data.length === 0) {
         setMessage("No User Found");
@@ -54,7 +60,7 @@ const MaintanceStatus = () => {
       setMessage("");
       try {
         await axios.put(
-          `/api/contact/api/contact/maintancestatus/${userId}/`,
+          `${BASE_URL}/api/contact/api/contact/maintancestatus/${userId}/`,
           { [statusType]: statusValue },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -88,7 +94,7 @@ const MaintanceStatus = () => {
       setMessage("");
       try {
         await axios.delete(
-          `/api/contact/api/contact/maintancestatus/${userId}/`,
+          `${BASE_URL}/api/contact/api/contact/maintancestatus/${userId}/`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

@@ -2,23 +2,27 @@ import React, { useEffect, useState } from "react";
 import InputField from "./InputField";
 import contactus from "../assets/icons/contact_us_re_4qqt.svg";
 import axios from "axios";
-import Toast from "./Toast";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import PROD_BASE_URL from "../config/config";
+
+const BASE_URL = PROD_BASE_URL || "http://13.201.119.28:5001";
 
 const ContactForm = () => {
   const [isEmpty, setIsEmpty] = useState(false);
-  const [showMessage, setShowMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [apiUrl, setApiUrl] = useState("");
+  const navigate = useNavigate();
 
   const requestType = localStorage.getItem("Request-Type");
 
   useEffect(() => {
     if (requestType === "Maintenance") {
-      setApiUrl("/api/contact/api/contact/maintance/");
+      setApiUrl(`${BASE_URL}/api/contact/api/contact/maintance/`);
     } else {
-      setApiUrl("/api/contact/inquiries/");
+      setApiUrl(`${BASE_URL}/api/contact/inquiries/`);
     }
   }, [requestType]);
 
@@ -45,7 +49,7 @@ const ContactForm = () => {
 
   const fetchStates = async () => {
     try {
-      const res = await axios.get("/api/state/state/");
+      const res = await axios.get(`${BASE_URL}/api/state/state/`);
       setStates(res.data);
     } catch (error) {
       console.error(error.message);
@@ -55,7 +59,9 @@ const ContactForm = () => {
 
   const fetchCities = async (stateId) => {
     try {
-      const response = await axios.get(`/api/state/city/?state_id=${stateId}`);
+      const response = await axios.get(
+        `${BASE_URL}/api/state/city/?state_id=${stateId}`
+      );
       setCities(response.data);
     } catch (error) {
       console.error("Failed to fetch cities", error);
@@ -73,15 +79,25 @@ const ContactForm = () => {
     fetchStates();
   }, []);
 
+  const validateForm = () => {
+    const { state, city, name, contract_number, email, pin_code, address } =
+      formData;
+    return (
+      state && city && name && contract_number && email && pin_code && address
+    );
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      toast.error("All Fields Required");
+      setIsEmpty(true);
+      return;
+    }
     setIsLoading(true);
-
     try {
       const res = await axios.post(apiUrl, formData);
-      console.log(res.data);
       if (res.status === 201) {
-        setShowMessage("Sent Success...");
+        toast.success("Sent Success...");
         setFormData({
           state: "",
           city: "",
@@ -94,6 +110,9 @@ const ContactForm = () => {
           address: "",
           comments: "",
         });
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
       }
       setIsLoading(false);
     } catch (error) {
@@ -116,9 +135,8 @@ const ContactForm = () => {
             />
           </div>
           <div>
-            <h3 className="text-center text-white font-semibold">
-              {showMessage}
-            </h3>
+            <Toaster />
+            <div>{isEmpty ? <Toaster /> : " "}</div>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-4">
                 <div>
@@ -257,13 +275,6 @@ const ContactForm = () => {
                   placeholder="Please enter comments if any"
                   className="rounded-md px-3.5 py-2 shadow-sm w-full sm:col-span-2 mb-3"
                 />
-              </div>
-              <div>
-                {isEmpty ? (
-                  <Toast message="All Fields Required" className="text-white" />
-                ) : (
-                  " "
-                )}
               </div>
               <button
                 type="submit"

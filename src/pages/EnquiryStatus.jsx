@@ -6,6 +6,9 @@ import Nav from "../components/Nav";
 import axios from "axios";
 import Loader from "../components/Loader";
 import ShowMessage from "../components/ShowMessage";
+import PROD_BASE_URL from "../config/config";
+
+const BASE_URL = PROD_BASE_URL || "http://13.201.119.28:5001";
 
 const EnquiryStatus = () => {
   const [users, setUsers] = useState([]);
@@ -20,10 +23,15 @@ const EnquiryStatus = () => {
   };
 
   const fetchData = useCallback(async () => {
+    if (!token) {
+      setMessage("No token found. Please log in.");
+      return;
+    }
+
     setIsLoading(true);
     setMessage("");
     try {
-      const res = await axios.get("/api/contact/status/", {
+      const res = await axios.get(`${BASE_URL}/api/contact/status/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,7 +56,7 @@ const EnquiryStatus = () => {
     setIsLoading(true);
     try {
       await axios.put(
-        `/api/contact/status/${userId}/`,
+        `${BASE_URL}/api/contact/status/${userId}/`,
         { [statusType]: statusValue },
         {
           headers: {
@@ -63,7 +71,6 @@ const EnquiryStatus = () => {
             : user
         )
       );
-      setIsLoading(false);
       setMessage("Status updated successfully");
       setTimeout(() => {
         setMessage("");
@@ -71,13 +78,15 @@ const EnquiryStatus = () => {
     } catch (error) {
       console.error("Error updating the status:", error);
       setMessage("Failed to update status. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const deleteUserHandler = async (userId) => {
     setIsLoading(true);
     try {
-      await axios.delete(`/api/contact/status/${userId}/`, {
+      await axios.delete(`${BASE_URL}/api/contact/status/${userId}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -85,7 +94,6 @@ const EnquiryStatus = () => {
       setUsers((prevUsers) =>
         prevUsers.filter((user) => user.solar_inquiry_id !== userId)
       );
-      setIsLoading(false);
       setMessage("Delete successfully");
       setTimeout(() => {
         setMessage("");
@@ -93,6 +101,8 @@ const EnquiryStatus = () => {
     } catch (error) {
       console.error("Failed to delete user:", error);
       setMessage("Failed to delete user. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -143,8 +153,8 @@ const EnquiryStatus = () => {
             </thead>
 
             <tbody>
-              {users.map((user, index) => (
-                <tr key={index}>
+              {users.map((user) => (
+                <tr key={user.solar_inquiry_id}>
                   <td className="border text-sm border-gray-300 p-2">
                     {user.name}
                   </td>

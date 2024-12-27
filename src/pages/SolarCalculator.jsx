@@ -7,6 +7,9 @@ import Nav from "../components/Nav";
 
 import contactusImage from "../assets/images/contactus.jpg";
 import SolarForm from "./../components/SolarForm";
+import PROD_BASE_URL from "../config/config";
+
+const BASE_URL = PROD_BASE_URL || "http://13.201.119.28:5001";
 
 const SolarCalculator = () => {
   const [showSideNav, setShowSideNav] = useState(false);
@@ -39,12 +42,14 @@ const SolarCalculator = () => {
 
   const fetchStates = async () => {
     try {
-      const res = await axios.get("/api/state/state/");
+      const res2 = await axios.get("/api/state/state/");
       if (Array.isArray(res.data)) {
         setStates(res.data);
       } else {
         console.error("Expected an array but got:", res.data);
       }
+      const res = await axios.get(`${BASE_URL}/api/state/state/`);
+      setStates(res.data);
     } catch (error) {
       console.error(error.message);
     }
@@ -58,6 +63,10 @@ const SolarCalculator = () => {
       } else {
         console.error("Expected an array but got:", res.data);
       }
+      const resqh = await axios.get(
+        `${BASE_URL}/api/state/city/?state_id=${stateId}`
+      );
+      setCities(res.data);
     } catch (error) {
       console.error(error.message);
     }
@@ -86,7 +95,7 @@ const SolarCalculator = () => {
       let token = localStorage.getItem("accessToken");
       try {
         const res = await axios.post(
-          "/api/solar/solar-calculators/",
+          `${BASE_URL}/api/solar/solar-calculators/`,
           formData,
           {
             headers: {

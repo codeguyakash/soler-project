@@ -4,7 +4,6 @@ import { TiSocialTwitter } from "react-icons/ti";
 import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import imagefour from "../assets/icons/imagefour.jpg";
 import { IoCall } from "react-icons/io5";
 
 const Footer = () => {
@@ -15,7 +14,9 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-1 p-10">
             <div className="mb-4">
               <h1 className="text-4xl md:text-6xl text-white font-bold">
-                <Link className="text-3xl md:text-6xl" to="/">Unified Solar</Link>
+                <Link className="text-3xl md:text-6xl" to="/">
+                  Unified Solar
+                </Link>
               </h1>
               <p className="text-white text-sm mt-2">
                 A rooftop solar photovoltaic (PV) system can either cater to the
@@ -60,12 +61,12 @@ const Footer = () => {
               >
                 Our Products
               </Link>
-              <Link
+              {/* <Link
                 to="/enquiry"
                 className=" text-white border-white hover:text-black"
               >
                 Enquiry
-              </Link>
+              </Link> */}
               <Link
                 to="/faq"
                 className="text-white border-white hover:text-black"

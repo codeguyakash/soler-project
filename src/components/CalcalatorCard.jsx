@@ -1,13 +1,6 @@
 import React from "react";
 
 const CalcalatorCard = ({ title, content }) => {
-  const handleIncreament = () => {
-    console.log("Increament");
-  };
-  const handleDecrement = () => {
-    console.log("Decrement");
-  };
-
   return (
     <div className="shadow-md h-60 border-2 border-gray-300 border-dashed rounded-md">
       <h2 className="font-bold text-center rounded-md text-primary p-5">
